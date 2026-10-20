@@ -379,7 +379,7 @@ const THEORY_DATA = [
         badge: "Bắt buộc cho RAG",
         content: `
           <div class="theory-card">
-            <h4><i data-lucide="git-commit"></i> Biến văn bản thành tọa độ hình học (Embeddings)</h4>
+            <h4><i data-lucide="network"></i> Biến văn bản thành tọa độ hình học (Embeddings)</h4>
             <p><strong>Vector Embedding</strong> là kỹ thuật chuyển đổi một từ, câu hoặc đoạn văn bản thành một chuỗi các con số (vector nhiều chiều, ví dụ 1536 chiều).</p>
             <p>Các câu có <strong>nghĩa tương đồng</strong> sẽ nằm rất <strong>gần nhau trong không gian đa chiều</strong>, ngay cả khi chúng dùng từ ngữ hoàn toàn khác nhau:</p>
             <div class="example-box">
@@ -468,7 +468,7 @@ const THEORY_DATA = [
           <div class="theory-card">
             <div class="risks-grid">
               <div class="risk-item">
-                <h5><i data-lucide="ghost"></i> 1. Hallucination (Ảo giác AI)</h5>
+                <h5><i data-lucide="message-square-warning"></i> 1. Hallucination (Ảo giác AI)</h5>
                 <p>Hiện tượng mô hình <strong>tự tin bịa đặt ra thông tin sai sự thật</strong> nhưng trình bày rất mạch lạc và thuyết phục như thật. (Ví dụ: Trích dẫn một điều luật không hề tồn tại trong bộ luật Việt Nam).</p>
                 <p><strong>Giải pháp trên AWS:</strong> Áp dụng <strong>RAG (Retrieval-Augmented Generation)</strong> qua Amazon Bedrock Knowledge Bases và dùng <strong>Bedrock Guardrails</strong> (bật tính năng Grounding check).</p>
               </div>

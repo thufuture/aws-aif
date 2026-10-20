@@ -1375,18 +1375,21 @@ function renderCheatSheet() {
     "Kết hợp với Exam Guide chính thức": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html"
   };
 
-  const serviceIcons = {
-    "Amazon Rekognition": "scan-face", "Amazon Textract": "scan-text", "Amazon Transcribe": "audio-lines",
-    "Amazon Polly": "audio-waveform", "Amazon Comprehend": "text-search", "Amazon Translate": "languages",
-    "Amazon Lex": "messages-square", "Amazon Kendra": "search", "Amazon Bedrock": "cloud",
-    "Bedrock Knowledge Bases": "database-search", "Bedrock Agents": "bot", "Bedrock Guardrails": "shield-check",
-    "SageMaker Studio": "flask-conical", "SageMaker Canvas": "layout-dashboard", "SageMaker JumpStart": "rocket",
-    "SageMaker Clarify": "scale", "SageMaker Model Monitor": "activity", "Amazon Augmented AI (A2I)": "user-round-check",
-    "AWS Trainium": "cpu", "AWS Inferentia": "cpu"
+  const serviceVisuals = {
+    "Amazon Rekognition": ["scan-face", "#0284c7"], "Amazon Textract": ["scan-text", "#2563eb"],
+    "Amazon Transcribe": ["audio-lines", "#7c3aed"], "Amazon Polly": ["audio-waveform", "#9333ea"],
+    "Amazon Comprehend": ["text-search", "#059669"], "Amazon Translate": ["languages", "#0f766e"],
+    "Amazon Lex": ["messages-square", "#db2777"], "Amazon Kendra": ["search", "#2563eb"],
+    "Amazon Bedrock": ["cloud", "#e47911"], "Bedrock Knowledge Bases": ["database-search", "#7c3aed"],
+    "Bedrock Agents": ["bot", "#0284c7"], "Bedrock Guardrails": ["shield-check", "#059669"],
+    "SageMaker Studio": ["flask-conical", "#2563eb"], "SageMaker Canvas": ["layout-dashboard", "#7c3aed"],
+    "SageMaker JumpStart": ["rocket", "#0284c7"], "SageMaker Clarify": ["scale", "#0f766e"],
+    "SageMaker Model Monitor": ["activity", "#0f766e"], "Amazon Augmented AI (A2I)": ["user-round-check", "#059669"],
+    "AWS Trainium": ["cpu", "#e47911"], "AWS Inferentia": ["cpu", "#d97706"]
   };
   servicesGrid.innerHTML = CHEATSHEET_DATA.serviceMatrix.map(item => `
-    <article class="cheat-card service-card">
-      <div class="service-card-heading"><span class="service-icon"><i data-lucide="${serviceIcons[item.service] || 'cloud'}"></i></span></div>
+    <article class="cheat-card service-card" style="--service-accent:${(serviceVisuals[item.service] || ['cloud', '#e47911'])[1]}">
+      <div class="service-card-heading"><span class="service-icon"><i data-lucide="${(serviceVisuals[item.service] || ['cloud'])[0]}"></i></span></div>
       <h4>${item.service}</h4>
       <p>${item.purpose}</p>
       <div class="service-keywords"><i data-lucide="scan-search"></i><span>${item.keywords}</span></div>
@@ -1396,8 +1399,9 @@ function renderCheatSheet() {
   // Golden Exam Tips
   const tipsGrid = document.getElementById("cheat-tips-grid");
   if (tipsGrid) {
+    const tipColors = { "shield-check": "#0f766e", workflow: "#0284c7", "scan-search": "#2563eb", network: "#7c3aed", timer: "#d97706", "book-check": "#059669" };
     tipsGrid.innerHTML = CHEATSHEET_DATA.goldenExamTips.map(tip => `
-      <article class="cheat-card tip-card">
+      <article class="cheat-card tip-card" style="--tip-accent:${tipColors[tip.icon] || '#2563eb'}">
         <div class="tip-card-top"><span class="tip-icon"><i data-lucide="${tip.icon}"></i></span><span class="tip-tag">${tip.tag}</span></div>
         <h4>${tip.title}</h4>
         <div class="tip-card-body">${tip.desc}</div>
