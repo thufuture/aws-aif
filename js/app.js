@@ -1375,24 +1375,21 @@ function renderCheatSheet() {
     "Kết hợp với Exam Guide chính thức": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html"
   };
 
-  // AWS Architecture icons: use the service's own colored tile where available.
-  // Trainium and Inferentia are represented with the EC2 icon because the exam
-  // associates them with EC2 Trn/Inf instances; they have no separate icon here.
-  const serviceIcons = {
-    "Amazon Rekognition": "amazon-rekognition", "Amazon Textract": "amazon-textract",
-    "Amazon Transcribe": "amazon-transcribe", "Amazon Polly": "amazon-polly",
-    "Amazon Comprehend": "amazon-comprehend", "Amazon Translate": "amazon-translate",
-    "Amazon Lex": "amazon-lex", "Amazon Kendra": "amazon-kendra",
-    "Amazon Bedrock": "amazon-bedrock", "Bedrock Knowledge Bases": "amazon-bedrock",
-    "Bedrock Agents": "amazon-bedrock", "Bedrock Guardrails": "amazon-bedrock",
-    "SageMaker Studio": "amazon-sage-maker-ai", "SageMaker Canvas": "amazon-sage-maker-ai",
-    "SageMaker JumpStart": "amazon-sage-maker-ai", "SageMaker Clarify": "amazon-sage-maker-ai",
-    "SageMaker Model Monitor": "amazon-sage-maker-ai", "Amazon Augmented AI (A2I)": "amazon-augmented-ai-a2-i",
-    "AWS Trainium": "amazon-ec2", "AWS Inferentia": "amazon-ec2"
+  const serviceVisuals = {
+    "Amazon Rekognition": ["scan-face", "#0284c7"], "Amazon Textract": ["scan-text", "#2563eb"],
+    "Amazon Transcribe": ["audio-lines", "#7c3aed"], "Amazon Polly": ["audio-waveform", "#9333ea"],
+    "Amazon Comprehend": ["text-search", "#059669"], "Amazon Translate": ["languages", "#0f766e"],
+    "Amazon Lex": ["messages-square", "#db2777"], "Amazon Kendra": ["search", "#2563eb"],
+    "Amazon Bedrock": ["cloud", "#e47911"], "Bedrock Knowledge Bases": ["database-search", "#7c3aed"],
+    "Bedrock Agents": ["bot", "#0284c7"], "Bedrock Guardrails": ["shield-check", "#059669"],
+    "SageMaker Studio": ["flask-conical", "#2563eb"], "SageMaker Canvas": ["layout-dashboard", "#7c3aed"],
+    "SageMaker JumpStart": ["rocket", "#0284c7"], "SageMaker Clarify": ["scale", "#0f766e"],
+    "SageMaker Model Monitor": ["activity", "#0f766e"], "Amazon Augmented AI (A2I)": ["user-round-check", "#059669"],
+    "AWS Trainium": ["cpu", "#e47911"], "AWS Inferentia": ["cpu", "#d97706"]
   };
   servicesGrid.innerHTML = CHEATSHEET_DATA.serviceMatrix.map(item => `
-    <article class="cheat-card service-card" style="--service-accent:#e47911">
-      <div class="service-card-heading"><span class="service-icon"><img src="assets/aws-icons/${serviceIcons[item.service] || 'amazon-bedrock'}.svg" alt="" aria-hidden="true" loading="lazy"></span></div>
+    <article class="cheat-card service-card" style="--service-accent:${(serviceVisuals[item.service] || ['cloud', '#e47911'])[1]}">
+      <div class="service-card-heading"><span class="service-icon"><i data-lucide="${(serviceVisuals[item.service] || ['cloud'])[0]}"></i></span></div>
       <h4>${item.service}</h4>
       <p>${item.purpose}</p>
       <div class="service-keywords"><i data-lucide="scan-search"></i><span>${item.keywords}</span></div>
@@ -1403,10 +1400,9 @@ function renderCheatSheet() {
   const tipsGrid = document.getElementById("cheat-tips-grid");
   if (tipsGrid) {
     const tipColors = { "shield-check": "#0f766e", workflow: "#0284c7", "scan-search": "#2563eb", network: "#7c3aed", timer: "#d97706", "book-check": "#059669" };
-    const tipAwsIcons = { "Quyền riêng tư trên Amazon Bedrock": "amazon-bedrock" };
     tipsGrid.innerHTML = CHEATSHEET_DATA.goldenExamTips.map(tip => `
       <article class="cheat-card tip-card" style="--tip-accent:${tipColors[tip.icon] || '#2563eb'}">
-        <div class="tip-card-top"><span class="tip-icon">${tipAwsIcons[tip.title] ? `<img src="assets/aws-icons/${tipAwsIcons[tip.title]}.svg" alt="" aria-hidden="true" loading="lazy">` : `<i data-lucide="${tip.icon}"></i>`}</span><span class="tip-tag">${tip.tag}</span></div>
+        <div class="tip-card-top"><span class="tip-icon"><i data-lucide="${tip.icon}"></i></span><span class="tip-tag">${tip.tag}</span></div>
         <h4>${tip.title}</h4>
         <div class="tip-card-body">${tip.desc}</div>
         <div class="tip-card-source"><i data-lucide="bookmark-check"></i>${cheatSourceLinks[tip.source] ? `<a href="${cheatSourceLinks[tip.source]}" target="_blank" rel="noopener">${tip.source}</a>` : tip.source}</div>
