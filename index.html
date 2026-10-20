@@ -16,7 +16,22 @@
   <!-- Master Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="auth-locked">
+  <main class="auth-gate" id="login-gate" aria-labelledby="login-title">
+    <form id="auth-form" class="auth-card">
+      <div class="auth-logo">AI</div>
+      <p class="auth-kicker">AWS CERTIFIED AI PRACTITIONER</p>
+      <h1 id="login-title">Đăng nhập</h1>
+      <p class="auth-description">Đăng nhập để vào khu vực ôn thi AIF-C01.</p>
+      <label for="auth-username">Tên đăng nhập</label>
+      <input id="auth-username" name="username" type="text" placeholder="Tên đăng nhập" autocomplete="username" required>
+      <label for="auth-password">Mật khẩu</label>
+      <input id="auth-password" name="password" type="password" placeholder="Mật khẩu" autocomplete="current-password" required>
+      <p id="auth-error" class="auth-error" role="alert" aria-live="polite"></p>
+      <button class="auth-submit" id="auth-submit" type="submit">Đăng nhập <span aria-hidden="true">→</span></button>
+      <p class="auth-session-note">Phiên đăng nhập lưu trong tab hiện tại.</p>
+    </form>
+  </main>
   <!-- Ambient Glow Effects -->
   <div class="ambient-glow-1"></div>
   <div class="ambient-glow-2"></div>
@@ -377,7 +392,7 @@
         AWS Certified AI Practitioner (AIF-C01) Exam Prep Center &bull; Tài liệu tham khảo từ <a href="https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html" target="_blank">AWS Exam Guide</a>, bài chia sẻ <a href="https://devops.vn/posts/chia-se-kinh-nghiem-thi-aws-certified-ai-practitioner-aif-c01-dat-1000-1000/" target="_blank">DevOps.vn</a> và giao diện tham khảo <a href="https://devcloudly.vercel.app/" target="_blank">DevCloudly</a>.
       </p>
       <p style="margin-top: 0.5rem; font-size: 0.78rem; color: var(--text-dim);">
-        Không yêu cầu máy chủ &bull; Hoạt động ngoại tuyến 100% &bull; Tự động lưu tiến độ vào LocalStorage.
+        Không yêu cầu máy chủ ứng dụng &bull; Cần Internet để tải font và biểu tượng &bull; Tiến độ lưu cục bộ trong trình duyệt.
       </p>
     </footer>
   </div>
@@ -388,6 +403,7 @@
   <script src="js/flashcards.js"></script>
   <script src="js/cheatsheet.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/login.js"></script>
 </body>
 </html>
 
