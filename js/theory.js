@@ -830,9 +830,25 @@ const THEORY_DATA = [
         title: "4.3 Chất lượng dữ liệu, rủi ro và tính minh bạch",
         badge: "Responsible AI thực tế",
         content: `
-          <div class="theory-card"><p>Dữ liệu nên đa dạng, đại diện và cân bằng cho các nhóm liên quan; kiểm tra chất lượng nhãn, dữ liệu thiếu và thiên lệch. Bias có thể gây tác động không công bằng; variance cao thường khiến mô hình nhạy quá mức với dữ liệu huấn luyện. Dùng subgroup analysis, human audits và theo dõi để phát hiện vấn đề.</p>
-          <p>Khi chọn model, cân nhắc hiệu năng, mức giải thích được, an toàn, tác động môi trường/sustainability, giấy phép và rủi ro pháp lý như tranh chấp sở hữu trí tuệ. Model Cards tài liệu hóa mục đích, dữ liệu, đánh giá, giới hạn và rủi ro. Minh bạch cần cân bằng với bảo mật và nguy cơ lạm dụng.</p>
-          <p>Thiết kế lấy con người làm trung tâm: thông báo khi có AI tham gia, giải thích quyết định phù hợp ngữ cảnh, cho phép phản hồi/khiếu nại và chuyển sang người xử lý khi cần.</p></div>`
+          <div class="theory-card">
+            <h4>Chất lượng dữ liệu và fairness</h4>
+            <ul>
+              <li>Dùng dữ liệu đa dạng, đại diện cho các nhóm liên quan; kiểm tra nhãn, dữ liệu thiếu và mất cân bằng.</li>
+              <li>Bias có thể tạo kết quả bất công; variance cao có thể khiến model nhạy quá mức với dữ liệu huấn luyện.</li>
+              <li>Dùng subgroup analysis, human review và giám sát để phát hiện vấn đề theo từng nhóm.</li>
+            </ul>
+            <h4>Rủi ro khi chọn và dùng model</h4>
+            <ul>
+              <li>Cân nhắc hiệu năng, khả năng giải thích, an toàn, tác động môi trường, giấy phép và rủi ro pháp lý.</li>
+              <li><strong>Model Cards</strong> ghi lại mục đích, dữ liệu, đánh giá, giới hạn và rủi ro của model.</li>
+              <li>Minh bạch cần đi cùng bảo mật và biện pháp hạn chế nguy cơ lạm dụng.</li>
+            </ul>
+            <h4>Thiết kế lấy con người làm trung tâm</h4>
+            <ul>
+              <li>Thông báo rõ khi AI tham gia; giải thích quyết định phù hợp với ngữ cảnh.</li>
+              <li>Có kênh phản hồi/khiếu nại và chuyển cho người xử lý khi rủi ro hoặc độ bất định cao.</li>
+            </ul>
+          </div>`
       }
     ]
   },
@@ -957,10 +973,31 @@ const THEORY_DATA = [
         title: "5.4 Bảo vệ dữ liệu, nguồn gốc và governance",
         badge: "Security & compliance",
         content: `
-          <div class="theory-card"><h4>Bảo mật ứng dụng GenAI</h4><p>Đánh giá application security, threat detection, vulnerability management và infrastructure protection. Áp dụng least privilege cho IAM; mã hóa at rest và in transit; quản lý secrets; ngăn data leakage; lọc/validation đầu ra (gồm toxicity khi phù hợp); giới hạn quyền của agent/tools; ghi audit trail/log theo yêu cầu. Prompt injection cần được giảm thiểu bằng cách coi tài liệu truy xuất là dữ liệu không đáng tin, tách instruction khỏi dữ liệu, kiểm tra đầu ra và giới hạn hành động. Guardrails hữu ích nhưng không thay thế thiết kế an toàn nhiều lớp.</p>
-          <h4 class="mt-4">Grounding, chất lượng dữ liệu và nguồn gốc</h4><ul><li><strong>RAG grounding:</strong> cung cấp ngữ cảnh từ nguồn phù hợp; trích dẫn nguồn giúp truy vết nhưng tự nó không chứng minh câu trả lời đúng.</li><li><strong>Output validation:</strong> kiểm tra cấu trúc, quy tắc nghiệp vụ và bằng chứng trước khi dùng kết quả.</li><li><strong>Confidence scoring:</strong> có thể dùng để xác định trường hợp cần review, nhưng điểm confidence không phải xác suất đúng đã được hiệu chuẩn trừ khi được thiết kế/đánh giá như vậy.</li><li><strong>Secure data engineering:</strong> đánh giá chất lượng, tính toàn vẹn (integrity) và tính đại diện của dữ liệu; kiểm soát truy cập; dùng privacy-enhancing technologies khi phù hợp.</li><li><strong>Source citation, lineage/cataloging:</strong> ghi nguồn dữ liệu, biến đổi, quyền sử dụng và liên kết với model/kết quả. Data catalog sắp xếp metadata để người dùng tìm/hiểu dataset; SageMaker Model Cards hỗ trợ tài liệu hóa model.</li></ul>
-          <h4 class="mt-4">Governance và dịch vụ AWS</h4><ul><li><strong>Amazon Macie:</strong> phát hiện dữ liệu nhạy cảm trong S3.</li><li><strong>AWS Config:</strong> đánh giá cấu hình tài nguyên; <strong>Amazon Inspector:</strong> quản lý lỗ hổng được hỗ trợ; <strong>Trusted Advisor:</strong> kiểm tra/gợi ý best practices; <strong>CloudTrail:</strong> audit hoạt động API; <strong>Artifact:</strong> truy cập tài liệu compliance AWS.</li><li>Quản trị dữ liệu gồm vòng đời, residency, retention, logging, monitoring, review cadence, chính sách, transparency và đào tạo.</li><li><strong>Generative AI Security Scoping Matrix:</strong> khung giúp xác định phạm vi và trách nhiệm bảo mật theo kiến trúc/use case; không phải một dịch vụ AWS.</li></ul>
-          <div class="alert-box tip"><div class="alert-title">Ghép use case với dịch vụ</div><p>Phát hiện PII trong S3 → Macie; audit hoạt động API → CloudTrail; đánh giá cấu hình → Config; lỗ hổng workload → Inspector; báo cáo compliance AWS → Artifact; chỉ số/alarm → CloudWatch.</p></div></div>`
+          <div class="theory-card">
+            <h4>Bảo mật ứng dụng GenAI</h4>
+            <ul>
+              <li>Áp dụng IAM least privilege, mã hóa khi lưu/truyền, quản lý secrets và ngăn rò rỉ dữ liệu.</li>
+              <li>Lọc/kiểm tra đầu ra; giới hạn quyền của agent và tools; ghi log/audit theo yêu cầu.</li>
+              <li>Giảm prompt injection bằng cách coi tài liệu truy xuất là dữ liệu không đáng tin, tách instruction khỏi dữ liệu và giới hạn hành động.</li>
+              <li>Guardrails hữu ích nhưng không thay thế thiết kế bảo mật nhiều lớp.</li>
+            </ul>
+            <h4>Grounding, dữ liệu và nguồn gốc</h4>
+            <ul>
+              <li><strong>RAG grounding:</strong> đưa vào ngữ cảnh từ nguồn phù hợp; trích dẫn giúp truy vết nhưng không chứng minh câu trả lời đúng.</li>
+              <li><strong>Output validation:</strong> kiểm tra cấu trúc, quy tắc nghiệp vụ và bằng chứng trước khi dùng kết quả.</li>
+              <li><strong>Confidence scoring:</strong> hỗ trợ chọn trường hợp cần review; không mặc định là xác suất đúng đã hiệu chuẩn.</li>
+              <li><strong>Data lineage/catalog:</strong> ghi nguồn, biến đổi, quyền sử dụng và metadata; SageMaker Model Cards hỗ trợ tài liệu hóa model.</li>
+            </ul>
+            <h4>Governance và dịch vụ AWS</h4>
+            <ul>
+              <li><strong>Amazon Macie:</strong> phát hiện dữ liệu nhạy cảm trong S3.</li>
+              <li><strong>AWS Config / Inspector / Trusted Advisor:</strong> đánh giá cấu hình, lỗ hổng được hỗ trợ và best practices.</li>
+              <li><strong>CloudTrail / Artifact / CloudWatch:</strong> audit hoạt động API, truy cập tài liệu compliance AWS và theo dõi metrics/alarms.</li>
+              <li>Quản trị dữ liệu gồm vòng đời, residency, retention, logging, monitoring, chính sách và review định kỳ.</li>
+              <li><strong>Generative AI Security Scoping Matrix</strong> là khung xác định phạm vi/trách nhiệm bảo mật, không phải dịch vụ AWS.</li>
+            </ul>
+            <div class="alert-box tip"><div class="alert-title">Ghép nhanh theo tình huống</div><p>PII trong S3 → Macie · Audit API → CloudTrail · Cấu hình → Config · Lỗ hổng workload → Inspector · Báo cáo compliance → Artifact · Metrics và alarm → CloudWatch.</p></div>
+          </div>`
       }
     ]
   },
