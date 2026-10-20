@@ -5,11 +5,22 @@
   const submit = document.getElementById("auth-submit");
   const usernameInput = document.getElementById("auth-username");
   const passwordInput = document.getElementById("auth-password");
+  const togglePassword = document.getElementById("toggle-password");
 
   const USERNAME = "venzotat";
   const SALT = "sXoX3Ja66qAuQp7y+WxN8g==";
   const PASSWORD_HASH = "c9a85e00d7cae67295c1bdc2acc44883da7884b2b6b3d108a4b442c4e16f6bb8";
   const SESSION_KEY = "aif_login_session";
+
+  if (window.lucide) window.lucide.createIcons();
+
+  togglePassword.addEventListener("click", () => {
+    const showPassword = passwordInput.type === "password";
+    passwordInput.type = showPassword ? "text" : "password";
+    togglePassword.setAttribute("aria-label", showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu");
+    togglePassword.innerHTML = `<i data-lucide="${showPassword ? "eye-off" : "eye"}"></i>`;
+    if (window.lucide) window.lucide.createIcons();
+  });
 
   function unlock() {
     document.body.classList.remove("auth-locked");
