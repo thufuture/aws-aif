@@ -3113,12 +3113,12 @@ body.dark-theme .quiz-main-card .quiz-domain-start-btn { color: #fff; }
 }
 
 .fc-front {
-  background: radial-gradient(circle at 92% 12%, rgba(255,153,0,.035), transparent 32%), #fff;
+  background: #fff;
   border-top: 4px solid var(--aws-orange);
 }
 
 .fc-back {
-  background: radial-gradient(circle at 92% 12%, rgba(2,132,199,.035), transparent 32%), #fff;
+  background: #fff;
   border-top: 4px solid var(--cloud-blue);
   transform: rotateY(180deg);
 }
@@ -3331,8 +3331,6 @@ body.dark-theme .quiz-main-card .quiz-domain-start-btn { color: #fff; }
 .fc-card.is-mastered .fc-front { border-top-color: #10b981; }
 .fc-card:focus-visible { outline: 3px solid rgba(0, 115, 187, .45); outline-offset: 4px; }
 body.dark-theme .fc-filter-chip, body.dark-theme .fc-front, body.dark-theme .fc-back { background-color: var(--bg-card); }
-body.dark-theme .fc-front { background-image: radial-gradient(circle at 92% 12%, rgba(255,153,0,.13), transparent 28%); }
-body.dark-theme .fc-back { background-image: radial-gradient(circle at 92% 12%, rgba(2,132,199,.15), transparent 28%); }
 body.dark-theme .fc-filter-chip.active, body.dark-theme .tip-icon, body.dark-theme .fc-art-icon, body.dark-theme .service-icon { background: rgba(255,153,0,.13); }
 body.dark-theme .fc-category-badge { color: #fdba74; background: rgba(255,153,0,.14); border-color: rgba(255,153,0,.35); }
 body.dark-theme .fc-back-badge { color: #7dd3fc; background: rgba(2,132,199,.14); border-color: rgba(56,189,248,.3); }
