@@ -1,6 +1,6 @@
 /**
  * AWS Certified AI Practitioner (AIF-C01) - Cheat Sheet & Quick Reference
- * Bảng tra cứu thần tốc trước giờ thi - Toàn bộ bí kíp 1000/1000 từ DevOps.vn
+ * Bảng tra cứu AIF-C01. Mẹo học tập là gợi ý, không bảo đảm điểm thi.
  */
 
 const CHEATSHEET_DATA = {
@@ -13,26 +13,26 @@ const CHEATSHEET_DATA = {
     { service: "Amazon Translate", purpose: "Dịch thuật thần kinh đa ngôn ngữ thời gian thực độ chính xác cao", keywords: "Neural machine translation between languages in real-time" },
     { service: "Amazon Lex", purpose: "Xây dựng Chatbot và Voicebot đàm thoại tự nhiên (như trợ lý Alexa)", keywords: "Conversational AI chatbot, Intent, Slot, voice interface" },
     { service: "Amazon Kendra", purpose: "Tìm kiếm thông minh cấp doanh nghiệp dùng ngôn ngữ tự nhiên xuyên suốt S3, SharePoint", keywords: "Intelligent enterprise search across S3, SharePoint, Confluence" },
-    { service: "Amazon Bedrock", purpose: "Nền tảng Serverless truy cập các Foundation Model hàng đầu qua API duy nhất", keywords: "Serverless FM API, Claude, Titan, Llama, pay-per-token" },
-    { service: "Bedrock Knowledge Bases", purpose: "Tự động hóa toàn bộ quy trình RAG (S3 + Vector DB), tra cứu tài liệu không cần train lại", keywords: "Managed RAG, query private company docs without retraining" },
-    { service: "Bedrock Agents", purpose: "Tác tử AI tự động lập kế hoạch và gọi AWS Lambda để thực thi hành động thực tế", keywords: "Autonomous tasks, Action Groups, invoke Lambda functions" },
-    { service: "Bedrock Guardrails", purpose: "Lọc nội dung độc hại, che PII, kiểm tra chống ảo giác Contextual Grounding", keywords: "Safeguards, denied topics, mask PII, contextual grounding check" },
+    { service: "Amazon Bedrock", purpose: "Dịch vụ được quản lý để truy cập foundation models và xây ứng dụng GenAI; giá/triển khai tùy model, tính năng và lựa chọn inference.", keywords: "Managed foundation models, model access, inference options, model-dependent pricing" },
+    { service: "Bedrock Knowledge Bases", purpose: "Hỗ trợ workflow RAG với nguồn dữ liệu và vector store được hỗ trợ; cần cấu hình ingestion/sync và retrieval phù hợp.", keywords: "Managed RAG workflow, data source ingestion/sync, retrieval" },
+    { service: "Bedrock Agents", purpose: "Agent điều phối tác vụ và gọi action groups đã cấu hình; Lambda là một tùy chọn thực thi.", keywords: "Orchestration, action groups, configured tools" },
+    { service: "Bedrock Guardrails", purpose: "Cấu hình các kiểm soát nội dung, thông tin nhạy cảm và grounding được hỗ trợ; không bảo đảm loại bỏ mọi rủi ro.", keywords: "Denied topics, content filters, sensitive information, grounding checks" },
     { service: "SageMaker Studio", purpose: "IDE trên Cloud hoàn chỉnh cho Data Scientist phát triển ML end-to-end", keywords: "Complete ML IDE, notebooks, custom training" },
     { service: "SageMaker Canvas", purpose: "Xây dựng mô hình ML bằng giao diện kéo thả trực quan No-Code cho Business Analysts", keywords: "Visual point-and-click, business analysts, no code ML" },
     { service: "SageMaker JumpStart", purpose: "Hub mô hình mã nguồn mở huấn luyện sẵn 1-click deploy (Hugging Face, Meta)", keywords: "ML Hub, open-source models, pre-trained Hugging Face / Meta" },
     { service: "SageMaker Clarify", purpose: "Phát hiện định kiến (bias) và giải thích mô hình bằng chỉ số SHAP values", keywords: "Detect bias, explainability, interpretability, SHAP values" },
-    { service: "SageMaker Model Monitor", purpose: "Theo dõi trôi dữ liệu (Data Drift) và trôi mô hình (Model Drift) trong production", keywords: "Detect concept drift and data drift in production" },
-    { service: "Amazon Augmented AI (A2I)", purpose: "Quy trình con người thẩm định lại khi ML có điểm tin cậy thấp (HITL)", keywords: "Human review for low-confidence ML predictions, Human-in-the-loop" },
-    { service: "AWS Trainium", purpose: "Chip silicon chuyên dụng tối ưu hiệu năng và chi phí HUẤN LUYỆN (Training)", keywords: "Custom silicon optimized for high-performance ML TRAINING" },
-    { service: "AWS Inferentia", purpose: "Chip silicon chuyên dụng tối ưu chi phí & độ trễ SUY LUẬN (Inference)", keywords: "Custom silicon optimized for low-cost, low-latency INFERENCE" }
+    { service: "SageMaker Model Monitor", purpose: "Theo dõi chất lượng dữ liệu/mô hình theo các baseline, metric và monitor đã cấu hình; phạm vi phụ thuộc workload.", keywords: "Monitor configured data/model quality signals" },
+    { service: "Amazon Augmented AI (A2I)", purpose: "Hỗ trợ human review cho một số workflow và tích hợp được hỗ trợ, theo điều kiện/cấu hình review.", keywords: "Human review, supported ML workflows, configured thresholds" },
+    { service: "AWS Trainium", purpose: "Accelerator AWS hướng tới workload huấn luyện ML; lợi ích cần đánh giá theo model, phần mềm và workload.", keywords: "ML training accelerator, workload-dependent performance" },
+    { service: "AWS Inferentia", purpose: "Accelerator AWS hướng tới workload inference; hiệu năng/chi phí phụ thuộc model và cấu hình.", keywords: "Inference accelerator, workload-dependent performance" }
   ],
 
   hyperparameters: [
-    { name: "Temperature = 0.0", behavior: "Xác định hoàn toàn (Deterministic), tập trung vào sự thật logic, ít ngẫu nhiên", bestFor: "Viết mã nguồn (Code), giải toán, trích xuất dữ liệu, hỏi đáp kỹ thuật chuẩn xác" },
-    { name: "Temperature = 0.7 - 1.0+", behavior: "Sáng tạo, ngẫu hứng, từ ngữ phong phú, phong cách đa dạng", bestFor: "Viết truyện, làm thơ, slogan marketing, brainstorm ý tưởng mới" },
-    { name: "Top-P (Nucleus Sampling)", behavior: "Giới hạn chọn từ trong nhóm có tổng xác suất tích lũy đạt ngưỡng P", bestFor: "Top-P = 0.9 loại bỏ 10% từ ngữ kỳ dị, giữ câu văn tự nhiên và mạch lạc" },
-    { name: "Top-K", behavior: "Chỉ chọn ngẫu nhiên trong đúng K từ có xác suất cao nhất", bestFor: "Top-K = 1 tương đương với Greedy Search (chọn 1 từ xác suất cao nhất)" },
-    { name: "Stop Sequences", behavior: "Ký tự tín hiệu yêu cầu LLM dừng sinh thêm nội dung ngay lập tức", bestFor: "Ngắt khi thấy ký tự xuống dòng (\\n\\n) hoặc từ 'END'" }
+    { name: "Temperature = 0.0", behavior: "Temperature thấp thường giảm biến thiên sampling; không bảo đảm tính xác định hoặc sự thật. Hỗ trợ và tác động tùy model/API.", bestFor: "Khi muốn đầu ra ít biến thiên hơn, nếu model/API hỗ trợ" },
+    { name: "Temperature = 0.7 - 1.0+", behavior: "Temperature cao thường tăng biến thiên trong sampling; kết quả vẫn phụ thuộc model, prompt và cấu hình khác.", bestFor: "Thử nghiệm khi cần nhiều phương án diễn đạt; đánh giá chất lượng trước khi dùng" },
+    { name: "Top-P (Nucleus Sampling)", behavior: "Lấy mẫu từ tập token nhỏ nhất có xác suất tích lũy đạt ngưỡng P; P=0.9 không có nghĩa là 90% số từ.", bestFor: "Điều chỉnh độ đa dạng theo tài liệu model; tránh khái quát một con số cho mọi API" },
+    { name: "Top-K", behavior: "Sampling giới hạn ứng viên vào tối đa K token có xác suất cao nhất; Top-K=1 tương đương chọn token cao nhất chỉ trong cấu hình sampling phù hợp.", bestFor: "Kiểm tra cách provider/model kết hợp Top-K với Temperature và Top-P" },
+    { name: "Stop Sequences", behavior: "Chuỗi được cấu hình để kết thúc generation khi model sinh ra chuỗi đó; hỗ trợ và cách so khớp tùy API.", bestFor: "Dừng đầu ra tại delimiter/marker đã định nghĩa, nếu model/API hỗ trợ" }
   ],
 
   customizationSpectrum: [
@@ -43,11 +43,11 @@ const CHEATSHEET_DATA = {
   ],
 
   goldenExamTips: [
-    { title: "1. Cam kết vàng về Data Privacy của Amazon Bedrock", desc: "AWS KHÔNG BAO GIỜ sử dụng dữ liệu khách hàng (Prompts, Completions, dữ liệu trong S3) để huấn luyện hoặc cải thiện các mô hình nền tảng gốc của AWS hoặc bên thứ ba. Nhớ chắc chắn điều này để không bao giờ bị đề bài đánh lừa!" },
-    { title: "2. Tư duy Solutions Architect (Bí quyết DevOps.vn)", desc: "Đề thi AIF-C01 không hỏi code hay toán sâu, mà hỏi bạn: 'Dịch vụ nào giải quyết bài toán này rẻ nhất và ít tốn công vận hành nhất (Lowest operational overhead)?'. Luôn ưu tiên dịch vụ Fully Managed / Serverless (Bedrock, Rekognition, Textract) trước khi nghĩ đến tự dựng máy chủ EC2." },
-    { title: "3. Phương pháp loại trừ từ khóa ràng buộc (Keywords)", desc: "• Thấy 'Frequent document updates / No retraining / Low cost' &rarr; Chọn RAG / Bedrock Knowledge Bases.<br>• Thấy 'Without traversing public internet' &rarr; Chọn VPC Endpoints (AWS PrivateLink).<br>• Thấy 'Audit who called API and when' &rarr; Chọn AWS CloudTrail.<br>• Thấy 'Human review for low-confidence ML' &rarr; Chọn Amazon Augmented AI (Amazon A2I)." },
-    { title: "4. Bẫy phân biệt dịch vụ dễ nhầm lẫn", desc: "• Phân biệt AWS Artifact (Tải báo cáo kiểm toán tuân thủ SOC, ISO) vs AWS CodeArtifact (Kho lưu trữ thư viện code npm, maven).<br>• Phân biệt AWS Trainium (Tối ưu cho Training) vs AWS Inferentia (Tối ưu cho Inference).<br>• Phân biệt Amazon Transcribe (Giọng nói &rarr; Chữ) vs Amazon Polly (Chữ &rarr; Giọng nói)." },
-    { title: "5. Chiến lược phân bổ thời gian 90 phút phòng thi", desc: "• Lượt 1 (40 phút): Làm nhanh 65 câu. Câu nào chắc chắn thì chọn ngay; câu nào phân vân thì chọn đáp án khả dĩ nhất và bấm GẮN CỜ (Flag for review).<br>• Lượt 2 (30 phút): Mở danh sách câu gắn cờ để phân tích sâu từ khóa và dùng phương pháp loại trừ.<br>• Lượt 3 (20 phút cuối): Rà soát lại một lượt toàn bộ 65 câu để đảm bảo không bỏ sót câu nào." },
-    { title: "6. Luyện đề thi thử để đạt 1000/1000", desc: "Đừng chỉ nhìn xem câu đó đúng hay sai, mà hãy đọc kỹ giải thích: 'Tại sao đáp án này đúng' và 'Tại sao 3 đáp án kia sai'. Khi bạn hiểu được lý do 3 đáp án kia sai, bạn đã học được thêm 3 kiến thức mới cho các câu hỏi khác!" }
+    { icon: "shield-check", tag: "Bảo mật dữ liệu", title: "Quyền riêng tư trên Amazon Bedrock", desc: "<ul><li>Inputs/outputs không được dùng để huấn luyện foundation model gốc nếu khách hàng không đồng ý.</li><li>Dữ liệu cung cấp để customization được dùng cho mục đích customization đó; không gộp với dữ liệu nền tảng gốc.</li><li>Phân biệt dữ liệu gọi model với dữ liệu bạn chủ động cấp làm training data.</li></ul>", source: "AWS Bedrock privacy" },
+    { icon: "workflow", tag: "Chọn giải pháp", title: "Bắt đầu từ yêu cầu nghiệp vụ", desc: "<ul><li>Xác định use case, chất lượng, latency, throughput, chi phí và yêu cầu compliance.</li><li>So sánh dịch vụ managed với phương án tự vận hành theo các ràng buộc đó.</li><li>Managed/serverless có thể giảm công vận hành, nhưng không mặc định là lựa chọn phù hợp nhất.</li></ul>", source: "Cách suy luận trong bài thi" },
+    { icon: "scan-search", tag: "Từ khóa tình huống", title: "Ghép nhu cầu với dịch vụ", desc: "<ul><li>Tài liệu thay đổi, cần câu trả lời có ngữ cảnh → cân nhắc RAG/Knowledge Bases; cập nhật nguồn cần ingest/sync.</li><li>Kết nối riêng tới dịch vụ được hỗ trợ → VPC endpoint/PrivateLink phù hợp kiến trúc.</li><li>Audit hoạt động API → CloudTrail; metrics/alarms → CloudWatch.</li><li>A2I chỉ dùng cho workflow/dịch vụ được hỗ trợ và theo cấu hình review.</li></ul>", source: "Đọc toàn bộ yêu cầu trước khi chọn" },
+    { icon: "network", tag: "Dịch vụ dễ nhầm", title: "Nhớ cặp khái niệm", desc: "<ul><li>Artifact: tài liệu/báo cáo compliance AWS; CodeArtifact: kho package phần mềm.</li><li>Trainium: accelerator hướng đến training; Inferentia: accelerator hướng đến inference. Hiệu năng/chi phí tùy workload.</li><li>Transcribe: speech-to-text; Polly: text-to-speech.</li></ul>", source: "Phân biệt theo use case" },
+    { icon: "timer", tag: "Quản lý thời gian", title: "Chia 90 phút linh hoạt", desc: "<ul><li>65 câu trong 90 phút tương đương khoảng 1 phút 23 giây mỗi câu.</li><li>Đánh dấu câu cần quay lại nếu nền tảng thi cho phép; giữ thời gian rà câu bỏ trống.</li><li>Unanswered được tính sai và không có penalty riêng cho việc đoán.</li></ul>", source: "Gợi ý cá nhân, không phải quy định AWS" },
+    { icon: "book-check", tag: "Cách ôn hiệu quả", title: "Học từ lý do, không học mẹo đoán", desc: "<ul><li>Sau mỗi câu, giải thích vì sao đáp án phù hợp và vì sao lựa chọn khác không khớp yêu cầu.</li><li>Ghi lại chủ đề/domain còn yếu rồi ôn lại bằng Exam Guide.</li><li>Mock exam chỉ giúp luyện nhịp độ; không thể quy đổi thành điểm AWS hay bảo đảm kết quả thi.</li></ul>", source: "Kết hợp với Exam Guide chính thức" }
   ]
 };

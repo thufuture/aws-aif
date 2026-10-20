@@ -3017,24 +3017,39 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
    VIEW 4: FLASHCARDS (3D FLIP)
    =================================================================== */
 .flashcards-container {
-  max-width: 800px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
+.fc-page-head { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; margin: .35rem 0 1.4rem; }
+.fc-page-title { display: flex; align-items: center; gap: 1rem; }
+.fc-page-icon, .cheat-page-icon { display: grid; place-items: center; width: 52px; height: 52px; flex: 0 0 52px; border-radius: 15px; background: #fff7ed; color: #e47911; }
+.fc-page-icon svg, .cheat-page-icon svg { width: 25px; height: 25px; }
+.fc-eyebrow, .cheat-eyebrow { margin: 0 0 .2rem; color: var(--aws-orange-dark); font-size: .68rem; font-weight: 800; letter-spacing: .13em; }
+.fc-page-title h2, .cheat-page-title h2 { margin: 0; color: var(--text-main); font-size: clamp(1.35rem, 2.5vw, 1.8rem); font-weight: 800; letter-spacing: -.035em; }
+.fc-page-title p:last-child, .cheat-page-title p:last-child { margin: .25rem 0 0; color: var(--text-muted); font-size: .88rem; }
+.fc-progress-summary { display: inline-flex; align-items: center; gap: .5rem; padding: .65rem .85rem; border: 1px solid var(--accent-green-border); border-radius: var(--radius-full); background: var(--accent-green-light); color: var(--accent-green-text); font-size: .82rem; font-weight: 700; white-space: nowrap; }
+.fc-progress-summary svg { width: 17px; height: 17px; }
+
 .fc-filter-bar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   gap: 1rem;
   flex-wrap: wrap;
 }
+.fc-filter-chip { display: inline-flex; align-items: center; gap: .42rem; min-height: 38px; padding: .45rem .75rem; border: 1px solid var(--border-color); border-radius: var(--radius-full); background: #fff; color: var(--text-muted); font: inherit; font-size: .78rem; font-weight: 700; cursor: pointer; transition: var(--transition); }
+.fc-filter-chip span { color: inherit; font-weight: 500; }
+.fc-filter-chip:hover { border-color: var(--aws-orange); color: var(--aws-orange-dark); }
+.fc-filter-chip.active { border-color: var(--aws-orange); background: #fff7ed; color: #a94f08; box-shadow: 0 0 0 2px rgba(255,153,0,.08); }
+.fc-filter-chip svg { width: 15px; height: 15px; }
 
 .fc-card-scene {
   perspective: 1200px;
   width: 100%;
-  height: 380px;
-  margin-bottom: 1.5rem;
+  height: 400px;
+  margin-bottom: 1.15rem;
   cursor: pointer;
 }
 
@@ -3058,9 +3073,9 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: var(--radius-lg);
+  border-radius: 20px;
   border: 1px solid var(--border-color);
-  padding: 2.5rem;
+  padding: clamp(1.4rem, 3.5vw, 2.5rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -3068,17 +3083,22 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
 }
 
 .fc-front {
-  background: var(--bg-card);
+  background: radial-gradient(circle at 92% 12%, rgba(255,153,0,.09), transparent 28%), #fff;
   border-top: 4px solid var(--aws-orange);
 }
 
 .fc-back {
-  background: var(--bg-card);
+  background: radial-gradient(circle at 92% 12%, rgba(2,132,199,.08), transparent 28%), #fff;
   border-top: 4px solid var(--cloud-blue);
   transform: rotateY(180deg);
 }
+.fc-card-meta { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.fc-count { color: var(--text-dim); font-size: .8rem; font-weight: 700; white-space: nowrap; }
 
 .fc-category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -3089,9 +3109,14 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
   border-radius: var(--radius-full);
   align-self: flex-start;
 }
+.fc-category-badge svg { width: 14px; height: 14px; }
+.fc-back-badge { color: #0369a1; border-color: #bae6fd; background: #f0f9ff; }
 
+.fc-term-wrap { display: grid; justify-items: center; align-content: center; margin: auto 0; }
+.fc-art-icon { display: grid; place-items: center; width: 58px; height: 58px; margin-bottom: .9rem; border: 1px solid #fed7aa; border-radius: 18px; background: #fff7ed; color: var(--aws-orange-dark); }
+.fc-art-icon svg { width: 28px; height: 28px; }
 .fc-term-main {
-  font-size: 2rem;
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
   font-weight: 800;
   color: var(--text-main);
   text-align: center;
@@ -3117,15 +3142,17 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
 }
 
 .fc-definition-text {
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.65;
   color: var(--text-body);
   margin: auto 0;
   white-space: pre-line;
+  overflow-y: auto;
+  max-height: 235px;
 }
 
 .fc-exam-keyword-box {
-  background: var(--aws-orange-light);
+  background: #fff7ed;
   border: 1px solid var(--aws-orange-border);
   border-left: 3px solid var(--aws-orange);
   padding: 0.65rem 1rem;
@@ -3133,12 +3160,14 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
   font-size: 0.88rem;
   color: #9a3412;
 }
+.fc-exam-keyword-box strong { display: flex; align-items: center; gap: .38rem; margin-bottom: .2rem; color: #9a4a0a; }
+.fc-exam-keyword-box strong svg { width: 15px; height: 15px; }
 
 .fc-controls {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: .75rem;
 }
 
 .btn-fc-action {
@@ -3202,16 +3231,18 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
 
 .cheat-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.25rem;
-  margin-bottom: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 285px), 1fr));
+  align-items: start;
+  gap: 1rem;
+  margin-bottom: 2.1rem;
 }
+.tip-grid, .parameter-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 .cheat-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 1.25rem;
+  padding: 1.15rem;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
 }
@@ -3227,6 +3258,78 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
   color: var(--aws-orange-dark);
   margin-bottom: 0.5rem;
 }
+.cheat-intro { margin-bottom: 1.8rem; }
+.cheat-page-title { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.1rem; }
+.cheat-section-heading { display: flex; align-items: center; gap: .85rem; margin: 1.8rem 0 .9rem; }
+.cheat-section-icon { display: grid; place-items: center; flex: 0 0 42px; width: 42px; height: 42px; border-radius: 13px; }
+.cheat-section-icon svg { width: 20px; height: 20px; }
+.cheat-section-icon.orange { background: #fff7ed; color: #ea7210; }
+.cheat-section-icon.violet { background: #f5f3ff; color: #7c3aed; }
+.cheat-section-icon.blue { background: #eff6ff; color: #0284c7; }
+.cheat-section-heading h3 { margin: 0; color: var(--text-main); font-size: 1.1rem; font-weight: 800; }
+.cheat-section-heading p { margin: .15rem 0 0; color: var(--text-muted); font-size: .8rem; line-height: 1.5; }
+.tip-card { position: relative; overflow: hidden; min-height: 0; padding: 1rem 1rem .9rem; border-top: 2px solid #f2a23d; }
+.tip-card:hover { border-color: #f2a23d; box-shadow: var(--shadow-md); }
+.tip-card-top { display: flex; align-items: center; gap: .65rem; margin-bottom: .8rem; }
+.tip-icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: #fff7ed; color: #e47911; }
+.tip-icon svg { width: 19px; height: 19px; }
+.tip-tag { color: #9a4a0a; font-size: .68rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+.tip-card h4 { margin: 0 0 .5rem; color: var(--text-main); font-size: .96rem; line-height: 1.4; }
+.tip-card-body { color: var(--text-muted); font-size: .82rem; line-height: 1.55; }
+.tip-card-body ul { display: grid; gap: .36rem; margin: 0; padding-left: 1.05rem; }
+.tip-card-body li::marker { color: var(--aws-orange); }
+.tip-card-source { display: flex; align-items: center; gap: .35rem; margin-top: .75rem; padding-top: .65rem; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: .68rem; }
+.tip-card-source svg { width: 13px; height: 13px; flex: 0 0 auto; }
+.tip-card-source a { color: inherit; text-decoration: underline; text-decoration-color: var(--border-color); text-underline-offset: 2px; }
+.service-card, .parameter-card { display: flex; flex-direction: column; min-height: 100%; }
+.service-card-heading, .parameter-heading { display: flex; align-items: center; gap: .65rem; margin-bottom: .7rem; }
+.service-icon, .parameter-icon { display: grid; place-items: center; width: 36px; height: 36px; flex: 0 0 36px; border-radius: 11px; background: #fff7ed; color: #e47911; }
+.service-icon svg, .parameter-icon svg { width: 18px; height: 18px; }
+.service-label { color: var(--text-dim); font-size: .63rem; font-weight: 800; letter-spacing: .12em; }
+.service-card h4, .parameter-heading h4 { margin: 0; color: var(--text-main); font-size: .95rem; font-weight: 800; line-height: 1.4; }
+.service-card > p, .parameter-card > p { margin: 0; color: var(--text-muted); font-size: .81rem; line-height: 1.55; }
+.service-keywords { display: flex; align-items: flex-start; gap: .4rem; margin-top: auto; padding-top: .8rem; color: var(--aws-orange-dark); font-size: .7rem; font-weight: 700; line-height: 1.45; }
+.service-keywords svg { width: 14px; height: 14px; flex: 0 0 auto; }
+.parameter-card { gap: .55rem; }
+.parameter-heading { align-items: flex-start; margin-bottom: .2rem; }
+.parameter-icon { background: #f5f3ff; color: #7c3aed; }
+.parameter-use { display: grid; gap: .22rem; margin-top: auto; padding: .65rem .75rem; border: 1px solid var(--accent-green-border); border-radius: 10px; background: var(--accent-green-light); color: var(--accent-green-text); font-size: .75rem; line-height: 1.45; }
+.parameter-use strong { display: flex; align-items: center; gap: .35rem; font-size: .68rem; text-transform: uppercase; letter-spacing: .04em; }
+.parameter-use svg { width: 14px; height: 14px; }
+.fc-card.is-mastered .fc-front { border-top-color: #10b981; }
+.fc-card:focus-visible { outline: 3px solid rgba(0, 115, 187, .45); outline-offset: 4px; }
+body.dark-theme .fc-filter-chip, body.dark-theme .fc-front, body.dark-theme .fc-back { background-color: var(--bg-card); }
+body.dark-theme .fc-front { background-image: radial-gradient(circle at 92% 12%, rgba(255,153,0,.13), transparent 28%); }
+body.dark-theme .fc-back { background-image: radial-gradient(circle at 92% 12%, rgba(2,132,199,.15), transparent 28%); }
+body.dark-theme .fc-filter-chip.active, body.dark-theme .tip-icon, body.dark-theme .fc-art-icon, body.dark-theme .service-icon { background: rgba(255,153,0,.13); }
+body.dark-theme .fc-category-badge { color: #fdba74; background: rgba(255,153,0,.14); border-color: rgba(255,153,0,.35); }
+body.dark-theme .fc-back-badge { color: #7dd3fc; background: rgba(2,132,199,.14); border-color: rgba(56,189,248,.3); }
+body.dark-theme .fc-exam-keyword-box { color: #fed7aa; background: rgba(154,52,18,.2); border-color: rgba(255,153,0,.38); }
+body.dark-theme .parameter-use { background: rgba(16,185,129,.1); }
+@media (max-width: 720px) {
+  .fc-page-head { align-items: flex-start; flex-direction: column; }
+  .fc-progress-summary { align-self: flex-start; }
+  .fc-filter-bar { gap: .45rem; }
+  .fc-filter-chip { min-height: 36px; padding: .42rem .65rem; }
+  .fc-filter-chip span { display: none; }
+  .fc-card-scene { height: 370px; }
+  .fc-face { padding: 1.25rem; }
+  .fc-term-main { font-size: clamp(1.45rem, 6vw, 2rem); }
+  .fc-definition-text { font-size: .9rem; max-height: 205px; }
+  .fc-controls { flex-wrap: wrap; }
+  .btn-fc-action { justify-content: center; padding: .7rem .9rem; font-size: .82rem; }
+  .cheat-grid, .tip-grid, .parameter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 420px) {
+  .fc-card-scene { height: 410px; }
+  .fc-category-badge { max-width: calc(100% - 55px); font-size: .65rem; }
+  .fc-count { font-size: .7rem; }
+  .fc-exam-keyword-box { padding: .55rem .7rem; font-size: .78rem; }
+  .cheat-page-title, .fc-page-title { align-items: flex-start; gap: .7rem; }
+  .cheat-page-icon, .fc-page-icon { width: 44px; height: 44px; flex-basis: 44px; border-radius: 13px; }
+  .cheat-grid, .tip-grid, .parameter-grid { grid-template-columns: 1fr; }
+}
+.tip-card-source svg { width: 14px; height: 14px; color: #8795a4; }
 
 .cheat-keywords {
   background: var(--cloud-blue-light);

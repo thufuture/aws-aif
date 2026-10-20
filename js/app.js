@@ -1260,41 +1260,43 @@ function renderFlashcards() {
 
   const current = filteredCards[state.flashcardIndex];
   const isMastered = state.masteredFlashcards.includes(current.id);
+  const categoryIcons = { "ML Core": "brain-circuit", "Evaluation": "chart-no-axes-combined", "AWS AI Services": "cloud-cog", "GenAI Foundations": "sparkles", "Hyperparameters": "sliders-horizontal", "GenAI Risks": "triangle-alert", "Foundation Models": "blocks", "Amazon Bedrock": "cloud", "Prompt Engineering": "messages-square", "AWS Silicon": "cpu", "Amazon SageMaker": "layers-3", "Fine-Tuning": "wand-sparkles", "Responsible AI": "scale", "Security": "shield-check", "Governance": "file-clock", "Compliance": "file-check-2" };
+  const cardIcon = categoryIcons[current.category] || "book-open-check";
+  document.querySelectorAll("[data-fc-filter]").forEach(button => {
+    const selected = button.dataset.fcFilter === state.flashcardDomainFilter;
+    button.classList.toggle("active", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
 
   container.innerHTML = `
-    <div class="fc-card ${state.flashcardFlipped ? 'is-flipped' : ''}" onclick="flipFlashcard()">
+    <div class="fc-card ${state.flashcardFlipped ? 'is-flipped' : ''} ${isMastered ? 'is-mastered' : ''}" role="button" tabindex="0" aria-label="Thẻ ${current.term}, nhấn Enter để lật" onclick="flipFlashcard()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();flipFlashcard()}">
       <!-- Face Front -->
       <div class="fc-face fc-front">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span class="fc-category-badge">Domain ${current.domainId} &bull; ${current.category}</span>
-          <span style="font-size: 0.8rem; color: var(--text-dim); font-weight: 700;">
-            ${state.flashcardIndex + 1} / ${filteredCards.length}
-          </span>
+        <div class="fc-card-meta">
+          <span class="fc-category-badge"><i data-lucide="${cardIcon}"></i>Domain ${current.domainId} <span>·</span> ${current.category}</span>
+          <span class="fc-count">${state.flashcardIndex + 1} / ${filteredCards.length}</span>
         </div>
-        <div>
+        <div class="fc-term-wrap">
+          <span class="fc-art-icon"><i data-lucide="${cardIcon}"></i></span>
           <div class="fc-term-main">${current.term}</div>
           <div class="fc-term-vi">${current.termVi}</div>
         </div>
         <div class="fc-flip-hint">
-          <i data-lucide="rotate-3d"></i> Chạm hoặc nhấp chuột để lật mặt sau
+          <i data-lucide="mouse-pointer-2"></i> Chọn thẻ để xem giải thích
         </div>
       </div>
 
       <!-- Face Back -->
       <div class="fc-face fc-back">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span class="fc-category-badge" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green);">
-            Ý nghĩa & Từ khóa đề thi
-          </span>
-          <span style="font-size: 0.8rem; color: var(--text-dim); font-weight: 700;">
-            ${state.flashcardIndex + 1} / ${filteredCards.length}
-          </span>
+        <div class="fc-card-meta">
+          <span class="fc-category-badge fc-back-badge"><i data-lucide="scan-search"></i>Ý nghĩa và ngữ cảnh</span>
+          <span class="fc-count">${state.flashcardIndex + 1} / ${filteredCards.length}</span>
         </div>
         <div class="fc-definition-text">
           ${current.definition}
         </div>
         <div class="fc-exam-keyword-box">
-          <strong>🎯 Từ khóa nhận diện đề thi:</strong> ${current.examKeyword}
+          <strong><i data-lucide="key-round"></i> Gợi ý nhận diện:</strong> ${current.examKeyword}
         </div>
       </div>
     </div>
@@ -1316,30 +1318,28 @@ function flipFlashcard() {
   if (card) card.classList.toggle("is-flipped", state.flashcardFlipped);
 }
 
+function getVisibleFlashcards() {
+  return FLASHCARDS_DATA.filter(card => state.flashcardDomainFilter === "all" || card.domainId === Number(state.flashcardDomainFilter));
+}
+
 function prevFlashcard() {
   sound.playClick();
+  const cards = getVisibleFlashcards();
   state.flashcardFlipped = false;
-  if (state.flashcardIndex > 0) {
-    state.flashcardIndex--;
-  } else {
-    state.flashcardIndex = FLASHCARDS_DATA.length - 1;
-  }
+  state.flashcardIndex = (state.flashcardIndex - 1 + cards.length) % cards.length;
   renderFlashcards();
 }
 
 function nextFlashcard() {
   sound.playClick();
+  const cards = getVisibleFlashcards();
   state.flashcardFlipped = false;
-  if (state.flashcardIndex < FLASHCARDS_DATA.length - 1) {
-    state.flashcardIndex++;
-  } else {
-    state.flashcardIndex = 0;
-  }
+  state.flashcardIndex = (state.flashcardIndex + 1) % cards.length;
   renderFlashcards();
 }
 
 function markFlashcard(mastered) {
-  const current = FLASHCARDS_DATA[state.flashcardIndex];
+  const current = getVisibleFlashcards()[state.flashcardIndex];
   if (!current) return;
 
   if (mastered) {
@@ -1370,26 +1370,39 @@ function filterFlashcards(domainId) {
 function renderCheatSheet() {
   const servicesGrid = document.getElementById("cheat-services-grid");
   if (!servicesGrid) return;
+  const cheatSourceLinks = {
+    "AWS Bedrock privacy": "https://aws.amazon.com/bedrock/amazon-models/privacy/",
+    "Kết hợp với Exam Guide chính thức": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html"
+  };
 
+  const serviceIcons = {
+    "Amazon Rekognition": "scan-face", "Amazon Textract": "scan-text", "Amazon Transcribe": "audio-lines",
+    "Amazon Polly": "audio-waveform", "Amazon Comprehend": "text-search", "Amazon Translate": "languages",
+    "Amazon Lex": "messages-square", "Amazon Kendra": "search", "Amazon Bedrock": "cloud",
+    "Bedrock Knowledge Bases": "database-search", "Bedrock Agents": "bot", "Bedrock Guardrails": "shield-check",
+    "SageMaker Studio": "flask-conical", "SageMaker Canvas": "layout-dashboard", "SageMaker JumpStart": "rocket",
+    "SageMaker Clarify": "scale", "SageMaker Model Monitor": "activity", "Amazon Augmented AI (A2I)": "user-round-check",
+    "AWS Trainium": "cpu", "AWS Inferentia": "cpu"
+  };
   servicesGrid.innerHTML = CHEATSHEET_DATA.serviceMatrix.map(item => `
-    <div class="cheat-card">
-      <h5>${item.service}</h5>
-      <p style="font-size: 0.88rem; color: var(--text-muted);">${item.purpose}</p>
-      <div class="cheat-keywords">
-        <i data-lucide="tag" style="width: 14px; height: 14px; display: inline; vertical-align: middle;"></i>
-        ${item.keywords}
-      </div>
-    </div>
+    <article class="cheat-card service-card">
+      <div class="service-card-heading"><span class="service-icon"><i data-lucide="${serviceIcons[item.service] || 'cloud'}"></i></span><span class="service-label">AWS SERVICE</span></div>
+      <h4>${item.service}</h4>
+      <p>${item.purpose}</p>
+      <div class="service-keywords"><i data-lucide="scan-search"></i><span>${item.keywords}</span></div>
+    </article>
   `).join("");
 
   // Golden Exam Tips
   const tipsGrid = document.getElementById("cheat-tips-grid");
   if (tipsGrid) {
     tipsGrid.innerHTML = CHEATSHEET_DATA.goldenExamTips.map(tip => `
-      <div class="cheat-card" style="border-left: 4px solid var(--aws-orange);">
-        <h5 style="color: var(--aws-orange);">${tip.title}</h5>
-        <p style="font-size: 0.9rem; line-height: 1.6;">${tip.desc}</p>
-      </div>
+      <article class="cheat-card tip-card">
+        <div class="tip-card-top"><span class="tip-icon"><i data-lucide="${tip.icon}"></i></span><span class="tip-tag">${tip.tag}</span></div>
+        <h4>${tip.title}</h4>
+        <div class="tip-card-body">${tip.desc}</div>
+        <div class="tip-card-source"><i data-lucide="bookmark-check"></i>${cheatSourceLinks[tip.source] ? `<a href="${cheatSourceLinks[tip.source]}" target="_blank" rel="noopener">${tip.source}</a>` : tip.source}</div>
+      </article>
     `).join("");
   }
 
@@ -1397,13 +1410,11 @@ function renderCheatSheet() {
   const paramsGrid = document.getElementById("cheat-params-grid");
   if (paramsGrid) {
     paramsGrid.innerHTML = CHEATSHEET_DATA.hyperparameters.map(hp => `
-      <div class="cheat-card">
-        <h5 style="color: var(--accent-violet);">${hp.name}</h5>
-        <p><strong>Hành vi:</strong> ${hp.behavior}</p>
-        <p style="margin-top: 0.4rem; color: var(--accent-green); font-size: 0.85rem;">
-          <strong>🎯 Tình huống chọn:</strong> ${hp.bestFor}
-        </p>
-      </div>
+      <article class="cheat-card parameter-card">
+        <div class="parameter-heading"><span class="parameter-icon"><i data-lucide="sliders-horizontal"></i></span><h4>${hp.name}</h4></div>
+        <p>${hp.behavior}</p>
+        <div class="parameter-use"><strong><i data-lucide="lightbulb"></i> Gợi ý ứng dụng</strong><span>${hp.bestFor}</span></div>
+      </article>
     `).join("");
   }
 

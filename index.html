@@ -16,7 +16,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   
   <!-- Master Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=20261020-login-refresh-2">
+  <link rel="stylesheet" href="css/style.css?v=20261020-study-cards-1">
 </head>
 <body class="auth-locked">
   <main class="auth-gate" id="login-gate" aria-labelledby="login-title">
@@ -321,21 +321,18 @@
            ============================================================== -->
       <section id="view-flashcards" class="view-panel">
         <div class="flashcards-container">
-          <!-- Filter Bar -->
-          <div class="fc-filter-bar">
-            <div>
-              <h2 style="font-size: 1.5rem; font-weight: 800;">Flashcards Thuật Ngữ Cốt Lõi</h2>
-              <p style="color: var(--text-muted); font-size: 0.88rem;" id="fc-mastered-counter">0 / 35 thẻ đã thuộc</p>
-            </div>
+          <header class="fc-page-head">
+            <div class="fc-page-title"><span class="fc-page-icon"><i data-lucide="layers-3"></i></span><div><p class="fc-eyebrow">ÔN TẬP CHỦ ĐỘNG</p><h2>Flashcards thuật ngữ cốt lõi</h2><p>Lật thẻ để xem định nghĩa và dấu hiệu nhận biết trong đề.</p></div></div>
+            <div class="fc-progress-summary"><i data-lucide="circle-check-big"></i><span id="fc-mastered-counter">0 / 35 thẻ đã thuộc</span></div>
+          </header>
 
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-              <button class="btn-secondary" style="font-size: 0.82rem; padding: 0.4rem 0.8rem;" onclick="filterFlashcards('all')">Tất cả</button>
-              <button class="btn-secondary" style="font-size: 0.82rem; padding: 0.4rem 0.8rem;" onclick="filterFlashcards('1')">Domain 1</button>
-              <button class="btn-secondary" style="font-size: 0.82rem; padding: 0.4rem 0.8rem;" onclick="filterFlashcards('2')">Domain 2</button>
-              <button class="btn-secondary" style="font-size: 0.82rem; padding: 0.4rem 0.8rem;" onclick="filterFlashcards('3')">Domain 3</button>
-              <button class="btn-secondary" style="font-size: 0.82rem; padding: 0.4rem 0.8rem;" onclick="filterFlashcards('4')">Domain 4</button>
-              <button class="btn-secondary" style="font-size: 0.82rem; padding: 0.4rem 0.8rem;" onclick="filterFlashcards('5')">Domain 5</button>
-            </div>
+          <div class="fc-filter-bar" role="group" aria-label="Lọc flashcards theo domain">
+            <button class="fc-filter-chip" data-fc-filter="all" aria-pressed="true" onclick="filterFlashcards('all')"><i data-lucide="layout-grid"></i>Tất cả</button>
+            <button class="fc-filter-chip" data-fc-filter="1" aria-pressed="false" onclick="filterFlashcards('1')">D1 <span>Nền tảng AI/ML</span></button>
+            <button class="fc-filter-chip" data-fc-filter="2" aria-pressed="false" onclick="filterFlashcards('2')">D2 <span>GenAI</span></button>
+            <button class="fc-filter-chip" data-fc-filter="3" aria-pressed="false" onclick="filterFlashcards('3')">D3 <span>Foundation Models</span></button>
+            <button class="fc-filter-chip" data-fc-filter="4" aria-pressed="false" onclick="filterFlashcards('4')">D4 <span>Responsible AI</span></button>
+            <button class="fc-filter-chip" data-fc-filter="5" aria-pressed="false" onclick="filterFlashcards('5')">D5 <span>Security</span></button>
           </div>
 
           <!-- 3D Card Scene -->
@@ -365,14 +362,8 @@
            VIEW 5: CHEAT SHEET & SERVICES DIRECTORY
            ============================================================== -->
       <section id="view-cheatsheet" class="view-panel">
-        <div style="margin-bottom: 2rem;">
-          <h2 class="section-title">
-            <i data-lucide="zap" style="color: var(--aws-orange);"></i>
-            Bảng tra cứu thần tốc trước giờ thi
-          </h2>
-          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-            Tìm kiếm nhanh bất kỳ dịch vụ hoặc từ khóa nào để xem tóm tắt công dụng và dấu hiệu nhận biết trong đề thi.
-          </p>
+        <div class="cheat-intro">
+          <div class="cheat-page-title"><span class="cheat-page-icon"><i data-lucide="zap"></i></span><div><p class="cheat-eyebrow">AWS AI PRACTITIONER · AIF-C01</p><h2>Bảng tra cứu trước giờ thi</h2><p>Tìm dịch vụ, khái niệm hoặc từ khóa. Dùng như bản ôn nhanh bên cạnh Exam Guide chính thức.</p></div></div>
 
           <!-- Search Box -->
           <div class="search-bar-wrap">
@@ -382,25 +373,19 @@
         </div>
 
         <!-- Golden Exam Tips -->
-        <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem; color: var(--aws-orange);">
-          💡 Kinh nghiệm ôn tập và làm bài từ cộng đồng AWS
-        </h3>
-        <div class="cheat-grid" id="cheat-tips-grid">
+        <div class="cheat-section-heading"><span class="cheat-section-icon orange"><i data-lucide="lightbulb"></i></span><div><h3>Chiến lược học và làm bài</h3><p>Mẹo học tập đã được rà soát; đây không phải nội dung hay quy định chính thức của AWS.</p></div></div>
+        <div class="cheat-grid tip-grid" id="cheat-tips-grid">
           <!-- Rendered dynamically by app.js -->
         </div>
 
         <!-- Hyperparameters Guide -->
-        <h3 style="font-size: 1.25rem; font-weight: 800; margin: 2rem 0 1rem 0; color: var(--accent-violet);">
-          🎛️ Bảng siêu tham số sinh văn bản (Inference Hyperparameters)
-        </h3>
-        <div class="cheat-grid" id="cheat-params-grid">
+        <div class="cheat-section-heading"><span class="cheat-section-icon violet"><i data-lucide="sliders-horizontal"></i></span><div><h3>Tham số sinh văn bản</h3><p>Temperature, Top-P, Top-K và stop sequences có thể phụ thuộc model/provider.</p></div></div>
+        <div class="cheat-grid parameter-grid" id="cheat-params-grid">
           <!-- Rendered dynamically by app.js -->
         </div>
 
         <!-- AWS AI Services Directory -->
-        <h3 style="font-size: 1.25rem; font-weight: 800; margin: 2rem 0 1rem 0; color: var(--accent-cyan);">
-          ☁️ Bản đồ dịch vụ AWS AI/ML (Service Matrix & Keywords)
-        </h3>
+        <div class="cheat-section-heading"><span class="cheat-section-icon blue"><i data-lucide="cloud"></i></span><div><h3>Dịch vụ AWS AI/ML</h3><p>Ghép use case với dịch vụ; luôn đọc kỹ phạm vi và điều kiện trong câu hỏi.</p></div></div>
         <div class="cheat-grid" id="cheat-services-grid">
           <!-- Rendered dynamically by app.js -->
         </div>

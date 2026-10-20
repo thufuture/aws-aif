@@ -27,8 +27,8 @@ const FLASHCARDS_DATA = [
     domainId: 1,
     term: "Reinforcement Learning (RL)",
     termVi: "Học tăng cường",
-    definition: "Agent tương tác với môi trường thông qua Thử và Sai (Trial & Error). Nhận Điểm thưởng (Reward) khi đúng và Điểm phạt (Penalty) khi sai. Đại diện AWS: AWS DeepRacer.",
-    examKeyword: "Trial and error, Reward/Penalty, AWS DeepRacer",
+    definition: "Agent thực hiện hành động trong môi trường, nhận phản hồi (reward) và điều chỉnh chính sách để tối đa hóa reward tích lũy theo thời gian. Reward không đồng nghĩa với điểm phạt cố định; DeepRacer chỉ là một ví dụ minh họa của AWS.",
+    examKeyword: "Agent, environment, actions, reward, policy",
     category: "ML Core"
   },
   {
@@ -36,7 +36,7 @@ const FLASHCARDS_DATA = [
     domainId: 1,
     term: "Overfitting vs Underfitting",
     termVi: "Quá khớp vs Chưa khớp",
-    definition: "• Overfitting: Học vẹt, train tốt test kém &rarr; Khắc phục: Thêm data, Regularization (L1/L2), Dropout.\n• Underfitting: Mô hình quá đơn giản, train lẫn test đều kém &rarr; Khắc phục: Tăng độ phức tạp mô hình, thêm features.",
+    definition: "• Overfitting: kết quả trên train tốt hơn rõ rệt so với validation/test; mô hình khó khái quát. Có thể xem xét thêm dữ liệu đại diện, regularization, giảm độ phức tạp hoặc điều chỉnh quy trình huấn luyện.\n• Underfitting: kết quả kém cả trên train và validation; cần chẩn đoán dữ liệu, đặc trưng, model và cách huấn luyện trước khi chọn biện pháp.",
     examKeyword: "High train accuracy + low test accuracy = Overfitting",
     category: "ML Core"
   },
@@ -45,8 +45,8 @@ const FLASHCARDS_DATA = [
     domainId: 1,
     term: "Precision vs Recall",
     termVi: "Độ chuẩn xác vs Độ nhạy",
-    definition: "• Precision = TP / (TP + FP): Đoán Dương thì bao nhiêu % đúng. Cần khi chi phí báo động giả rất cao (Spam filter).\n• Recall = TP / (TP + FN): Bắt được bao nhiêu % trong các ca thực sự Dương. Cần khi KHÔNG ĐƯỢC BỎ SÓT (Bệnh hiểm nghèo, gian lận thẻ tín dụng).",
-    examKeyword: "Spam filter &rarr; Precision. Cancer / Fraud detection &rarr; Recall",
+    definition: "• Precision = TP / (TP + FP): trong các dự đoán dương, có bao nhiêu dự đoán đúng; hữu ích khi false positive gây tốn kém.\n• Recall = TP / (TP + FN): trong các trường hợp dương thực tế, phát hiện được bao nhiêu; hữu ích khi bỏ sót gây tốn kém. Chọn metric theo chi phí lỗi và mục tiêu use case.",
+    examKeyword: "So sánh chi phí false positive và false negative",
     category: "Evaluation"
   },
   {
@@ -54,8 +54,8 @@ const FLASHCARDS_DATA = [
     domainId: 1,
     term: "Amazon Rekognition",
     termVi: "Dịch vụ thị giác máy tính",
-    definition: "Dịch vụ thị giác máy tính đã huấn luyện sẵn: Phân tích ảnh/video, nhận diện khuôn mặt, so sánh khuôn mặt (CompareFaces), đếm người, kiểm duyệt nội dung phản cảm (Content moderation).",
-    examKeyword: "Facial analysis, compare selfie with ID, content moderation",
+    definition: "Dịch vụ thị giác máy tính có API cho các tác vụ như phân tích ảnh/video, phát hiện hoặc so sánh khuôn mặt và kiểm duyệt nội dung. So sánh khuôn mặt chỉ tạo kết quả so khớp theo ngưỡng; tự nó không xác minh danh tính hay bảo đảm chống giả mạo.",
+    examKeyword: "Image/video analysis, face comparison, content moderation",
     category: "AWS AI Services"
   },
   {
@@ -99,7 +99,7 @@ const FLASHCARDS_DATA = [
     domainId: 2,
     term: "Transformer & Self-Attention",
     termVi: "Kiến trúc nền móng của LLM",
-    definition: "Cơ chế tính toán trọng số mối quan hệ giữa mọi từ trong câu cùng một lúc. Cho phép xử lý song song trên quy mô lớn, vượt trội so với xử lý tuần tự của mạng RNN cũ.",
+    definition: "Self-attention tạo biểu diễn token bằng cách tính mức liên quan giữa token đó với các token khác trong ngữ cảnh. Transformer hỗ trợ xử lý song song ở một số bước huấn luyện; không có nghĩa mô hình luôn xem mọi từ như nhau hoặc bỏ qua giới hạn context.",
     examKeyword: "Parallel processing, Self-Attention mechanism",
     category: "GenAI Foundations"
   },
@@ -108,8 +108,8 @@ const FLASHCARDS_DATA = [
     domainId: 2,
     term: "Tokens & Context Window",
     termVi: "Đơn vị xử lý & Cửa sổ ngữ cảnh",
-    definition: "• 1 Token ~ 0.75 từ tiếng Anh (~4 ký tự). 100 Tokens ~ 75 từ.\n• Context Window: Giới hạn tổng số token tối đa (Prompt + Output) mà mô hình nhớ được trong một phiên làm việc.",
-    examKeyword: "1 token ~ 0.75 words, Context Window limit",
+    definition: "• Token là đơn vị văn bản do tokenizer của model tạo ra; quan hệ giữa token, từ và ký tự thay đổi theo ngôn ngữ và model. Không nên dùng tỷ lệ cố định để ước lượng tiếng Việt.\n• Context window là giới hạn ngữ cảnh token model có thể xử lý cho một yêu cầu; giới hạn cụ thể tùy model và cách tính input/output.",
+    examKeyword: "Tokenizer-specific units; model-specific context limit",
     category: "GenAI Foundations"
   },
   {
@@ -126,8 +126,8 @@ const FLASHCARDS_DATA = [
     domainId: 2,
     term: "Temperature (Nhiệt độ)",
     termVi: "Tham số kiểm soát tính sáng tạo",
-    definition: "• Temp = 0.0: Xác định (Deterministic), ít ngẫu nhiên, logic, chính xác &rarr; Viết code, giải toán, tra cứu sự thật.\n• Temp cao (0.8 - 1.0+): Sáng tạo, ngẫu hứng, từ ngữ phong phú &rarr; Viết truyện, marketing, làm thơ.",
-    examKeyword: "Deterministic code = Low Temp. Creative writing = High Temp",
+    definition: "Temperature điều chỉnh mức độ ngẫu nhiên trong sampling ở các model/API hỗ trợ tham số này. Giá trị thấp thường làm đầu ra ít biến thiên hơn; giá trị cao thường tăng biến thiên. Temperature thấp không bảo đảm câu trả lời đúng hoặc hoàn toàn xác định; phạm vi và tác động tùy model/API.",
+    examKeyword: "Lower temperature usually reduces sampling variability",
     category: "Hyperparameters"
   },
   {
@@ -135,7 +135,7 @@ const FLASHCARDS_DATA = [
     domainId: 2,
     term: "Top-P (Nucleus Sampling)",
     termVi: "Lấy mẫu xác suất tích lũy",
-    definition: "Giới hạn chọn token trong tập các từ có TỔNG XÁC SUẤT TÍCH LŨY đạt đến ngưỡng P (ví dụ 0.9 = top 90% từ có xác suất cao nhất). Giúp loại bỏ các từ kỳ dị, tăng độ tự nhiên.",
+    definition: "Nucleus sampling chọn từ tập nhỏ nhất các token có tổng xác suất tích lũy đạt ngưỡng P, rồi sampling trong tập đó. Ví dụ P=0.9 không có nghĩa là chọn 90% số từ. Hành vi cụ thể phụ thuộc model và các decoding settings khác.",
     examKeyword: "Cumulative probability threshold",
     category: "Hyperparameters"
   },
@@ -153,8 +153,8 @@ const FLASHCARDS_DATA = [
     domainId: 2,
     term: "Hallucination (Ảo giác AI)",
     termVi: "Mô hình bịa đặt thông tin",
-    definition: "Hiện tượng mô hình tự tin khẳng định những thông tin hoàn toàn sai sự thật hoặc bịa đặt. Khắc phục bằng: RAG (Bedrock Knowledge Bases) và Bedrock Guardrails (Contextual Grounding check).",
-    examKeyword: "Fabricated facts presented with confidence &rarr; Mitigate by RAG",
+    definition: "Đầu ra không được nguồn đáng tin cậy hỗ trợ hoặc chứa thông tin sai nhưng nghe có vẻ thuyết phục. RAG có thể cung cấp nguồn ngữ cảnh liên quan; grounding checks và Guardrails có thể hỗ trợ đánh giá/lọc khi cấu hình phù hợp. Không biện pháp nào bảo đảm loại bỏ mọi hallucination.",
+    examKeyword: "Unsupported/fabricated output; grounding can reduce some risk",
     category: "GenAI Risks"
   },
   {
@@ -162,8 +162,8 @@ const FLASHCARDS_DATA = [
     domainId: 3,
     term: "RAG (Retrieval-Augmented Generation)",
     termVi: "Tạo sinh tăng cường truy xuất",
-    definition: "Kỹ thuật kết nối mô hình nền tảng với dữ liệu nội bộ công ty (S3, Vector DB). Trích xuất thông tin liên quan trước rồi mới đưa vào prompt cho LLM trả lời. KHÔNG CẦN TRAIN LẠI MODEL.",
-    examKeyword: "Company data, frequent updates, lowest cost, no retraining",
+    definition: "RAG truy xuất thông tin liên quan từ nguồn dữ liệu bên ngoài model rồi đưa phần phù hợp vào ngữ cảnh để tạo câu trả lời. Có thể cập nhật kiến thức mà không fine-tune lại model, nhưng nguồn/index vẫn cần được đồng bộ hoặc ingest theo cấu hình; chất lượng retrieval và chi phí cần đánh giá.",
+    examKeyword: "Retrieve external/current data at inference; no model retraining required for each update",
     category: "Foundation Models"
   },
   {
@@ -171,7 +171,7 @@ const FLASHCARDS_DATA = [
     domainId: 3,
     term: "Amazon Bedrock",
     termVi: "Dịch vụ GenAI Serverless hàng đầu",
-    definition: "Dịch vụ Serverless cung cấp quyền truy cập các mô hình nền tảng hàng đầu (Claude, Titan, Llama, Stable Diffusion) qua một API duy nhất. Không quản lý máy chủ, trả tiền theo lượng token.",
+    definition: "Dịch vụ được quản lý để xây dựng ứng dụng GenAI và truy cập các foundation model được hỗ trợ qua API. Không cần tự vận hành hạ tầng model như khi tự host; giá và cách triển khai phụ thuộc model, tính năng và lựa chọn inference.",
     examKeyword: "Serverless foundation models API, zero infrastructure management",
     category: "Amazon Bedrock"
   },
@@ -180,7 +180,7 @@ const FLASHCARDS_DATA = [
     domainId: 3,
     term: "Bedrock Knowledge Bases",
     termVi: "Tự động hóa giải pháp RAG",
-    definition: "Giải pháp RAG trọn gói: Đọc file từ S3, tự động chia nhỏ (Chunking), tạo embedding qua Titan Embeddings, lưu vào Vector DB (OpenSearch/Aurora), và tự động tra cứu khi user hỏi.",
+    definition: "Dịch vụ hỗ trợ xây dựng workflow RAG: kết nối nguồn dữ liệu được hỗ trợ, ingest/chunk và tạo embeddings theo cấu hình, lưu vào vector store được hỗ trợ rồi truy xuất khi truy vấn. Cần cấu hình nguồn, embedding/vector store và đồng bộ lại khi dữ liệu thay đổi.",
     examKeyword: "Fully managed RAG pipeline with Amazon S3 and Vector DB",
     category: "Amazon Bedrock"
   },
@@ -189,7 +189,7 @@ const FLASHCARDS_DATA = [
     domainId: 3,
     term: "Bedrock Agents",
     termVi: "Tác tử AI tự động thực thi hành động",
-    definition: "Tác tử tự động chia nhỏ tác vụ phức tạp thành nhiều bước và THỰC THI HÀNH ĐỘNG THỰC TẾ (gọi API, tra cứu database) bằng cách gọi các Action Groups (hàm AWS Lambda).",
+    definition: "Agent có thể điều phối các bước, truy xuất thông tin và gọi action group đã cấu hình. Lambda là một cách thực thi action được hỗ trợ; không phải mọi agent hay action đều bắt buộc dùng Lambda. Cần giới hạn quyền và kiểm soát hành động.",
     examKeyword: "Autonomous task orchestration, invoke AWS Lambda functions",
     category: "Amazon Bedrock"
   },
@@ -198,7 +198,7 @@ const FLASHCARDS_DATA = [
     domainId: 3,
     term: "Bedrock Guardrails",
     termVi: "Hàng rào an toàn cho GenAI",
-    definition: "Cung cấp rào chắn bảo vệ: Chặn chủ đề cấm (Denied Topics), lọc từ ngữ thô tục, che/lọc PII, và tính năng Contextual Grounding Check để ngăn chặn ảo giác (Hallucination).",
+    definition: "Có thể cấu hình policy như denied topics, content filters, lọc thông tin nhạy cảm và kiểm tra grounding. Các bộ lọc chỉ xử lý những loại nội dung/phạm vi được hỗ trợ và cấu hình; không bảo đảm chặn mọi nội dung gây hại hoặc hallucination.",
     examKeyword: "Block harmful topics, mask PII, contextual grounding check",
     category: "Amazon Bedrock"
   },
@@ -216,7 +216,7 @@ const FLASHCARDS_DATA = [
     domainId: 3,
     term: "Chain-of-Thought (CoT)",
     termVi: "Chuỗi suy nghĩ từng bước",
-    definition: "Hướng dẫn mô hình suy nghĩ từng bước một ('Let's think step by step') trước khi đưa ra kết luận. Cực kỳ hiệu quả cho các bài toán logic hoặc tính toán phức tạp.",
+    definition: "Prompting yêu cầu model trình bày hoặc xử lý một bài toán theo các bước có cấu trúc. Có thể giúp một số tác vụ reasoning, nhưng không bảo đảm lập luận đúng; cần kiểm chứng kết quả.",
     examKeyword: "Think step-by-step, complex reasoning",
     category: "Prompt Engineering"
   },
@@ -225,8 +225,8 @@ const FLASHCARDS_DATA = [
     domainId: 3,
     term: "AWS Trainium vs Inferentia",
     termVi: "Bộ đôi chip silicon chuyên dụng của AWS",
-    definition: "• AWS Trainium: Chip chuyên biệt cho HUẤN LUYỆN (Training) mô hình ML với chi phí tối ưu nhất.\n• AWS Inferentia: Chip chuyên biệt cho SUY LUẬN (Inference) với độ trễ thấp và chi phí rẻ nhất.",
-    examKeyword: "Trainium = Training. Inferentia = Low-latency Inference",
+    definition: "• AWS Trainium: accelerator AWS hướng tới workload huấn luyện ML.\n• AWS Inferentia: accelerator AWS hướng tới workload inference. Hiệu năng và tổng chi phí phụ thuộc model, workload, phần mềm, cấu hình và Region; hãy đánh giá theo yêu cầu cụ thể.",
+    examKeyword: "Trainium → training; Inferentia → inference",
     category: "AWS Silicon"
   },
   {
@@ -234,7 +234,7 @@ const FLASHCARDS_DATA = [
     domainId: 3,
     term: "Amazon SageMaker JumpStart",
     termVi: "Hub mô hình mã nguồn mở",
-    definition: "Trung tâm trong SageMaker cung cấp hàng trăm mô hình mã nguồn mở huấn luyện sẵn (từ Hugging Face, Meta...) sẵn sàng triển khai hoặc fine-tune chỉ với 1 cú click chuột.",
+    definition: "SageMaker JumpStart cung cấp model assets và giải pháp mẫu để khám phá, tùy biến hoặc triển khai các model/workflow được hỗ trợ. Model, điều kiện cấp phép, tùy chọn triển khai và khả năng sẵn có thay đổi theo thời gian và Region.",
     examKeyword: "ML Hub, pre-trained open source models, 1-click deployment",
     category: "Amazon SageMaker"
   },
@@ -243,7 +243,7 @@ const FLASHCARDS_DATA = [
     domainId: 3,
     term: "PEFT / LoRA",
     termVi: "Tinh chỉnh mô hình tiết kiệm tham số",
-    definition: "Parameter-Efficient Fine-Tuning: Đóng băng hầu hết trọng số của mô hình gốc và chỉ cập nhật một phần cực nhỏ (<1%) tham số bổ sung. Giúp tiết kiệm 80-90% chi phí tính toán GPU.",
+    definition: "Parameter-Efficient Fine-Tuning cập nhật một phần nhỏ tham số hoặc dùng adapter (ví dụ LoRA) thay vì cập nhật toàn bộ model. Có thể giảm tài nguyên so với full fine-tuning trong một số trường hợp; mức tiết kiệm phụ thuộc model, phương pháp và workload.",
     examKeyword: "Fine-tune tiny fraction of parameters, reduce GPU memory",
     category: "Fine-Tuning"
   },
@@ -270,7 +270,7 @@ const FLASHCARDS_DATA = [
     domainId: 4,
     term: "Amazon Augmented AI (A2I)",
     termVi: "Quy trình con người can thiệp (HITL)",
-    definition: "Dịch vụ Human-in-the-loop cung cấp quy trình chuyển giao các dự đoán ML có độ tin cậy thấp (Low confidence score) cho người thật thẩm định lại (tích hợp Textract, Rekognition).",
+    definition: "A2I hỗ trợ đưa con người vào một số workflow ML được hỗ trợ, chẳng hạn rà soát kết quả theo điều kiện/threshold cấu hình. Dịch vụ, tích hợp và loại dự đoán phụ thuộc workflow được hỗ trợ; không phải lớp review dùng chung cho mọi model.",
     examKeyword: "Human review for low-confidence ML predictions, Human-in-the-loop",
     category: "Responsible AI"
   },
@@ -288,8 +288,8 @@ const FLASHCARDS_DATA = [
     domainId: 5,
     term: "Bedrock Data Privacy Guarantee",
     termVi: "Cam kết bảo mật dữ liệu của Bedrock",
-    definition: "AWS KHÔNG BAO GIỜ sử dụng prompt, câu trả lời hoặc dữ liệu của khách hàng đưa lên Bedrock để huấn luyện hay cải thiện mô hình gốc của Amazon hoặc bất kỳ bên thứ ba nào.",
-    examKeyword: "AWS NEVER uses customer data/prompts to train base models",
+    definition: "Theo tài liệu AWS, prompts và outputs Amazon Bedrock không được dùng để huấn luyện foundation models của Amazon nếu khách hàng không đồng ý. Dữ liệu cung cấp cho một tác vụ tùy biến model là trường hợp khác và được xử lý theo điều khoản/tính năng tương ứng; cần đọc tài liệu dịch vụ hiện hành.",
+    examKeyword: "Bedrock prompts/outputs are not used to train Amazon FMs without consent",
     category: "Security"
   },
   {
@@ -297,7 +297,7 @@ const FLASHCARDS_DATA = [
     domainId: 5,
     term: "VPC Endpoints (AWS PrivateLink)",
     termVi: "Kết nối mạng an toàn không qua Internet",
-    definition: "Cho phép các tài nguyên trong VPC riêng kết nối trực tiếp đến Amazon Bedrock hoặc S3 qua mạng nội bộ AWS, TUYỆT ĐỐI KHÔNG ĐI QUA INTERNET CÔNG CỘNG.",
+    definition: "VPC endpoint cung cấp đường kết nối riêng tới dịch vụ AWS được hỗ trợ mà không định tuyến qua internet công cộng. Bedrock thường dùng interface endpoint/PrivateLink; loại endpoint và cấu hình khác nhau theo dịch vụ. S3 cũng có gateway endpoint hoặc interface endpoint.",
     examKeyword: "Access Bedrock without traversing public internet, PrivateLink",
     category: "Security"
   },
@@ -306,7 +306,7 @@ const FLASHCARDS_DATA = [
     domainId: 5,
     term: "AWS CloudTrail vs CloudWatch",
     termVi: "Nhật ký kiểm toán vs Giám sát chỉ số",
-    definition: "• CloudTrail: Ghi lại LỊCH SỬ GỌI API (Ai gọi, gọi API nào, khi nào, IP nào) &rarr; Kiểm toán tuân thủ (Audit).\n• CloudWatch: Giám sát CHỈ SỐ VẬN HÀNH (Số request, token usage, độ trễ) và tạo CẢNH BÁO (Alarms).",
+    definition: "• CloudTrail: ghi lại các hoạt động API/AWS account được hỗ trợ để audit; trường dữ liệu như source IP tùy event. Không mặc định ghi toàn bộ nội dung prompt/response.\n• CloudWatch: theo dõi metrics, logs và alarms mà dịch vụ phát ra hoặc bạn cấu hình; metric cụ thể phụ thuộc tích hợp dịch vụ.",
     examKeyword: "API audit history = CloudTrail. Operational metrics & alarms = CloudWatch",
     category: "Governance"
   },
@@ -315,7 +315,7 @@ const FLASHCARDS_DATA = [
     domainId: 5,
     term: "AWS Artifact",
     termVi: "Cổng tải báo cáo tuân thủ bảo mật",
-    definition: "Cổng thông tin tự phục vụ miễn phí để tải về các báo cáo kiểm toán bảo mật chính thức của AWS (SOC 1/2/3, ISO 27001, PCI-DSS, HIPAA) để nộp cho kiểm toán viên.",
+    definition: "AWS Artifact là cổng self-service để truy cập các tài liệu compliance của AWS. Tài liệu có thể chịu điều kiện về quyền truy cập, thỏa thuận và phạm vi; kiểm tra danh mục hiện có trong account và yêu cầu của auditor.",
     examKeyword: "Download SOC/ISO compliance reports (Phân biệt với CodeArtifact)",
     category: "Compliance"
   }
