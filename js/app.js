@@ -321,7 +321,7 @@ function renderStudySidebar() {
   navList.innerHTML = THEORY_DATA.map(domain => {
     const isActive = domain.domainNumber === activeDomNum;
     const isOpen = state.openStudyDomains.has(domain.domainNumber);
-    const domainLabel = domain.domainNumber === 6 ? '⭐ THỦ KHOA' : `DOMAIN ${domain.domainNumber}`;
+    const domainLabel = domain.domainNumber === 6 ? '⭐ Thủ khoa' : `Domain ${domain.domainNumber}`;
     const domainShort = domain.domainNumber === 6 ? '⭐' : `D${domain.domainNumber}`;
     const domainFullName = domain.domainNumber === 6 ? 'Kinh nghiệm ôn tập & mẹo thi' : domain.titleVi;
 
@@ -765,7 +765,7 @@ function renderCurrentQuestion() {
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; text-align: left; max-width: 850px; margin: 0 auto;">
           <div class="domain-card" style="border-color: var(--aws-orange); background: var(--aws-orange-light);">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-              <span class="domain-pill" style="background: var(--aws-orange); color: white;">KHUYÊN DÙNG</span>
+              <span class="domain-pill" style="background: var(--aws-orange); color: white;">Gợi ý</span>
               <span class="domain-weight">90 Phút</span>
             </div>
             <h4>Thi Thử Toàn Diện (65 Câu)</h4>
@@ -780,7 +780,7 @@ function renderCurrentQuestion() {
             return `
               <div class="domain-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                  <span class="domain-pill" style="background: ${dom.color}18; color: ${dom.color};">DOMAIN ${dom.domainNumber} (${dom.weight})</span>
+                  <span class="domain-pill" style="background: ${dom.color}18; color: ${dom.color};">Domain ${dom.domainNumber} (${dom.weight})</span>
                   <span class="domain-weight" style="color: ${dom.color}; font-weight: 700;">${count} câu</span>
                 </div>
                 <h4>${dom.titleVi}</h4>
@@ -1386,7 +1386,7 @@ function renderCheatSheet() {
   };
   servicesGrid.innerHTML = CHEATSHEET_DATA.serviceMatrix.map(item => `
     <article class="cheat-card service-card">
-      <div class="service-card-heading"><span class="service-icon"><i data-lucide="${serviceIcons[item.service] || 'cloud'}"></i></span><span class="service-label">AWS SERVICE</span></div>
+      <div class="service-card-heading"><span class="service-icon"><i data-lucide="${serviceIcons[item.service] || 'cloud'}"></i></span></div>
       <h4>${item.service}</h4>
       <p>${item.purpose}</p>
       <div class="service-keywords"><i data-lucide="scan-search"></i><span>${item.keywords}</span></div>
