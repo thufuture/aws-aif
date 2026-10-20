@@ -3493,8 +3493,21 @@ body.auth-locked .ambient-glow-2 { display: none !important; }
 .auth-brand small { display: block; margin-top: 3px; color: #687078; font-size: 9px; font-weight: 800; letter-spacing: .13em; }
 .auth-header-note { display: inline-flex; align-items: center; gap: 8px; color: #545b64; font-size: 12px; }
 .auth-header-note svg { width: 17px; height: 17px; color: #16804a; }
-.auth-main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 18px 34px; background: linear-gradient(180deg, #fff 0%, #fff 60%, #f8f9fa 100%); }
-.auth-card { width: min(100%, 420px); padding: 34px 36px 29px; border: 1px solid #d5dbdb; border-radius: 8px; background: #fff; box-shadow: 0 3px 12px rgba(15, 23, 42, .07); }
+.auth-main { flex: 1; display: grid; place-items: center; overflow-y: auto; padding: clamp(24px, 4vw, 54px) 24px; background: #fff; }
+.auth-shell { width: min(100%, 1120px); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(390px, .9fr); align-items: center; gap: clamp(38px, 7vw, 92px); margin: auto; }
+.auth-promo { min-width: 0; }
+.auth-promo-kicker { display: inline-flex; align-items: center; gap: 8px; color: #596a7c; font-size: 11px; font-weight: 800; letter-spacing: .11em; }
+.auth-promo-kicker svg { width: 17px; height: 17px; color: #e47911; }
+.auth-promo h2 { margin: 15px 0 10px; color: #172b3b; font-size: clamp(29px, 3.4vw, 42px); font-weight: 800; line-height: 1.13; letter-spacing: -.045em; }
+.auth-promo h2 span { color: #d9690b; }
+.auth-promo > p { max-width: 510px; color: #586b7f; font-size: 14px; line-height: 1.75; }
+.auth-certificate-art { display: block; width: min(100%, 470px); height: auto; margin: 20px auto 8px; }
+.auth-promo-points { display: flex; flex-wrap: wrap; gap: 10px 18px; color: #536579; font-size: 11px; font-weight: 700; }
+.auth-promo-points span { display: inline-flex; align-items: center; gap: 6px; }
+.auth-promo-points svg { width: 15px; height: 15px; color: #13805d; }
+.auth-login-column { width: 100%; }
+.auth-card { position: relative; width: 100%; max-width: 440px; margin: 0 auto; padding: 34px 36px 29px; border: 1px solid #d5dbdb; border-radius: 12px; background: #fff; box-shadow: 0 8px 28px rgba(15, 23, 42, .08); }
+.auth-card::before { position: absolute; content: ""; inset: 0 20px auto; height: 3px; border-radius: 0 0 4px 4px; background: linear-gradient(90deg, #ff9900, #f4b642); }
 .auth-logo { display: grid; place-items: center; width: 45px; height: 45px; margin-bottom: 21px; border: 1px solid #e7e9eb; border-radius: 11px; background: #fff; color: #232f3e; }
 .auth-logo svg { width: 24px; height: 24px; stroke-width: 1.8; }
 .auth-kicker { margin: 0 0 7px; color: #687078; font-size: 10px; font-weight: 800; letter-spacing: .12em; }
@@ -3516,6 +3529,7 @@ body.auth-locked .ambient-glow-2 { display: none !important; }
 .auth-submit svg { width: 17px; height: 17px; }
 .auth-session-note { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 18px 0 0; color: #687078; font-size: 10px; }
 .auth-session-note svg { width: 13px; height: 13px; }
-.auth-footer { margin: 21px 0 0; color: #687078; font-size: 11px; text-align: center; }
+.auth-footer { margin: 18px 0 0; color: #687078; font-size: 11px; text-align: center; }
 .auth-footer span { padding: 0 5px; color: #ff9900; }
-@media (max-width: 480px) { .auth-header { height: 64px; flex-basis: 64px; padding: 0 16px; } .auth-header-note { font-size: 0; } .auth-header-note svg { width: 20px; height: 20px; } .auth-main { padding: 22px 14px; } .auth-card { padding: 28px 23px 24px; } }
+@media (max-width: 860px) { .auth-shell { max-width: 540px; grid-template-columns: 1fr; gap: 18px; } .auth-promo { text-align: center; } .auth-promo > p { margin: 0 auto; } .auth-certificate-art { width: min(100%, 320px); max-height: 230px; object-fit: contain; margin: 8px auto 0; } .auth-promo-points { justify-content: center; } }
+@media (max-width: 520px) { .auth-header { height: 64px; flex-basis: 64px; padding: 0 16px; } .auth-header-note { font-size: 0; } .auth-header-note svg { width: 20px; height: 20px; } .auth-main { padding: 20px 14px; place-items: start center; } .auth-shell { gap: 14px; } .auth-promo h2 { margin-top: 8px; font-size: 27px; } .auth-promo > p { font-size: 12px; } .auth-certificate-art { width: min(100%, 230px); max-height: 155px; } .auth-promo-points { gap: 7px 12px; font-size: 10px; } .auth-card { padding: 28px 23px 24px; } }

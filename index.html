@@ -16,7 +16,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   
   <!-- Master Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=20261020-white-layout-2">
+  <link rel="stylesheet" href="css/style.css?v=20261020-login-refresh">
 </head>
 <body class="auth-locked">
   <main class="auth-gate" id="login-gate" aria-labelledby="login-title">
@@ -29,23 +29,38 @@
     </header>
 
     <section class="auth-main">
-      <form id="auth-form" class="auth-card">
-        <div class="auth-logo"><i data-lucide="brain-circuit"></i></div>
-        <p class="auth-kicker">AIF-C01 EXAM PREP</p>
-        <h1 id="login-title">Đăng nhập</h1>
-        <p class="auth-description">Truy cập lộ trình học, bộ câu hỏi và tiến độ ôn tập của bạn.</p>
+      <div class="auth-shell">
+        <section class="auth-promo" aria-label="Giới thiệu khóa ôn thi AIF-C01">
+          <span class="auth-promo-kicker"><i data-lucide="award"></i> AWS CERTIFICATION PREP</span>
+          <h2>Hiểu bản chất.<br><span>Sẵn sàng AIF-C01.</span></h2>
+          <p>Ôn tập AWS Certified AI Practitioner theo 5 domain, với giải thích tiếng Việt, câu hỏi tình huống và thi thử có tính giờ.</p>
+          <img class="auth-certificate-art" src="assets/aif-cert-hero.svg?v=20261020-white-layout-2" alt="Minh họa chứng chỉ AWS Certified AI Practitioner và các chủ đề trí tuệ nhân tạo" width="620" height="480">
+          <div class="auth-promo-points">
+            <span><i data-lucide="layers-3"></i> 5 domain</span>
+            <span><i data-lucide="book-open-check"></i> Học theo mục tiêu thi</span>
+            <span><i data-lucide="list-checks"></i> Luyện và xem giải thích</span>
+          </div>
+        </section>
+        <div class="auth-login-column">
+          <form id="auth-form" class="auth-card">
+            <div class="auth-logo"><i data-lucide="brain-circuit"></i></div>
+            <p class="auth-kicker">AIF-C01 EXAM PREP</p>
+            <h1 id="login-title">Đăng nhập</h1>
+            <p class="auth-description">Truy cập lộ trình học, bộ câu hỏi và tiến độ ôn tập của bạn.</p>
 
-        <label for="auth-username">Tên đăng nhập</label>
-        <div class="auth-input-wrap"><i data-lucide="user-round"></i><input id="auth-username" name="username" type="text" placeholder="Nhập tên đăng nhập" autocomplete="username" required></div>
+            <label for="auth-username">Tên đăng nhập</label>
+            <div class="auth-input-wrap"><i data-lucide="user-round"></i><input id="auth-username" name="username" type="text" placeholder="Nhập tên đăng nhập" autocomplete="username" required></div>
 
-        <label for="auth-password">Mật khẩu</label>
-        <div class="auth-input-wrap"><i data-lucide="lock-keyhole"></i><input id="auth-password" name="password" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password" required><button id="toggle-password" class="auth-toggle" type="button" aria-label="Hiện mật khẩu"><i data-lucide="eye"></i></button></div>
+            <label for="auth-password">Mật khẩu</label>
+            <div class="auth-input-wrap"><i data-lucide="lock-keyhole"></i><input id="auth-password" name="password" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password" required><button id="toggle-password" class="auth-toggle" type="button" aria-label="Hiện mật khẩu"><i data-lucide="eye"></i></button></div>
 
-        <p id="auth-error" class="auth-error" role="alert" aria-live="polite"></p>
-        <button class="auth-submit" id="auth-submit" type="submit"><span>Đăng nhập</span><i data-lucide="arrow-right"></i></button>
-        <p class="auth-session-note"><i data-lucide="info"></i> Phiên đăng nhập được giữ trong tab hiện tại.</p>
-      </form>
-      <p class="auth-footer">AWS Certified AI Practitioner <span>•</span> Tài liệu ôn tập độc lập</p>
+            <p id="auth-error" class="auth-error" role="alert" aria-live="polite"></p>
+            <button class="auth-submit" id="auth-submit" type="submit"><span>Đăng nhập</span><i data-lucide="arrow-right"></i></button>
+            <p class="auth-session-note"><i data-lucide="info"></i> Phiên đăng nhập được giữ trong tab hiện tại.</p>
+          </form>
+          <p class="auth-footer">AWS Certified AI Practitioner <span>•</span> Tài liệu ôn tập độc lập</p>
+        </div>
+      </div>
     </section>
   </main>
   <!-- Ambient Glow Effects -->
