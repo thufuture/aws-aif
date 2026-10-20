@@ -202,7 +202,7 @@ const THEORY_DATA = [
               <div class="service-pill">
                 <div class="pill-header">
                   <span class="service-badge vision">Vision</span>
-                  <h6>Amazon Rekognition</h6>
+                  <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-rekognition.svg" alt="" aria-hidden="true" loading="lazy">Amazon Rekognition</h6>
                 </div>
                 <p>Phân tích hình ảnh & video: nhận diện khuôn mặt, phát hiện đồ vật, đếm người, đọc biển số xe, kiểm duyệt nội dung phản cảm/bạo lực (Content Moderation).</p>
                 <div class="service-tip"><strong>Từ khóa thi:</strong> "Identify objects in images", "Facial analysis", "Inappropriate content detection".</div>
@@ -211,7 +211,7 @@ const THEORY_DATA = [
               <div class="service-pill">
                 <div class="pill-header">
                   <span class="service-badge text">Document / OCR</span>
-                  <h6>Amazon Textract</h6>
+                  <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-textract.svg" alt="" aria-hidden="true" loading="lazy">Amazon Textract</h6>
                 </div>
                 <p>OCR thông minh: Không chỉ đọc text đơn thuần mà còn <strong>hiểu được cấu trúc bảng biểu (tables), form biểu mẫu (key-value pairs)</strong> từ file PDF/ảnh scan.</p>
                 <div class="service-tip"><strong>Từ khóa thi:</strong> "Extract text and structured tables from scanned PDF invoices".</div>
@@ -220,7 +220,7 @@ const THEORY_DATA = [
               <div class="service-pill">
                 <div class="pill-header">
                   <span class="service-badge speech">Speech</span>
-                  <h6>Amazon Transcribe</h6>
+                  <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-transcribe.svg" alt="" aria-hidden="true" loading="lazy">Amazon Transcribe</h6>
                 </div>
                 <p>Chuyển đổi từ <strong>Giọng nói sang Văn bản (Speech-to-Text - ASR)</strong>. Hỗ trợ tạo phụ đề video, phân tích cuộc gọi tổng đài Call Center.</p>
                 <div class="service-tip"><strong>Từ khóa thi:</strong> "Convert audio recording to text transcript", "Call center audio analysis".</div>
@@ -229,7 +229,7 @@ const THEORY_DATA = [
               <div class="service-pill">
                 <div class="pill-header">
                   <span class="service-badge speech">Speech</span>
-                  <h6>Amazon Polly</h6>
+                  <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-polly.svg" alt="" aria-hidden="true" loading="lazy">Amazon Polly</h6>
                 </div>
                 <p>Chuyển đổi từ <strong>Văn bản sang Giọng nói (Text-to-Speech - TTS)</strong> tự nhiên như người thật với công nghệ Neural TTS. Hỗ trợ thẻ SSML để ngắt nghỉ ngữ điệu.</p>
                 <div class="service-tip"><strong>Từ khóa thi:</strong> "Read aloud text articles", "Generate realistic voice from text".</div>
@@ -238,7 +238,7 @@ const THEORY_DATA = [
               <div class="service-pill">
                 <div class="pill-header">
                   <span class="service-badge nlp">NLP</span>
-                  <h6>Amazon Comprehend</h6>
+                  <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-comprehend.svg" alt="" aria-hidden="true" loading="lazy">Amazon Comprehend</h6>
                 </div>
                 <p>Phân tích ngôn ngữ tự nhiên: Phân tích cảm xúc (Sentiment - Tích cực/Tiêu cực), trích xuất thực thể (Entities: tên người, địa điểm), nhận diện thông tin cá nhân nhạy cảm (PII).</p>
                 <div class="service-tip"><strong>Từ khóa thi:</strong> "Analyze customer review sentiment", "Detect PII in medical notes".</div>
@@ -247,7 +247,7 @@ const THEORY_DATA = [
               <div class="service-pill">
                 <div class="pill-header">
                   <span class="service-badge nlp">NLP</span>
-                  <h6>Amazon Translate</h6>
+                  <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-translate.svg" alt="" aria-hidden="true" loading="lazy">Amazon Translate</h6>
                 </div>
                 <p>Dịch thuật tự động giữa hàng chục ngôn ngữ với độ chính xác cao bằng mạng nơ-ron (Neural Machine Translation).</p>
                 <div class="service-tip"><strong>Từ khóa thi:</strong> "Translate text between multiple languages in real-time".</div>
@@ -256,7 +256,7 @@ const THEORY_DATA = [
               <div class="service-pill">
                 <div class="pill-header">
                   <span class="service-badge bot">Conversational</span>
-                  <h6>Amazon Lex</h6>
+                  <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-lex.svg" alt="" aria-hidden="true" loading="lazy">Amazon Lex</h6>
                 </div>
                 <p>Dịch vụ xây dựng <strong>Chatbot và Voicebot</strong> đàm thoại tương tác tự nhiên (dựa trên cùng công nghệ với trợ lý ảo Alexa). Hiểu Intent (ý định) và Slot (thông tin điền).</p>
                 <div class="service-tip"><strong>Từ khóa thi:</strong> "Build interactive customer service chatbot", "Conversational IVR".</div>
@@ -265,7 +265,7 @@ const THEORY_DATA = [
               <div class="service-pill">
                 <div class="pill-header">
                   <span class="service-badge search">Enterprise Search</span>
-                  <h6>Amazon Kendra <small>(đọc thêm)</small></h6>
+                  <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-kendra.svg" alt="" aria-hidden="true" loading="lazy">Amazon Kendra <small>(đọc thêm)</small></h6>
                 </div>
                 <p>Dịch vụ tìm kiếm doanh nghiệp. Đây là ví dụ bổ trợ để phân biệt use case tìm kiếm; ưu tiên học các dịch vụ và mục tiêu được liệt kê trong Exam Guide hiện hành.</p>
                 <div class="service-tip"><strong>Phân biệt:</strong> Kendra là ví dụ về enterprise search; đừng học thuộc như một đáp án trọng tâm nếu câu hỏi không mô tả đúng use case.</div>
@@ -613,7 +613,7 @@ const THEORY_DATA = [
         content: `
           <div class="theory-card">
             <div class="bedrock-banner">
-              <h4><i data-lucide="cloud-lightning"></i> Amazon Bedrock là gì?</h4>
+              <h4><img class="aws-architecture-icon" src="assets/aws-icons/amazon-bedrock.svg" alt="" aria-hidden="true" loading="lazy"> Amazon Bedrock là gì?</h4>
               <p>Amazon Bedrock là dịch vụ <strong>Serverless (hoàn toàn không cần quản lý máy chủ)</strong> cung cấp quyền truy cập vào các Mô hình nền tảng (Foundation Models) hàng đầu thế giới thông qua <strong>một API duy nhất</strong>.</p>
             </div>
 
@@ -631,7 +631,7 @@ const THEORY_DATA = [
             <h5 class="mt-4"><i data-lucide="package-check"></i> Các tính năng chính của Amazon Bedrock cần nhớ khi thi:</h5>
             <div class="bedrock-features">
               <div class="feature-box">
-                <h6><i data-lucide="book-open"></i> Bedrock Knowledge Bases (Tự động hóa RAG)</h6>
+                <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-bedrock.svg" alt="" aria-hidden="true" loading="lazy"> Bedrock Knowledge Bases (Tự động hóa RAG)</h6>
                 <p>Giải pháp RAG trọn gói: Bạn chỉ cần lưu file tài liệu vào <strong>Amazon S3</strong>, Bedrock Knowledge Bases sẽ tự động:</p>
                 <ul>
                   <li><strong>Chunking:</strong> Chia nhỏ văn bản với nhiều chiến lược (Fixed-size, Hierarchical, Semantic chunking).</li>
@@ -642,7 +642,7 @@ const THEORY_DATA = [
               </div>
 
               <div class="feature-box">
-                <h6><i data-lucide="bot"></i> Bedrock Agents (Tác tử AI thực thi hành động)</h6>
+                <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-bedrock.svg" alt="" aria-hidden="true" loading="lazy"> Bedrock Agents (Tác tử AI thực thi hành động)</h6>
                 <p>Cho phép LLM tự động lên kế hoạch nhiều bước (multi-step reasoning) và <strong>thực hiện các hành động thực tế</strong>:</p>
                 <ul>
                   <li><strong>Action Groups:</strong> Định nghĩa hành động qua OpenAPI schema và thực thi qua <strong>AWS Lambda functions</strong>.</li>
@@ -653,7 +653,7 @@ const THEORY_DATA = [
               </div>
 
               <div class="feature-box">
-                <h6><i data-lucide="shield-check"></i> Bedrock Guardrails (Hàng rào an toàn & Lọc nội dung)</h6>
+                <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-bedrock.svg" alt="" aria-hidden="true" loading="lazy"> Bedrock Guardrails (Hàng rào an toàn & Lọc nội dung)</h6>
                 <p>Bộ lọc nội dung đa lớp độc lập với mô hình:</p>
                 <ul>
                   <li>Chặn các chủ đề cấm (Denied Topics).</li>
@@ -664,7 +664,7 @@ const THEORY_DATA = [
               </div>
 
               <div class="feature-box">
-                <h6><i data-lucide="check-circle-2"></i> Bedrock Model Evaluation (Đánh giá mô hình)</h6>
+                <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-bedrock.svg" alt="" aria-hidden="true" loading="lazy"> Bedrock Model Evaluation (Đánh giá mô hình)</h6>
                 <p>Đánh giá model trên tác vụ/dataset và tiêu chí phù hợp, có thể gồm độ chính xác, độ vững vàng hoặc tính độc hại. Có thể dùng đánh giá tự động và human evaluation theo các lựa chọn nhân lực/dataset mà tính năng hỗ trợ; cần kiểm tra phạm vi và điều kiện hiện hành.</p>
               </div>
             </div>
@@ -716,11 +716,11 @@ const THEORY_DATA = [
             <h5 class="mt-4"><i data-lucide="cpu"></i> Chip phần cứng AI chuyên dụng của AWS</h5>
             <div class="grid-2-col">
               <div class="chip-card train">
-                <h6>AWS Trainium (EC2 Trn1 instances)</h6>
+                <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-ec2.svg" alt="" aria-hidden="true" loading="lazy">AWS Trainium (EC2 Trn1 instances)</h6>
                   <p>Chip AWS được thiết kế để tăng tốc workload AI/ML training trên các EC2 Trn instances được hỗ trợ. Lợi ích hiệu năng/chi phí phụ thuộc model, framework, quy mô và cấu hình; không nên khẳng định luôn rẻ nhất.</p>
               </div>
               <div class="chip-card infer">
-                <h6>AWS Inferentia (EC2 Inf1 / Inf2 instances)</h6>
+                <h6><img class="aws-architecture-icon" src="assets/aws-icons/amazon-ec2.svg" alt="" aria-hidden="true" loading="lazy">AWS Inferentia (EC2 Inf1 / Inf2 instances)</h6>
                   <p>Chip AWS được thiết kế để tăng tốc inference trên các EC2 Inf instances được hỗ trợ. Hiệu năng, latency và chi phí thực tế phụ thuộc workload, model và cấu hình.</p>
               </div>
             </div>
@@ -809,7 +809,7 @@ const THEORY_DATA = [
         badge: "Phương pháp đánh giá",
         content: `
           <div class="theory-card">
-            <h4><i data-lucide="user-check"></i> Human-in-the-loop và A2I</h4>
+            <h4><img class="aws-architecture-icon" src="assets/aws-icons/amazon-augmented-ai-a2-i.svg" alt="" aria-hidden="true" loading="lazy"> Human-in-the-loop và A2I</h4>
             <p>Human-in-the-loop là phương pháp đưa người có chuyên môn vào đánh giá dữ liệu, dự đoán hoặc đầu ra của mô hình theo tiêu chí và ngưỡng được thiết kế. Có thể dùng khi rủi ro cao, độ tin cậy thấp hoặc cần đánh giá chất lượng; đây là phương pháp, không đồng nghĩa với một dịch vụ AWS duy nhất.</p>
             <p><strong>Amazon Augmented AI (A2I)</strong> là một dịch vụ AWS có thể hỗ trợ tạo human review workflows cho một số use case/dịch vụ được hỗ trợ. Kiểm tra dịch vụ và tính năng cụ thể trước khi chọn:</p>
             <ul>
@@ -906,13 +906,13 @@ const THEORY_DATA = [
           <div class="theory-card">
             <div class="grid-2-col">
               <div class="sec-card">
-                <h5><i data-lucide="network"></i> VPC Endpoints (AWS PrivateLink)</h5>
+                <h5><img class="aws-architecture-icon" src="assets/aws-icons/aws-private-link.svg" alt="" aria-hidden="true" loading="lazy"> VPC Endpoints (AWS PrivateLink)</h5>
                 <p>Cho phép các ứng dụng chạy trong Amazon VPC riêng kết nối an toàn tới Amazon Bedrock, SageMaker hoặc S3 mà <strong>KHÔNG CẦN ĐI QUA INTERNET CÔNG CỘNG</strong>.</p>
                 <div class="service-tip"><strong>Từ khóa thi:</strong> "Access Bedrock without traversing the public internet" &rarr; Chọn <strong>VPC Endpoint (PrivateLink)</strong>.</div>
               </div>
 
               <div class="sec-card">
-                <h5><i data-lucide="key"></i> AWS Key Management Service (AWS KMS)</h5>
+                <h5><img class="aws-architecture-icon" src="assets/aws-icons/aws-key-management-service.svg" alt="" aria-hidden="true" loading="lazy"> AWS Key Management Service (AWS KMS)</h5>
                 <p>Quản lý các khóa mã hóa để mã hóa dữ liệu ở trạng thái nghỉ (Data at rest):</p>
                 <ul>
                   <li>Mã hóa tài liệu trong S3 của Bedrock Knowledge Bases.</li>
@@ -922,7 +922,7 @@ const THEORY_DATA = [
               </div>
 
               <div class="sec-card">
-                <h5><i data-lucide="lock"></i> AWS Identity & Access Management (IAM)</h5>
+                <h5><img class="aws-architecture-icon" src="assets/aws-icons/aws-identity-and-access-management.svg" alt="" aria-hidden="true" loading="lazy"> AWS Identity & Access Management (IAM)</h5>
                 <p>Thực thi nguyên tắc <strong>Đặc quyền tối thiểu (Least Privilege)</strong>:</p>
                 <ul>
                   <li>Chỉ cấp quyền cho người dùng hoặc ứng dụng truy cập đúng mô hình Bedrock cụ thể cần thiết.</li>
@@ -931,7 +931,7 @@ const THEORY_DATA = [
               </div>
 
               <div class="sec-card">
-                <h5><i data-lucide="file-check"></i> AWS Artifact</h5>
+                <h5><img class="aws-architecture-icon" src="assets/aws-icons/aws-artifact.svg" alt="" aria-hidden="true" loading="lazy"> AWS Artifact</h5>
                 <p>Cổng thông tin tự phục vụ để tải về các <strong>báo cáo tuân thủ bảo mật chính thức của AWS</strong> (SOC reports, ISO certifications, PCI DSS, HIPAA) để trình cho kiểm toán viên.</p>
               </div>
             </div>
@@ -948,7 +948,7 @@ const THEORY_DATA = [
 
             <div class="comparison-cards">
               <div class="comp-box left">
-                <h5><i data-lucide="activity"></i> Amazon CloudWatch (Giám sát chỉ số & Hiệu năng)</h5>
+                <h5><img class="aws-architecture-icon" src="assets/aws-icons/amazon-cloud-watch.svg" alt="" aria-hidden="true" loading="lazy"> Amazon CloudWatch (Giám sát chỉ số & Hiệu năng)</h5>
                 <ul>
                   <li><strong>Hành vi:</strong> Theo dõi hiệu năng hệ thống theo thời gian thực (Metrics).</li>
                   <li><strong>Chỉ số Bedrock:</strong> Đếm số lần gọi API (Invocations), số token xử lý (InputTokenCount, OutputTokenCount), độ trễ (Latency).</li>
@@ -957,7 +957,7 @@ const THEORY_DATA = [
               </div>
               <div class="comp-vs">VS</div>
               <div class="comp-box right">
-                <h5><i data-lucide="clipboard-list"></i> AWS CloudTrail (Kiểm toán nhật ký API)</h5>
+                <h5><img class="aws-architecture-icon" src="assets/aws-icons/aws-cloud-trail.svg" alt="" aria-hidden="true" loading="lazy"> AWS CloudTrail (Kiểm toán nhật ký API)</h5>
                 <ul>
                   <li><strong>Hành vi:</strong> Ghi nhận các API activity/event được CloudTrail hỗ trợ, thường gồm danh tính gọi, thời điểm, API và metadata như source IP tùy loại event.</li>
                   <li>Không mặc định ghi nội dung prompt/response. Việc ghi invocation logs, phạm vi API và nơi lưu cần cấu hình riêng theo khả năng của dịch vụ.</li>
