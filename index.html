@@ -16,7 +16,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   
   <!-- Master Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=20261020-logout">
+  <link rel="stylesheet" href="css/style.css?v=20261020-home-redesign">
 </head>
 <body class="auth-locked">
   <main class="auth-gate" id="login-gate" aria-labelledby="login-title">
@@ -135,20 +135,21 @@
            ============================================================== -->
       <section id="view-dashboard" class="view-panel active">
         <!-- Hero Banner -->
-        <div class="hero-banner">
-          <div class="hero-text">
+        <div class="hero-banner hero-banner-study">
+          <div class="hero-copy">
+            <div class="hero-eyebrow"><i data-lucide="award"></i> AWS CERTIFICATION PREP <span>AIF-C01</span></div>
             <h1>Chinh phục AWS Certified AI Practitioner (AIF-C01)</h1>
             <p>
               Giáo trình ôn tập theo 5 domain trong AWS Exam Guide, giải thích bằng tiếng Việt qua ví dụ và câu hỏi luyện tập gồm chọn một, chọn nhiều, sắp xếp và ghép cặp. Hãy dùng Exam Guide chính thức làm checklist cuối cùng vì nội dung kỳ thi có thể rộng hơn các ví dụ trong khóa học.
             </p>
+            <div class="hero-trust-row"><span><i data-lucide="layers-3"></i> 5 domain trọng tâm</span><span><i data-lucide="languages"></i> Giải thích tiếng Việt</span><span><i data-lucide="target"></i> Học theo mục tiêu thi</span></div>
+            <div class="hero-cta-group">
+              <button class="btn-primary" onclick="switchView('study')"><i data-lucide="book-open"></i> Bắt đầu học bài</button>
+              <button class="btn-secondary" onclick="startMockExam()"><i data-lucide="timer"></i> Thi thử 65 câu</button>
+            </div>
           </div>
-          <div class="hero-cta-group">
-            <button class="btn-primary" onclick="switchView('study')">
-              <i data-lucide="book-open"></i> Bắt đầu học bài
-            </button>
-            <button class="btn-secondary" onclick="startMockExam()">
-              <i data-lucide="timer"></i> Thi thử 65 câu (90 phút)
-            </button>
+          <div class="hero-visual">
+            <img src="assets/aif-cert-hero.svg?v=20261020-hero" alt="Minh họa chứng chỉ AWS Certified AI Practitioner và các lĩnh vực AI" width="620" height="480">
           </div>
         </div>
 
