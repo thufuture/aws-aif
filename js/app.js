@@ -219,6 +219,26 @@ function setupEventListeners() {
   document.getElementById("btn-sound-toggle")?.addEventListener("click", toggleSound);
   document.querySelector(".brand-section")?.addEventListener("click", () => switchView("dashboard"));
 
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest("#palette-filter")) closePaletteFilterMenu();
+  });
+  document.getElementById("palette-filter-menu")?.addEventListener("keydown", (event) => {
+    const options = [...event.currentTarget.querySelectorAll('[role="menuitemradio"]')];
+    const current = options.indexOf(document.activeElement);
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closePaletteFilterMenu();
+      document.getElementById("palette-filter-trigger")?.focus();
+    } else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      const direction = event.key === "ArrowDown" ? 1 : -1;
+      options[(current + direction + options.length) % options.length]?.focus();
+    } else if (event.key === "Home" || event.key === "End") {
+      event.preventDefault();
+      (event.key === "Home" ? options[0] : options[options.length - 1])?.focus();
+    }
+  });
+
   // Global search input
   const cheatSearch = document.getElementById("cheat-search-input");
   if (cheatSearch) {
@@ -785,7 +805,7 @@ function renderCurrentQuestion() {
                 </div>
                 <h4>${dom.titleVi}</h4>
                 <p class="summary">${dom.summary}</p>
-                <button class="btn-learn" style="width: 100%; justify-content: center;" onclick="startDomainQuiz(${dom.domainNumber})">
+                <button class="quiz-domain-start-btn" type="button" onclick="startDomainQuiz(${dom.domainNumber})">
                   <i data-lucide="play"></i> Luyện Domain ${dom.domainNumber} (${count} câu)
                 </button>
               </div>
@@ -1058,8 +1078,35 @@ function toggleBookmark(qId) {
   renderCurrentQuestion();
 }
 
+function togglePaletteFilterMenu(forceOpen) {
+  const trigger = document.getElementById("palette-filter-trigger");
+  const menu = document.getElementById("palette-filter-menu");
+  if (!trigger || !menu) return;
+  const shouldOpen = typeof forceOpen === "boolean" ? forceOpen : trigger.getAttribute("aria-expanded") !== "true";
+  trigger.setAttribute("aria-expanded", String(shouldOpen));
+  menu.hidden = !shouldOpen;
+  if (shouldOpen) {
+    menu.querySelector('[aria-checked="true"]')?.focus();
+  }
+}
+
+function closePaletteFilterMenu() {
+  const trigger = document.getElementById("palette-filter-trigger");
+  const menu = document.getElementById("palette-filter-menu");
+  if (!trigger || !menu) return;
+  trigger.setAttribute("aria-expanded", "false");
+  menu.hidden = true;
+}
+
 function filterPaletteQuestions(filterVal) {
   state.paletteFilter = filterVal;
+  const selected = document.querySelector(`[data-palette-filter="${filterVal}"]`);
+  const label = document.getElementById("palette-filter-label");
+  if (label && selected) label.textContent = selected.textContent.trim();
+  document.querySelectorAll("[data-palette-filter]").forEach(option => {
+    option.setAttribute("aria-checked", String(option === selected));
+  });
+  closePaletteFilterMenu();
   renderQuestionPalette();
 }
 

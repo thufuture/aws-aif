@@ -16,7 +16,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   
   <!-- Master Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=20261020-card-readability-2">
+  <link rel="stylesheet" href="css/style.css?v=20261020-quiz-controls-1">
 </head>
 <body class="auth-locked">
   <main class="auth-gate" id="login-gate" aria-labelledby="login-title">
@@ -272,19 +272,25 @@
               <span class="palette-count-badge" id="sidebar-q-counter">65 / 65</span>
             </div>
 
-            <!-- Filter Dropdown -->
-            <select id="palette-filter-select" class="palette-filter-select" onchange="filterPaletteQuestions(this.value)">
-              <option value="all">Tất cả câu hỏi trong bài</option>
-              <option value="d1">Domain 1: AI &amp; ML Fundamentals</option>
-              <option value="d2">Domain 2: Generative AI Concepts</option>
-              <option value="d3">Domain 3: Applications of FMs</option>
-              <option value="d4">Domain 4: Responsible AI</option>
-              <option value="d5">Domain 5: Security &amp; Compliance</option>
-              <option value="pending">Chưa trả lời</option>
-              <option value="correct">Đã trả lời đúng</option>
-              <option value="wrong">Đã trả lời sai</option>
-              <option value="flagged">Đã gắn cờ kiểm tra</option>
-            </select>
+            <!-- Styled palette filter -->
+            <div class="palette-filter" id="palette-filter">
+              <button id="palette-filter-trigger" class="palette-filter-trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="palette-filter-menu" onclick="togglePaletteFilterMenu()">
+                <span id="palette-filter-label">Tất cả câu hỏi trong bài</span><i data-lucide="chevron-down" aria-hidden="true"></i>
+              </button>
+              <div id="palette-filter-menu" class="palette-filter-menu" role="menu" aria-label="Lọc câu hỏi" hidden>
+                <button type="button" role="menuitemradio" aria-checked="true" data-palette-filter="all" onclick="filterPaletteQuestions('all')">Tất cả câu hỏi trong bài</button>
+                <button type="button" role="menuitemradio" aria-checked="false" data-palette-filter="d1" onclick="filterPaletteQuestions('d1')">Domain 1: AI &amp; ML Fundamentals</button>
+                <button type="button" role="menuitemradio" aria-checked="false" data-palette-filter="d2" onclick="filterPaletteQuestions('d2')">Domain 2: Generative AI Concepts</button>
+                <button type="button" role="menuitemradio" aria-checked="false" data-palette-filter="d3" onclick="filterPaletteQuestions('d3')">Domain 3: Applications of FMs</button>
+                <button type="button" role="menuitemradio" aria-checked="false" data-palette-filter="d4" onclick="filterPaletteQuestions('d4')">Domain 4: Responsible AI</button>
+                <button type="button" role="menuitemradio" aria-checked="false" data-palette-filter="d5" onclick="filterPaletteQuestions('d5')">Domain 5: Security &amp; Compliance</button>
+                <span class="palette-filter-divider" aria-hidden="true"></span>
+                <button type="button" role="menuitemradio" aria-checked="false" data-palette-filter="pending" onclick="filterPaletteQuestions('pending')">Chưa trả lời</button>
+                <button type="button" role="menuitemradio" aria-checked="false" data-palette-filter="correct" onclick="filterPaletteQuestions('correct')">Đã trả lời đúng</button>
+                <button type="button" role="menuitemradio" aria-checked="false" data-palette-filter="wrong" onclick="filterPaletteQuestions('wrong')">Đã trả lời sai</button>
+                <button type="button" role="menuitemradio" aria-checked="false" data-palette-filter="flagged" onclick="filterPaletteQuestions('flagged')">Đã gắn cờ kiểm tra</button>
+              </div>
+            </div>
 
             <!-- Devcloudly Color Legend -->
             <div class="palette-legend">
@@ -427,7 +433,7 @@
   <script src="js/questions.js"></script>
   <script src="js/flashcards.js?v=20261020-card-readability-2"></script>
   <script src="js/cheatsheet.js?v=20261020-card-readability-2"></script>
-  <script src="js/app.js?v=20261020-card-readability-2"></script>
+  <script src="js/app.js?v=20261020-quiz-controls-1"></script>
   <script src="js/login.js?v=20261020-logout"></script>
 </body>
 </html>
