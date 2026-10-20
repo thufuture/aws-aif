@@ -6,6 +6,10 @@
   const usernameInput = document.getElementById("auth-username");
   const passwordInput = document.getElementById("auth-password");
   const togglePassword = document.getElementById("toggle-password");
+  const profileMenu = document.getElementById("profile-menu");
+  const profileTrigger = document.getElementById("profile-trigger");
+  const profileDropdown = document.getElementById("profile-dropdown");
+  const logoutButton = document.getElementById("profile-logout");
 
   const USERNAME = "venzotat";
   const SALT = "sXoX3Ja66qAuQp7y+WxN8g==";
@@ -26,6 +30,35 @@
     document.body.classList.remove("auth-locked");
     gate.hidden = true;
   }
+
+  function closeProfileMenu() {
+    profileDropdown.hidden = true;
+    profileTrigger.setAttribute("aria-expanded", "false");
+  }
+
+  profileTrigger.addEventListener("click", () => {
+    const open = profileDropdown.hidden;
+    profileDropdown.hidden = !open;
+    profileTrigger.setAttribute("aria-expanded", String(open));
+  });
+
+  logoutButton.addEventListener("click", () => {
+    sessionStorage.removeItem(SESSION_KEY);
+    closeProfileMenu();
+    form.reset();
+    error.textContent = "";
+    gate.hidden = false;
+    document.body.classList.add("auth-locked");
+    usernameInput.focus();
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!profileMenu.contains(event.target)) closeProfileMenu();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeProfileMenu();
+  });
 
   if (sessionStorage.getItem(SESSION_KEY) === "active") unlock();
 

@@ -14,7 +14,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   
   <!-- Master Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=20261020-logout">
 </head>
 <body class="auth-locked">
   <main class="auth-gate" id="login-gate" aria-labelledby="login-title">
@@ -111,6 +111,16 @@
           <button class="icon-btn" id="btn-theme-toggle" title="Đổi giao diện Sáng / Tối">
             <i data-lucide="sun" id="theme-toggle-icon"></i>
           </button>
+
+          <div class="profile-menu" id="profile-menu">
+            <button class="profile-trigger" id="profile-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Mở menu tài khoản">
+              <span class="profile-avatar">V</span><i data-lucide="chevron-down"></i>
+            </button>
+            <div class="profile-dropdown" id="profile-dropdown" hidden>
+              <div class="profile-summary"><span class="profile-avatar">V</span><span><strong>venzotat</strong><small>Tài khoản học tập</small></span></div>
+              <button class="profile-logout" id="profile-logout" type="button"><i data-lucide="log-out"></i> Đăng xuất</button>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -417,7 +427,7 @@
   <script src="js/flashcards.js"></script>
   <script src="js/cheatsheet.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/login.js"></script>
+  <script src="js/login.js?v=20261020-logout"></script>
 </body>
 </html>
 
