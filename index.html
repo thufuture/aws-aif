@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS Certified AI Practitioner (AIF-C01) - VIP Exam Prep & Study Center</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Ambient Glow Effects -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <div class="app-container">
+    <!-- Unified Sticky Top Bar (Never overlaps when scrolling) -->
+    <header class="app-top-header">
+      <div class="header-single-row">
+        <!-- Left: Brand Logo & Title -->
+        <div class="brand-section" onclick="switchView('dashboard')" title="Về trang Tổng quan">
+          <div class="brand-logo">
+            <i data-lucide="brain-circuit" style="width: 20px; height: 20px;"></i>
+          </div>
+          <div class="brand-title-wrap">
+            <div class="brand-title">
+              <span>AWS AI Practitioner</span>
+              <span class="brand-tag">AIF-C01 VIP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center: 1-Row Navigation Tabs -->
+        <nav class="nav-tabs">
+          <button class="nav-tab-btn active" data-view="dashboard">
+            <i data-lucide="layout-dashboard"></i>
+            <span>Tổng quan</span>
+          </button>
+          <button class="nav-tab-btn" data-view="study">
+            <i data-lucide="book-open"></i>
+            <span>Học Lý Thuyết</span>
+          </button>
+          <button class="nav-tab-btn" data-view="quiz">
+            <i data-lucide="check-square"></i>
+            <span>Luyện Trắc Nghiệm</span>
+          </button>
+          <button class="nav-tab-btn" data-view="flashcards">
+            <i data-lucide="layers"></i>
+            <span>Flashcards</span>
+          </button>
+          <button class="nav-tab-btn" data-view="cheatsheet">
+            <i data-lucide="zap"></i>
+            <span>Bí Kíp Thi</span>
+          </button>
+          <button class="nav-tab-btn" data-view="bookmarks">
+            <i data-lucide="bookmark"></i>
+            <span>Sổ Tay</span>
+          </button>
+        </nav>
+
+        <!-- Right: Actions (Progress, Sound, Theme) -->
+        <div class="header-actions">
+          <div class="readiness-pill" title="Mức độ sẵn sàng đi thi">
+            <span id="readiness-score-text">0% Sẵn sàng</span>
+            <div class="readiness-bar-mini">
+              <div class="readiness-fill-mini" id="readiness-fill-mini"></div>
+            </div>
+          </div>
+
+          <button class="icon-btn" id="btn-sound-toggle" title="Bật/Tắt âm thanh hiệu ứng">
+            <i data-lucide="volume-2" id="sound-toggle-icon"></i>
+          </button>
+
+          <button class="icon-btn" id="btn-theme-toggle" title="Đổi giao diện Sáng / Tối">
+            <i data-lucide="sun" id="theme-toggle-icon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-content">
+      
+      <!-- ==============================================================
+           VIEW 1: DASHBOARD & ROADMAP
+           ============================================================== -->
+      <section id="view-dashboard" class="view-panel active">
+        <!-- Hero Banner -->
+        <div class="hero-banner">
+          <div class="hero-text">
+            <h1>Chinh phục AWS Certified AI Practitioner (AIF-C01)</h1>
+            <p>
+              Giáo trình ôn tập theo 5 domain trong AWS Exam Guide, giải thích bằng tiếng Việt qua ví dụ và câu hỏi luyện tập gồm chọn một, chọn nhiều, sắp xếp và ghép cặp. Hãy dùng Exam Guide chính thức làm checklist cuối cùng vì nội dung kỳ thi có thể rộng hơn các ví dụ trong khóa học.
+            </p>
+          </div>
+          <div class="hero-cta-group">
+            <button class="btn-primary" onclick="switchView('study')">
+              <i data-lucide="book-open"></i> Bắt đầu học bài
+            </button>
+            <button class="btn-secondary" onclick="startMockExam()">
+              <i data-lucide="timer"></i> Thi thử 65 câu (90 phút)
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon orange"><i data-lucide="award"></i></div>
+            <div class="stat-info">
+              <h3>700 / 1000</h3>
+              <p>Điểm đạt chuẩn đỗ AWS</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon violet"><i data-lucide="help-circle"></i></div>
+            <div class="stat-info">
+              <h3>121 Câu hỏi</h3>
+              <p>Luyện tập song ngữ với 4 dạng câu</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon cyan"><i data-lucide="layers"></i></div>
+            <div class="stat-info">
+              <h3>5 Domains</h3>
+              <p>Nội dung bao quát toàn diện</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><i data-lucide="check-circle-2"></i></div>
+            <div class="stat-info">
+              <h3 id="hero-ready-percent">0%</h3>
+              <p>Mức độ chuẩn bị của bạn</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 Domains Roadmap -->
+        <h2 class="section-title">
+          <i data-lucide="map" style="color: var(--aws-orange);"></i>
+          Lộ trình 5 Domain trọng tâm bài thi AIF-C01
+        </h2>
+        <div class="domains-grid" id="dashboard-domains-grid">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+
+        <!-- 1000/1000 Tips Card -->
+        <div class="hero-banner" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1)), var(--bg-card); margin-top: 2rem;">
+          <div>
+            <span class="domain-pill" style="background: var(--accent-green-light); color: var(--accent-green-text); border: 1px solid var(--accent-green-border);">
+              Kinh nghiệm ôn thi từ cộng đồng
+            </span>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin: 0.6rem 0;">Phương pháp học hiệu quả nhất cho người mới bắt đầu</h3>
+            <p style="color: var(--text-muted); max-width: 800px; font-size: 0.95rem; line-height: 1.6;">
+              &bull; <strong>Bước 1:</strong> Đọc lý thuyết từng Domain, bấm vào ô checkbox khi hoàn thành mỗi module để ghi nhớ.<br>
+              &bull; <strong>Bước 2:</strong> Làm ngay 10+ câu trắc nghiệm theo Domain đó. Đọc kỹ phần giải thích "Tại sao đúng" và "Tại sao các đáp án kia sai".<br>
+              &bull; <strong>Bước 3:</strong> Lật thẻ Flashcards mỗi ngày 15 phút để phản xạ ngay lập tức các từ khóa (Keywords Matching).<br>
+              &bull; <strong>Bước 4:</strong> Làm bài thi thử 65 câu trong 90 phút, xem kết quả theo domain và ôn lại câu sai. Điểm luyện tập chỉ để tham khảo, không quy đổi trực tiếp thành điểm AWS.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================================
+           VIEW 2: STUDY CENTER (HỌC LÝ THUYẾT)
+           ============================================================== -->
+      <section id="view-study" class="view-panel">
+        <div class="study-layout">
+          <!-- Sidebar Navigation (Collapsible & Scrollable) -->
+          <aside class="study-sidebar" id="study-sidebar">
+            <div class="study-sidebar-header">
+              <div class="sidebar-header-title-wrap">
+                <i data-lucide="compass" class="sidebar-header-icon"></i>
+                <h5 class="sidebar-header-title">Chọn Domain ôn tập</h5>
+              </div>
+              <button class="btn-sidebar-collapse" id="btn-toggle-study-sidebar" onclick="toggleStudySidebarCollapse()" title="Thu gọn menu (mở rộng vùng học)" aria-label="Thu gọn sidebar">
+                <i data-lucide="panel-left-close"></i>
+              </button>
+            </div>
+
+            <div class="domain-nav-list" id="study-domain-nav">
+              <!-- Rendered dynamically by app.js -->
+            </div>
+
+            <div class="study-sidebar-footer">
+              <button class="btn-primary btn-mock-exam-sidebar" onclick="startMockExam()" title="Thi thử 65 câu (90 phút)">
+                <i data-lucide="timer"></i>
+                <span class="btn-text">Thi thử 65 câu</span>
+              </button>
+            </div>
+          </aside>
+
+          <!-- Main Content Panel -->
+          <div class="study-content-panel" id="study-content-panel">
+            <!-- Rendered dynamically by app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================================
+           VIEW 3: PRACTICE QUIZ & MOCK EXAM (DEVCLOUDLY UI)
+           ============================================================== -->
+      <section id="view-quiz" class="view-panel">
+        <div class="quiz-container">
+          <!-- Left: Devcloudly Question Palette Sidebar -->
+          <aside class="quiz-sidebar">
+            <div class="palette-top-bar">
+              <h4>Danh sách câu hỏi</h4>
+              <span class="palette-count-badge" id="sidebar-q-counter">65 / 65</span>
+            </div>
+
+            <!-- Filter Dropdown -->
+            <select id="palette-filter-select" class="palette-filter-select" onchange="filterPaletteQuestions(this.value)">
+              <option value="all">Tất cả câu hỏi trong bài</option>
+              <option value="d1">Domain 1: AI &amp; ML Fundamentals</option>
+              <option value="d2">Domain 2: Generative AI Concepts</option>
+              <option value="d3">Domain 3: Applications of FMs</option>
+              <option value="d4">Domain 4: Responsible AI</option>
+              <option value="d5">Domain 5: Security &amp; Compliance</option>
+              <option value="pending">Chưa trả lời</option>
+              <option value="correct">Đã trả lời đúng</option>
+              <option value="wrong">Đã trả lời sai</option>
+              <option value="flagged">Đã gắn cờ kiểm tra</option>
+            </select>
+
+            <!-- Devcloudly Color Legend -->
+            <div class="palette-legend">
+              <span title="Chưa làm"><span class="legend-box white"></span> Chưa TL</span>
+              <span title="Làm đúng"><span class="legend-box green"></span> Đúng</span>
+              <span title="Làm sai"><span class="legend-box red"></span> Sai</span>
+              <span title="Đang xem"><span class="legend-box blue"></span> Chọn</span>
+            </div>
+
+            <!-- Number Grid 1..65 -->
+            <div class="palette-grid" id="palette-buttons-grid">
+              <!-- Rendered dynamically by app.js -->
+            </div>
+
+            <!-- Timer Card -->
+            <div class="timer-box">
+              <span class="timer-label"><i data-lucide="clock" style="width: 14px; height: 14px;"></i> Thời gian làm bài</span>
+              <div class="timer-display" id="quiz-timer-display">90:00</div>
+              <button class="btn-primary" style="width: 100%; justify-content: center; font-size: 0.85rem; padding: 0.5rem 0.75rem; margin-top: 0.25rem;" onclick="submitQuiz()">
+                <i data-lucide="send"></i> Nộp bài ngay
+              </button>
+            </div>
+          </aside>
+
+          <!-- Right: Main Question Card (Devcloudly Style) -->
+          <div class="quiz-main-card" id="quiz-main-card">
+            <!-- Rendered dynamically by app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================================
+           VIEW 4: FLASHCARDS
+           ============================================================== -->
+      <section id="view-flashcards" class="view-panel">
+        <div class="flashcards-container">
+          <!-- Filter Bar -->
+          <div class="fc-filter-bar">
+            <div>
+              <h2 style="font-size: 1.5rem; font-weight: 800;">Flashcards Thuật Ngữ Cốt Lõi</h2>
+              <p style="color: var(--text-muted); font-size: 0.88rem;" id="fc-mastered-counter">0 / 35 thẻ đã thuộc</p>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button class="btn-secondary" style="font-size: 0.82rem; padding: 0.4rem 0.8rem;" onclick="filterFlashcards('all')">Tất cả</button>
+              <button class="btn-secondary" style="font-size: 0.82rem; padding: 0.4rem 0.8rem;" onclick="filterFlashcards('1')">Domain 1</button>
+              <button class="btn-secondary" style="font-size: 0.82rem; padding: 0.4rem 0.8rem;" onclick="filterFlashcards('2')">Domain 2</button>
+              <button class="btn-secondary" style="font-size: 0.82rem; padding: 0.4rem 0.8rem;" onclick="filterFlashcards('3')">Domain 3</button>
+              <button class="btn-secondary" style="font-size: 0.82rem; padding: 0.4rem 0.8rem;" onclick="filterFlashcards('4')">Domain 4</button>
+              <button class="btn-secondary" style="font-size: 0.82rem; padding: 0.4rem 0.8rem;" onclick="filterFlashcards('5')">Domain 5</button>
+            </div>
+          </div>
+
+          <!-- 3D Card Scene -->
+          <div class="fc-card-scene" id="flashcards-card-scene">
+            <!-- Rendered dynamically by app.js -->
+          </div>
+
+          <!-- Controls -->
+          <div class="fc-controls">
+            <button class="btn-secondary" onclick="prevFlashcard()" title="Thẻ trước">
+              <i data-lucide="chevron-left"></i>
+            </button>
+            <button class="btn-fc-action btn-fc-review" onclick="markFlashcard(false)">
+              <i data-lucide="rotate-ccw"></i> Cần ôn lại
+            </button>
+            <button class="btn-fc-action btn-fc-mastered" onclick="markFlashcard(true)">
+              <i data-lucide="check-circle"></i> Đã thuộc
+            </button>
+            <button class="btn-secondary" onclick="nextFlashcard()" title="Thẻ tiếp">
+              <i data-lucide="chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================================
+           VIEW 5: CHEAT SHEET & SERVICES DIRECTORY
+           ============================================================== -->
+      <section id="view-cheatsheet" class="view-panel">
+        <div style="margin-bottom: 2rem;">
+          <h2 class="section-title">
+            <i data-lucide="zap" style="color: var(--aws-orange);"></i>
+            Bảng tra cứu thần tốc trước giờ thi
+          </h2>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+            Tìm kiếm nhanh bất kỳ dịch vụ hoặc từ khóa nào để xem tóm tắt công dụng và dấu hiệu nhận biết trong đề thi.
+          </p>
+
+          <!-- Search Box -->
+          <div class="search-bar-wrap">
+            <i data-lucide="search" class="search-icon-pos"></i>
+            <input type="text" id="cheat-search-input" class="search-input" placeholder="Tìm kiếm dịch vụ AWS (Bedrock, Rekognition, Clarify, Temperature, RAG...)..." />
+          </div>
+        </div>
+
+        <!-- Golden Exam Tips -->
+        <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem; color: var(--aws-orange);">
+          💡 Kinh nghiệm ôn tập và làm bài từ cộng đồng AWS
+        </h3>
+        <div class="cheat-grid" id="cheat-tips-grid">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+
+        <!-- Hyperparameters Guide -->
+        <h3 style="font-size: 1.25rem; font-weight: 800; margin: 2rem 0 1rem 0; color: var(--accent-violet);">
+          🎛️ Bảng siêu tham số sinh văn bản (Inference Hyperparameters)
+        </h3>
+        <div class="cheat-grid" id="cheat-params-grid">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+
+        <!-- AWS AI Services Directory -->
+        <h3 style="font-size: 1.25rem; font-weight: 800; margin: 2rem 0 1rem 0; color: var(--accent-cyan);">
+          ☁️ Bản đồ dịch vụ AWS AI/ML (Service Matrix & Keywords)
+        </h3>
+        <div class="cheat-grid" id="cheat-services-grid">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </section>
+
+      <!-- ==============================================================
+           VIEW 6: BOOKMARKS NOTEBOOK
+           ============================================================== -->
+      <section id="view-bookmarks" class="view-panel">
+        <h2 class="section-title">
+          <i data-lucide="bookmark" style="color: var(--aws-orange);"></i>
+          Sổ tay câu hỏi đã lưu &amp; Ôn tập điểm yếu
+        </h2>
+        <div id="bookmarks-content-panel">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Modal for Exam Result -->
+    <div class="modal-overlay" id="exam-result-modal">
+      <!-- Injected dynamically -->
+    </div>
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <p>
+        AWS Certified AI Practitioner (AIF-C01) Exam Prep Center &bull; Tài liệu tham khảo từ <a href="https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html" target="_blank">AWS Exam Guide</a>, bài chia sẻ <a href="https://devops.vn/posts/chia-se-kinh-nghiem-thi-aws-certified-ai-practitioner-aif-c01-dat-1000-1000/" target="_blank">DevOps.vn</a> và giao diện tham khảo <a href="https://devcloudly.vercel.app/" target="_blank">DevCloudly</a>.
+      </p>
+      <p style="margin-top: 0.5rem; font-size: 0.78rem; color: var(--text-dim);">
+        Không yêu cầu máy chủ &bull; Hoạt động ngoại tuyến 100% &bull; Tự động lưu tiến độ vào LocalStorage.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/theory.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/flashcards.js"></script>
+  <script src="js/cheatsheet.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
