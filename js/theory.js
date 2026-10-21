@@ -288,6 +288,14 @@ const THEORY_DATA = [
             <p>Pipeline gồm xác định mục tiêu kinh doanh, chuẩn bị dữ liệu, chọn/huấn luyện model, đánh giá, triển khai và giám sát. Bedrock phù hợp gọi FM được quản lý; SageMaker AI cho vòng đời ML cần nhiều kiểm soát; dịch vụ chuyên dụng như Personalize phù hợp recommendation. Amazon Quick có use case phân tích dữ liệu/BI có trợ giúp AI; Kiro là môi trường phát triển có agentic AI, có thể gặp trong các ví dụ workflow/dev tooling của Exam Guide.</p>
             <div class="alert-box tip"><div class="alert-title">Từ khóa tình huống</div><p>Lịch sử tương tác để gợi ý sản phẩm → Amazon Personalize. Bảng/form trong tài liệu → Textract. Chọn theo business objective, loại dữ liệu, latency, chi phí và yêu cầu explainability.</p></div>
           </div>`
+      },
+      {
+        id: "d1-costs", title: "1.6 Chi phí dịch vụ AI có sẵn", badge: "Đơn vị tính phí",
+        content: `<div class="theory-card"><h4><i data-lucide="circle-dollar-sign"></i> Nhớ đơn vị tính phí, không học thuộc con số</h4>
+        <p>Dịch vụ AI quản lý sẵn thường tính theo lượng xử lý; đơn vị khác nhau theo tính năng. Xem <a href="https://aws.amazon.com/machine-learning/ai-services/pricing/" target="_blank" rel="noopener">bảng giá AI Services AWS</a> và trang giá từng dịch vụ.</p>
+        <div class="grid-2-col"><div class="sec-card"><h5>Hình ảnh và tài liệu</h5><ul><li><strong>Rekognition:</strong> số ảnh/video được phân tích và tính năng gọi.</li><li><strong>Textract:</strong> số trang và API/phân tích tài liệu.</li></ul><p><a href="https://aws.amazon.com/rekognition/pricing/" target="_blank" rel="noopener">Rekognition</a> · <a href="https://aws.amazon.com/textract/pricing/" target="_blank" rel="noopener">Textract</a></p></div>
+        <div class="sec-card"><h5>Âm thanh và ngôn ngữ</h5><ul><li><strong>Transcribe:</strong> thời lượng âm thanh và loại xử lý.</li><li><strong>Polly:</strong> số ký tự, loại giọng/tính năng.</li><li><strong>Comprehend / Translate:</strong> lượng văn bản; đơn vị phụ thuộc API.</li></ul><p><a href="https://aws.amazon.com/transcribe/pricing/" target="_blank" rel="noopener">Transcribe</a> · <a href="https://aws.amazon.com/polly/pricing/" target="_blank" rel="noopener">Polly</a> · <a href="https://aws.amazon.com/comprehend/pricing/" target="_blank" rel="noopener">Comprehend</a> · <a href="https://aws.amazon.com/translate/pricing/" target="_blank" rel="noopener">Translate</a></p></div></div>
+        <div class="alert-box tip"><div class="alert-title"><i data-lucide="lightbulb"></i> Mẹo đọc câu hỏi</div><p>Ước lượng ảnh/trang/phút âm thanh/ký tự, tần suất gọi, Region và tính năng thêm. Kiểm tra tầng miễn phí, hạn mức, lưu trữ và truyền dữ liệu. <strong>Không có một mức giá chung cho mọi dịch vụ.</strong></p></div></div>`
       }
     ]
   },
@@ -507,6 +515,12 @@ const THEORY_DATA = [
             <p>Dịch vụ được quản lý có thể giảm rào cản bắt đầu và tăng tốc đưa giải pháp ra thị trường; vẫn phải so sánh latency, regional coverage, availability, redundancy, security/compliance, cost model và business objectives.</p>
             <div class="alert-box tip"><div class="alert-title">Cách chọn</div><p>Xác định ưu tiên chính (chất lượng, latency, cost, compliance hay throughput), rồi chọn model/kiến trúc đáp ứng. So sánh chi phí trên mỗi tác vụ hoàn thành.</p></div>
           </div>`
+      },
+      {
+        id: "d2-costs", title: "2.7 Chi phí GenAI: model, RAG và agent", badge: "Cost awareness",
+        content: `<div class="theory-card"><h4><i data-lucide="calculator"></i> Tính tổng chi phí của một tác vụ</h4>
+        <ul><li><strong>Bedrock inference:</strong> tùy model/chế độ; thường tính token đầu vào/đầu ra. Modality và tính năng khác có đơn vị riêng. Provisioned Throughput tính theo năng lực đã cấp và thời hạn cam kết.</li><li><strong>RAG / Knowledge Bases:</strong> cộng embedding, nguồn dữ liệu/lưu trữ, vector store, ingestion/sync, truy vấn và inference.</li><li><strong>Agent:</strong> một tác vụ có thể gọi model nhiều lần, truy xuất dữ liệu và gọi công cụ AWS khác; tính tất cả thành phần.</li><li><strong>SageMaker:</strong> tính toán, endpoint chạy liên tục, lưu trữ và job huấn luyện/đánh giá có thể là khoản chính.</li></ul>
+        <p><a href="https://aws.amazon.com/bedrock/pricing/" target="_blank" rel="noopener">Bảng giá Amazon Bedrock</a> · <a href="https://aws.amazon.com/sagemaker-ai/pricing/" target="_blank" rel="noopener">Bảng giá SageMaker AI</a></p><div class="alert-box tip"><div class="alert-title">Cách chọn trong đề</div><p>So sánh <strong>chi phí mỗi tác vụ hoàn thành</strong>, không chỉ giá mỗi lần gọi. Model nhỏ có thể rẻ hơn nhưng cần thử chất lượng; RAG thêm retrieval/storage nhưng đưa kiến thức ngoài vào mà không huấn luyện lại FM.</p></div></div>`
       }
     ]
   },
@@ -738,6 +752,15 @@ const THEORY_DATA = [
             <p>Fine-tuning cần cân nhắc lượng dữ liệu, tuyển chọn/curation, governance, chất lượng nhãn và tính đại diện. Instruction tuning huấn luyện model làm theo chỉ dẫn; transfer learning thích ứng model đã học sang tác vụ/miền khác; continuous pre-training tiếp tục huấn luyện trên dữ liệu miền; distillation chuyển năng lực sang model nhỏ hơn, có thể giảm latency/chi phí nhưng cần đo đánh đổi chất lượng. RLHF dùng phản hồi con người trong quy trình căn chỉnh.</p>
             <div class="alert-box tip"><div class="alert-title">Phân biệt nhanh</div><p>Kiến thức thay đổi thường xuyên → RAG. Hành vi/định dạng chuyên biệt → cân nhắc fine-tuning. Tóm tắt → ROUGE; dịch → BLEU; đánh giá triển khai → human review và business metrics.</p></div>
           </div>`
+      },
+      {
+        id: "d3-training-costs", title: "3.6 Model có sẵn được huấn luyện thế nào và chi phí ra sao?", badge: "Pretraining và inference",
+        content: `<div class="theory-card"><h4><i data-lucide="brain-circuit"></i> “Model có sẵn” nghĩa là gì?</h4>
+        <p>Foundation Model được <strong>nhà cung cấp model</strong> pretrain trên dữ liệu quy mô lớn để học mẫu ngôn ngữ, hình ảnh hoặc modality khác. Bedrock cho truy cập model của Amazon và nhà cung cấp bên ngoài; Bedrock là dịch vụ truy cập/suy luận được quản lý, <strong>không có nghĩa AWS huấn luyện mọi model trong catalog</strong>.</p>
+        <p>Dữ liệu huấn luyện khác nhau theo model. Model card có thể công bố thông tin khái quát nhưng không phải lúc nào cũng liệt kê đầy đủ dataset, từng nguồn hay tỷ trọng. Không thể khẳng định model được huấn luyện trên “toàn bộ Internet”, dữ liệu AWS hay dữ liệu khách hàng nếu provider không xác nhận.</p>
+        <div class="grid-2-col"><div class="sec-card"><h5>Phân biệt</h5><ul><li><strong>Pretraining:</strong> provider tạo năng lực tổng quát từ dữ liệu huấn luyện của họ.</li><li><strong>Inference:</strong> prompt tạo kết quả; không đồng nghĩa model cập nhật trọng số sau mỗi câu hỏi.</li><li><strong>RAG:</strong> tìm tài liệu ngoài và đưa đoạn liên quan vào ngữ cảnh; thường không sửa trọng số.</li><li><strong>Fine-tuning:</strong> dùng dữ liệu để điều chỉnh model; kiểm tra hỗ trợ và giá riêng.</li></ul></div><div class="sec-card"><h5>Tra cứu nguồn dữ liệu</h5><p>Tra tài liệu đúng provider/phiên bản. <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-cards.html" target="_blank" rel="noopener">Catalog model Bedrock</a> nêu provider/model nhưng không đảm bảo công bố corpus huấn luyện.</p><p>AWS nói prompt/output của Amazon FMs không dùng để huấn luyện underlying Amazon FMs trừ khi khách hàng đồng ý: <a href="https://aws.amazon.com/bedrock/amazon-models/privacy/" target="_blank" rel="noopener">chính sách dữ liệu Amazon FMs</a>. Kiểm tra điều khoản riêng của model/tính năng.</p></div></div>
+        <h4 class="mt-4"><i data-lucide="coins"></i> Các yếu tố chi phí</h4><ul><li>Inference theo model và đơn vị sử dụng (thường token đầu vào/đầu ra).</li><li>Provisioned Throughput: năng lực đã cấp và thời hạn cam kết.</li><li>Customization: dữ liệu/token huấn luyện, thời gian job, lưu model và inference.</li><li>RAG: embedding, vector database, ingestion/sync, truy vấn và inference.</li></ul><p><a href="https://aws.amazon.com/bedrock/pricing/" target="_blank" rel="noopener">Giá Bedrock theo model, Region và chế độ</a>.</p>
+        <div class="alert-box tip"><div class="alert-title">Ghi nhớ cho AIF-C01</div><p>Kiến thức nội bộ mới, không muốn huấn luyện lại thường gợi ý RAG. Muốn điều chỉnh model cho tác vụ chuyên biệt có thể cân nhắc customization. Tra model card; không đoán dữ liệu pretraining.</p></div></div>`
       }
     ]
   },
@@ -849,6 +872,12 @@ const THEORY_DATA = [
               <li>Có kênh phản hồi/khiếu nại và chuyển cho người xử lý khi rủi ro hoặc độ bất định cao.</li>
             </ul>
           </div>`
+      },
+      {
+        id: "d4-costs", title: "4.4 Chi phí đánh giá và human review", badge: "Responsible AI",
+        content: `<div class="theory-card"><h4><i data-lucide="clipboard-check"></i> Đánh giá chất lượng cũng có chi phí</h4>
+        <ul><li><strong>Human-in-the-loop / A2I:</strong> có thể phát sinh phí theo tác vụ người đánh giá và workforce tùy cách triển khai.</li><li><strong>Model evaluation:</strong> tính số mẫu, lần chạy và inference; job tự quản lý còn dùng tài nguyên tính toán/lưu trữ.</li><li><strong>Giám sát Responsible AI:</strong> có thể cần lưu dữ liệu, metrics và đánh giá định kỳ; không có khoản cố định chung cho “Responsible AI”.</li></ul>
+        <p><a href="https://aws.amazon.com/augmented-ai/pricing/" target="_blank" rel="noopener">Giá Amazon A2I</a> · <a href="https://aws.amazon.com/bedrock/pricing/" target="_blank" rel="noopener">Bedrock</a> · <a href="https://aws.amazon.com/sagemaker-ai/pricing/" target="_blank" rel="noopener">SageMaker AI</a></p><div class="alert-box tip"><div class="alert-title">Cân bằng trong câu hỏi</div><p>Cân nhắc chất lượng, rủi ro, độ trễ và chi phí. Với quyết định rủi ro cao, human review có thể là kiểm soát cần thiết; chọn theo độ tin cậy và tác động.</p></div></div>`
       }
     ]
   },
@@ -998,6 +1027,12 @@ const THEORY_DATA = [
             </ul>
             <div class="alert-box tip"><div class="alert-title">Ghép nhanh theo tình huống</div><p>PII trong S3 → Macie · Audit API → CloudTrail · Cấu hình → Config · Lỗ hổng workload → Inspector · Báo cáo compliance → Artifact · Metrics và alarm → CloudWatch.</p></div>
           </div>`
+      },
+      {
+        id: "d5-costs", title: "5.5 Chi phí bảo mật, nhật ký và kết nối riêng", badge: "Security cost awareness",
+        content: `<div class="theory-card"><h4><i data-lucide="shield-check"></i> Tính cả chi phí của lớp bảo vệ</h4>
+        <ul><li><strong>IAM:</strong> nền tảng quản lý danh tính/quyền; tính năng liên quan có điều kiện giá riêng.</li><li><strong>KMS:</strong> khóa khách hàng quản lý có thể tính theo khóa/tháng và số API request.</li><li><strong>PrivateLink / VPC endpoint:</strong> thường tính theo thời gian endpoint hoạt động và dữ liệu xử lý; loại endpoint/Region ảnh hưởng giá.</li><li><strong>CloudTrail / CloudWatch:</strong> xem loại event, trail, lưu trữ log, ingest, metric và alarm; log quá rộng/lâu có thể tăng chi phí.</li><li><strong>Guardrails / logging:</strong> phụ thuộc nội dung kiểm tra, inference, lưu trữ log và dịch vụ tích hợp đang bật.</li></ul>
+        <p><a href="https://aws.amazon.com/kms/pricing/" target="_blank" rel="noopener">KMS</a> · <a href="https://aws.amazon.com/privatelink/pricing/" target="_blank" rel="noopener">PrivateLink</a> · <a href="https://aws.amazon.com/cloudtrail/pricing/" target="_blank" rel="noopener">CloudTrail</a> · <a href="https://aws.amazon.com/cloudwatch/pricing/" target="_blank" rel="noopener">CloudWatch</a> · <a href="https://aws.amazon.com/bedrock/pricing/" target="_blank" rel="noopener">Bedrock</a></p><div class="alert-box tip"><div class="alert-title">Cách tư duy khi thi</div><p>Least privilege, mã hóa, audit và private connectivity là kiểm soát bảo mật; đề có thể thêm ràng buộc chi phí. Hạn chế phạm vi log/endpoint theo yêu cầu nhưng không bỏ kiểm soát bắt buộc chỉ để giảm giá.</p></div></div>`
       }
     ]
   },
