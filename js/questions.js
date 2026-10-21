@@ -2561,5 +2561,316 @@ const QUESTIONS_DATA = [
     correct: 0,
     explanation: { correctReason: "Exam Guide v1.1 nêu AgentCore Identity và Policy in AgentCore trong các ví dụ bảo mật agent. Kết hợp identity/policy với least privilege; kiểm tra chính xác component và tích hợp được yêu cầu.", incorrectReason: "Amazon Quick không cấp agent permissions; MCP là giao thức kết nối chứ không tự thay thế authorization; bỏ xác thực làm tăng rủi ro.", examTip: "Agent identity/authentication → AgentCore Identity; agent action authorization → AgentCore Policy." },
     service: "Amazon Bedrock AgentCore"
+  },
+  // Supplemental concepts cross-checked against the course quizzes and current AWS exam guide.
+  // Cloud fundamentals below support the exam's recommended AWS background; they are not a claim
+  // that every cloud-foundations topic is an AIF-C01 objective.
+  {
+    id: "q130", supplemental: true, domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "A team wants to use cloud resources for an unpredictable workload without buying capacity in advance. Which cloud pricing idea best matches this requirement?",
+    questionVi: "Một nhóm muốn dùng tài nguyên đám mây cho workload khó dự đoán mà không phải mua công suất trước. Nguyên tắc chi phí nào phù hợp nhất?",
+    options: [
+      { id: "A", en: "Pay for resources as they are used, while monitoring the services and usage that generate charges", vi: "Trả phí theo tài nguyên đã dùng, đồng thời theo dõi dịch vụ và mức sử dụng phát sinh chi phí" },
+      { id: "B", en: "Pay one fixed amount that includes unlimited use of every AWS service", vi: "Trả một mức cố định để dùng không giới hạn mọi dịch vụ AWS" },
+      { id: "C", en: "Purchase all expected compute and storage for the maximum possible workload", vi: "Mua trước toàn bộ compute và storage theo workload tối đa có thể xảy ra" },
+      { id: "D", en: "Pay only for data transferred into AWS; compute and storage are always free", vi: "Chỉ trả phí dữ liệu truyền vào AWS; compute và storage luôn miễn phí" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Mô hình pay-as-you-go giúp bắt đầu mà không cần đầu tư toàn bộ công suất trước; hóa đơn vẫn phụ thuộc dịch vụ, cấu hình, khu vực và mức dùng cụ thể.", incorrectReason: "AWS không cung cấp một mức phí cố định bao trọn mọi dịch vụ. Compute, storage và data transfer có thể phát sinh phí; cần xem bảng giá và theo dõi sử dụng.", examTip: "Cloud pricing → trả theo mức sử dụng; đừng suy ra rằng mọi tài nguyên hoặc truyền dữ liệu đều miễn phí." },
+    service: "AWS Cloud pricing (bổ trợ nền tảng)"
+  },
+  {
+    id: "q131", supplemental: true, domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "An organization wants AWS to manage the operating system and runtime, while its team manages the application and data. Which cloud service model most closely fits?",
+    questionVi: "Một tổ chức muốn AWS quản lý hệ điều hành và runtime, còn nhóm của họ quản lý ứng dụng và dữ liệu. Mô hình dịch vụ cloud nào gần nhất?",
+    options: [
+      { id: "A", en: "Infrastructure as a Service (IaaS)", vi: "Infrastructure as a Service (IaaS)" },
+      { id: "B", en: "Platform as a Service (PaaS)", vi: "Platform as a Service (PaaS)" },
+      { id: "C", en: "Software as a Service (SaaS)", vi: "Software as a Service (SaaS)" },
+      { id: "D", en: "On-premises only", vi: "Chỉ triển khai tại chỗ (on-premises)" }
+    ],
+    correct: 1,
+    explanation: { correctReason: "Trong mô hình PaaS điển hình, nhà cung cấp quản lý nền tảng bên dưới; khách hàng vẫn quản lý ứng dụng và dữ liệu. Ranh giới trách nhiệm thực tế thay đổi theo dịch vụ AWS cụ thể.", incorrectReason: "IaaS thường để khách hàng quản lý nhiều thành phần hơn như hệ điều hành. SaaS cung cấp ứng dụng hoàn chỉnh. On-premises không phải mô hình cloud được hỏi.", examTip: "Xác định thành phần khách hàng còn tự quản lý; luôn áp dụng shared responsibility theo từng dịch vụ cụ thể." },
+    service: "Cloud service models (bổ trợ nền tảng)"
+  },
+  {
+    id: "q132", supplemental: true, domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "Which statement correctly describes the relationship between an AWS Region and Availability Zones?",
+    questionVi: "Phát biểu nào mô tả đúng mối quan hệ giữa AWS Region và Availability Zone?",
+    options: [
+      { id: "A", en: "A Region is a geographic area containing multiple, isolated Availability Zones", vi: "Region là một khu vực địa lý gồm nhiều Availability Zone được cô lập với nhau" },
+      { id: "B", en: "An Availability Zone is a global edge cache shared by every Region", vi: "Availability Zone là bộ nhớ đệm edge toàn cầu dùng chung cho mọi Region" },
+      { id: "C", en: "A Region is a single data center, and an Availability Zone spans all Regions", vi: "Region là một data center đơn lẻ, còn Availability Zone trải rộng mọi Region" },
+      { id: "D", en: "Regions and Availability Zones are two names for the same infrastructure boundary", vi: "Region và Availability Zone là hai tên gọi cho cùng một ranh giới hạ tầng" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Region là khu vực địa lý; Region chứa các Availability Zone tách biệt về mặt hạ tầng. Thiết kế đa AZ có thể tăng khả năng chịu lỗi, nhưng không tự thay thế kế hoạch khôi phục toàn vùng.", incorrectReason: "Edge location dùng cho các use case như phân phối nội dung; AZ không phải edge cache. Region không tương đương một data center hay AZ.", examTip: "Region = địa lý; AZ = vùng cô lập trong Region; edge location là khái niệm khác." },
+    service: "AWS Global Infrastructure (bổ trợ nền tảng)"
+  },
+  {
+    id: "q133", supplemental: true, domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "A company is choosing an AWS Region for an AI application that processes regulated customer data. Which consideration should it evaluate before choosing?",
+    questionVi: "Một công ty chọn AWS Region cho ứng dụng AI xử lý dữ liệu khách hàng thuộc diện quản lý. Yếu tố nào cần được đánh giá trước khi chọn?",
+    options: [
+      { id: "A", en: "Applicable data residency and legal requirements, latency to users, required service availability, and cost", vi: "Yêu cầu pháp lý/vị trí dữ liệu, độ trễ tới người dùng, dịch vụ cần có và chi phí" },
+      { id: "B", en: "Only the number of AWS employees located in the Region", vi: "Chỉ số lượng nhân viên AWS làm việc tại Region đó" },
+      { id: "C", en: "Whether every AWS service is available in every Region", vi: "Mặc định mọi dịch vụ AWS đều có ở tất cả Region" },
+      { id: "D", en: "Whether the Region removes the customer's compliance responsibilities", vi: "Region đó có loại bỏ trách nhiệm tuân thủ của khách hàng hay không" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Lựa chọn Region thường cần cân nhắc quy định và vị trí dữ liệu, độ trễ, dịch vụ/tính năng sẵn có và giá. Khách hàng vẫn phải đáp ứng nghĩa vụ tuân thủ áp dụng cho workload.", incorrectReason: "Không phải mọi dịch vụ đều có ở mọi Region; lựa chọn Region cũng không tự chuyển hết trách nhiệm tuân thủ sang AWS.", examTip: "Region choice → compliance/data residency + latency + service availability + cost." },
+    service: "AWS Global Infrastructure (bổ trợ nền tảng)"
+  },
+  {
+    id: "q134", supplemental: true, domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "Which AWS service is generally managed through a global scope rather than being created separately in each Region?",
+    questionVi: "Dịch vụ AWS nào thường được quản lý ở phạm vi toàn cục thay vì phải tạo riêng trong từng Region?",
+    options: [
+      { id: "A", en: "AWS Identity and Access Management (IAM)", vi: "AWS Identity and Access Management (IAM)" },
+      { id: "B", en: "Amazon EC2 instances", vi: "Các phiên bản Amazon EC2" },
+      { id: "C", en: "Amazon Bedrock model inference endpoints", vi: "Các endpoint inference của Amazon Bedrock" },
+      { id: "D", en: "Amazon S3 objects in a specific bucket", vi: "Các object Amazon S3 trong một bucket cụ thể" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "IAM là dịch vụ toàn cục để quản lý danh tính và quyền truy cập, dù một số tính năng/tích hợp có yếu tố Region. EC2 và Bedrock thường là tài nguyên theo Region; bucket S3 gắn với một Region.", incorrectReason: "Compute và tài nguyên model thường được cấp phát theo Region. S3 có một số đặc điểm namespace toàn cục, nhưng mỗi bucket gắn với Region gốc.", examTip: "IAM → global identity and access control; kiểm tra tài liệu dịch vụ cho các tính năng và endpoint theo Region." },
+    service: "AWS IAM (bổ trợ nền tảng)"
+  },
+  {
+    id: "q135", supplemental: true, domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "When estimating AWS workload costs, which group contains three commonly taught pricing dimensions?",
+    questionVi: "Khi ước tính chi phí workload AWS, nhóm nào gồm ba chiều chi phí thường được nhắc tới?",
+    options: [
+      { id: "A", en: "Compute, storage, and data transfer out", vi: "Compute, storage và dữ liệu truyền ra" },
+      { id: "B", en: "Users, IAM policies, and tags", vi: "Users, IAM policies và tags" },
+      { id: "C", en: "Regions, Availability Zones, and support cases", vi: "Regions, Availability Zones và support cases" },
+      { id: "D", en: "Training tokens only", vi: "Chỉ token huấn luyện" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Compute, storage và dữ liệu truyền ra là ba chiều chi phí thường được dùng để giới thiệu AWS Cloud pricing. Giá thực tế còn phụ thuộc dịch vụ, Region, cấu hình, mức sử dụng và lựa chọn giá.", incorrectReason: "Các phương án còn lại không phải bộ ba chiều chi phí được nêu. Với GenAI, cần tính thêm token input/output hoặc các thành phần giá riêng của dịch vụ/model.", examTip: "Ước tính theo workload và bảng giá hiện hành; không giả định mọi data transfer đều miễn phí." },
+    service: "AWS Cloud pricing (bổ trợ nền tảng)"
+  },
+  {
+    id: "q136", supplemental: true, domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "Which description best captures a practical cloud-computing benefit for a team launching an AI proof of concept?",
+    questionVi: "Mô tả nào nêu đúng một lợi ích thực tế của cloud computing khi nhóm triển khai thử nghiệm AI?",
+    options: [
+      { id: "A", en: "Provision resources on demand and adjust capacity as requirements change, while paying for the services used", vi: "Cấp tài nguyên theo nhu cầu, điều chỉnh công suất khi yêu cầu đổi và trả phí theo dịch vụ đã dùng" },
+      { id: "B", en: "Guarantee that every AI project costs less than an on-premises alternative", vi: "Đảm bảo mọi dự án AI đều rẻ hơn phương án tại chỗ" },
+      { id: "C", en: "Remove the need to plan security, availability, or costs", vi: "Loại bỏ nhu cầu lập kế hoạch bảo mật, độ sẵn sàng hoặc chi phí" },
+      { id: "D", en: "Make all capacity unlimited without service quotas or regional constraints", vi: "Làm cho mọi công suất vô hạn, không có quota hay giới hạn Region" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Cloud cho phép cấp và điều chỉnh tài nguyên linh hoạt hơn so với mua sắm hạ tầng cố định. Chi phí thực tế vẫn cần theo dõi và tối ưu.", incorrectReason: "Cloud không đảm bảo luôn rẻ hơn, không xóa bỏ trách nhiệm bảo mật/vận hành và vẫn có quota, giới hạn dịch vụ hoặc khác biệt theo Region.", examTip: "Lợi ích cloud là tính linh hoạt và mô hình sử dụng; tránh đáp án hứa hẹn tiết kiệm hoặc công suất vô hạn." },
+    service: "AWS Cloud fundamentals (bổ trợ nền tảng)"
+  },
+  {
+    id: "q137", supplemental: true, domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "Which statement best describes cloud computing?",
+    questionVi: "Phát biểu nào mô tả đúng nhất cloud computing?",
+    options: [
+      { id: "A", en: "On-demand access to computing resources over a network, with the provider managing the underlying infrastructure", vi: "Truy cập theo nhu cầu vào tài nguyên điện toán qua mạng, nhà cung cấp quản lý hạ tầng bên dưới" },
+      { id: "B", en: "A requirement to own and operate every physical server used by an application", vi: "Yêu cầu sở hữu và vận hành mọi máy chủ vật lý mà ứng dụng sử dụng" },
+      { id: "C", en: "A guarantee that applications never need maintenance", vi: "Đảm bảo ứng dụng không bao giờ cần bảo trì" },
+      { id: "D", en: "A service that automatically makes every dataset suitable for machine learning", vi: "Dịch vụ tự động làm mọi tập dữ liệu phù hợp cho machine learning" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Cloud computing cung cấp quyền truy cập theo nhu cầu tới tài nguyên điện toán; phần hạ tầng được AWS quản lý theo mô hình dịch vụ đã chọn.", incorrectReason: "Dùng cloud không đồng nghĩa khách hàng sở hữu mọi máy chủ, ứng dụng không cần bảo trì, hoặc dữ liệu tự động sẵn sàng cho ML.", examTip: "Nhớ khái niệm on-demand access; ranh giới quản lý phụ thuộc IaaS/PaaS/SaaS và dịch vụ AWS cụ thể." },
+    service: "AWS Cloud fundamentals (bổ trợ nền tảng)"
+  },
+  {
+    id: "q138", supplemental: true, domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "A business wants to use public-cloud scalability but retain control of a sensitive legacy system in its own environment. Which deployment approach could meet both needs?",
+    questionVi: "Một doanh nghiệp muốn tận dụng khả năng mở rộng của public cloud nhưng vẫn giữ hệ thống cũ nhạy cảm trong môi trường riêng. Cách triển khai nào có thể đáp ứng cả hai nhu cầu?",
+    options: [
+      { id: "A", en: "Hybrid cloud", vi: "Hybrid cloud" },
+      { id: "B", en: "Public cloud only", vi: "Chỉ public cloud" },
+      { id: "C", en: "Private cloud only", vi: "Chỉ private cloud" },
+      { id: "D", en: "Edge location only", vi: "Chỉ dùng edge location" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Hybrid cloud kết hợp môi trường tại chỗ/riêng với tài nguyên cloud công cộng. Thiết kế cụ thể vẫn cần giải quyết kết nối, bảo mật, latency và yêu cầu quản trị dữ liệu.", incorrectReason: "Public-only không giữ hệ thống trong môi trường riêng; private-only không tận dụng trực tiếp public cloud; edge location không phải mô hình triển khai thay thế.", examTip: "Giữ một phần workload tại chỗ và dùng public cloud cho phần khác → cân nhắc hybrid cloud." },
+    service: "AWS Cloud deployment models (bổ trợ nền tảng)"
+  },
+  {
+    id: "q139", domainId: 1, domainName: "Fundamentals of AI and ML",
+    questionEn: "A team transforms raw dates, categories, and text into useful model inputs, such as day-of-week, encoded categories, and text features. What is this preparation work called?",
+    questionVi: "Một nhóm biến ngày tháng, danh mục và văn bản thô thành đầu vào hữu ích cho model, chẳng hạn thứ trong tuần, danh mục đã mã hóa và đặc trưng văn bản. Công việc này gọi là gì?",
+    options: [
+      { id: "A", en: "Feature engineering", vi: "Feature engineering (thiết kế/tạo đặc trưng)" },
+      { id: "B", en: "Inference", vi: "Inference (suy luận)" },
+      { id: "C", en: "Model monitoring", vi: "Model monitoring (giám sát model)" },
+      { id: "D", en: "Data labeling only", vi: "Chỉ gán nhãn dữ liệu" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Feature engineering tạo hoặc biến đổi biến đầu vào để biểu diễn tín hiệu hữu ích cho mô hình. Tiền xử lý có thể gồm mã hóa, chuẩn hóa hoặc tạo đặc trưng theo miền bài toán.", incorrectReason: "Inference dùng model đã huấn luyện để tạo dự đoán; monitoring theo dõi model sau triển khai; labeling gắn nhãn mục tiêu nhưng không bao quát các phép biến đổi nêu trong đề.", examTip: "Biến dữ liệu thô thành đầu vào có ý nghĩa cho ML → feature engineering." },
+    service: "ML data preparation"
+  },
+  {
+    id: "q140", domainId: 1, domainName: "Fundamentals of AI and ML",
+    questionEn: "A model learns to recognize handwritten digits from many labeled examples. What is a neural network doing at a high level?",
+    questionVi: "Một model học nhận dạng chữ số viết tay từ nhiều ví dụ có nhãn. Ở mức khái quát, neural network đang làm gì?",
+    options: [
+      { id: "A", en: "Learning patterns in the examples by adjusting interconnected parameters during training", vi: "Học quy luật trong ví dụ bằng cách điều chỉnh các tham số liên kết trong quá trình huấn luyện" },
+      { id: "B", en: "Looking up every possible handwritten image in a fixed list without learning", vi: "Tra mọi ảnh chữ viết tay trong một danh sách cố định mà không học" },
+      { id: "C", en: "Guaranteeing the same prediction for every image", vi: "Đảm bảo mọi ảnh đều có cùng dự đoán" },
+      { id: "D", en: "Replacing the need for representative training and evaluation data", vi: "Thay thế nhu cầu có dữ liệu huấn luyện và đánh giá đại diện" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Neural network học biểu diễn/quy luật từ ví dụ bằng cập nhật trọng số hoặc tham số khi huấn luyện; chất lượng còn phụ thuộc dữ liệu, mục tiêu và đánh giá.", incorrectReason: "Mạng nơ-ron không chỉ tra bảng, không luôn dự đoán cùng một nhãn và không loại bỏ nhu cầu dữ liệu đại diện.", examTip: "Neural network → nhiều phép biến đổi có tham số được học từ dữ liệu; không cần đi sâu vào toán trong kỳ thi nền tảng." },
+    service: "Neural networks"
+  },
+  {
+    id: "q141", supplemental: true, domainId: 2, domainName: "Fundamentals of GenAI",
+    questionEn: "When using a text-to-image model, what is the most accurate description of a negative prompt?",
+    questionVi: "Khi dùng model text-to-image, mô tả nào chính xác nhất về negative prompt?",
+    options: [
+      { id: "A", en: "A prompt field that describes elements the user wants the generated image to avoid", vi: "Trường prompt mô tả những yếu tố người dùng muốn ảnh được tạo tránh xuất hiện" },
+      { id: "B", en: "A security control that guarantees prohibited content can never be generated", vi: "Kiểm soát bảo mật đảm bảo nội dung bị cấm không bao giờ được tạo" },
+      { id: "C", en: "A training dataset label that permanently changes the foundation model", vi: "Nhãn trong tập dữ liệu huấn luyện làm thay đổi vĩnh viễn foundation model" },
+      { id: "D", en: "A parameter that encrypts the prompt before inference", vi: "Tham số mã hóa prompt trước khi inference" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Negative prompt nêu các đặc điểm không mong muốn để hướng dẫn đầu ra tạo ảnh. Đây là chỉ dẫn tạo nội dung, không phải ranh giới bảo mật hay bảo đảm tuyệt đối.", incorrectReason: "Negative prompt không huấn luyện lại model, không mã hóa dữ liệu và không thay thế guardrails hoặc kiểm tra đầu ra.", examTip: "Negative prompt định hướng điều cần tránh; không xem nó là cơ chế bảo mật chắc chắn." },
+    service: "Prompt engineering"
+  },
+  {
+    id: "q142", supplemental: true, domainId: 2, domainName: "Fundamentals of GenAI",
+    questionEn: "A user asks an enterprise assistant to summarize internal files they are allowed to access and answer in natural language with citations. Which product is designed for this employee-facing use case?",
+    questionVi: "Người dùng muốn trợ lý doanh nghiệp tóm tắt tài liệu nội bộ mà họ được phép truy cập và trả lời bằng ngôn ngữ tự nhiên kèm trích dẫn. Sản phẩm nào được thiết kế cho use case nhân viên này?",
+    options: [
+      { id: "A", en: "Amazon Q Business", vi: "Amazon Q Business" },
+      { id: "B", en: "Amazon Q Developer", vi: "Amazon Q Developer" },
+      { id: "C", en: "Amazon Rekognition", vi: "Amazon Rekognition" },
+      { id: "D", en: "AWS Artifact", vi: "AWS Artifact" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Amazon Q Business là trợ lý GenAI hướng tới người dùng doanh nghiệp, có thể trả lời dựa trên nguồn dữ liệu doanh nghiệp đã kết nối và áp dụng quyền truy cập theo cấu hình.", incorrectReason: "Q Developer hướng tới hỗ trợ phát triển phần mềm; Rekognition phân tích hình ảnh/video; Artifact cung cấp tài liệu compliance AWS. Cần cấu hình danh tính, nguồn dữ liệu và quyền phù hợp.", examTip: "Trợ lý nhân viên + dữ liệu doanh nghiệp → Q Business; hỗ trợ lập trình → Q Developer." },
+    service: "Amazon Q Business"
+  },
+  {
+    id: "q143", supplemental: true, domainId: 2, domainName: "Fundamentals of GenAI",
+    questionEn: "A software developer wants an AI assistant focused on explaining code, suggesting edits, and helping with software-development tasks. Which AWS product is the closest fit?",
+    questionVi: "Một lập trình viên muốn trợ lý AI tập trung giải thích code, đề xuất chỉnh sửa và hỗ trợ công việc phát triển phần mềm. Sản phẩm AWS nào phù hợp nhất?",
+    options: [
+      { id: "A", en: "Amazon Q Developer", vi: "Amazon Q Developer" },
+      { id: "B", en: "Amazon Q Business", vi: "Amazon Q Business" },
+      { id: "C", en: "Amazon Textract", vi: "Amazon Textract" },
+      { id: "D", en: "Amazon Personalize", vi: "Amazon Personalize" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Amazon Q Developer là trợ lý GenAI hỗ trợ các tác vụ phát triển phần mềm. Khả năng cụ thể phụ thuộc môi trường, cấu hình và phiên bản sản phẩm.", incorrectReason: "Q Business hướng tới công việc tri thức doanh nghiệp; Textract trích xuất nội dung tài liệu; Personalize tạo đề xuất cá nhân hóa.", examTip: "Lập trình viên + code/software tasks → Q Developer; nhân viên hỏi dữ liệu doanh nghiệp → Q Business." },
+    service: "Amazon Q Developer"
+  },
+  {
+    id: "q144", domainId: 1, domainName: "Fundamentals of AI and ML",
+    questionEn: "A voice-based support bot must transcribe a caller's speech and then identify the caller's intent so it can follow a conversational flow. Which pairing best matches those tasks?",
+    questionVi: "Bot hỗ trợ bằng giọng nói cần chuyển lời khách thành văn bản rồi nhận diện ý định để đi theo luồng hội thoại. Cặp dịch vụ nào khớp nhất?",
+    options: [
+      { id: "A", en: "Amazon Transcribe for speech-to-text and Amazon Lex for conversational intent handling", vi: "Amazon Transcribe chuyển giọng nói thành văn bản và Amazon Lex xử lý intent hội thoại" },
+      { id: "B", en: "Amazon Polly for speech-to-text and Amazon Textract for intent handling", vi: "Amazon Polly chuyển giọng nói thành văn bản và Amazon Textract xử lý intent" },
+      { id: "C", en: "Amazon Translate for speech-to-text and Amazon Kendra for voice synthesis", vi: "Amazon Translate chuyển giọng nói thành văn bản và Amazon Kendra tổng hợp giọng nói" },
+      { id: "D", en: "Amazon Rekognition for speech recognition and Amazon Comprehend for text-to-speech", vi: "Amazon Rekognition nhận dạng giọng nói và Amazon Comprehend chuyển văn bản thành giọng nói" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Transcribe cung cấp speech-to-text; Lex hỗ trợ xây dựng giao diện hội thoại nhận diện intent/slot. Kiến trúc production có thể cần thêm dịch vụ điều phối và tích hợp.", incorrectReason: "Polly chuyển văn bản thành giọng nói; Textract xử lý tài liệu; Translate dịch ngôn ngữ; Kendra tìm kiếm tài liệu; Rekognition phân tích ảnh/video.", examTip: "Speech → text: Transcribe; text → speech: Polly; chatbot intent/slot: Lex." },
+    service: "Amazon Transcribe and Amazon Lex"
+  },
+  {
+    id: "q145", domainId: 1, domainName: "Fundamentals of AI and ML",
+    questionEn: "An application needs to translate customer-written text from one supported language to another. Which managed AWS AI service is designed for machine translation?",
+    questionVi: "Ứng dụng cần dịch văn bản khách hàng từ một ngôn ngữ được hỗ trợ sang ngôn ngữ khác. Dịch vụ AI managed nào của AWS được thiết kế cho machine translation?",
+    options: [
+      { id: "A", en: "Amazon Translate", vi: "Amazon Translate" },
+      { id: "B", en: "Amazon Transcribe", vi: "Amazon Transcribe" },
+      { id: "C", en: "Amazon Polly", vi: "Amazon Polly" },
+      { id: "D", en: "Amazon Comprehend", vi: "Amazon Comprehend" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Amazon Translate là dịch vụ machine translation. Việc lựa chọn vẫn cần kiểm tra hỗ trợ ngôn ngữ, chất lượng theo miền nội dung, độ trễ và chi phí.", incorrectReason: "Transcribe chuyển lời nói thành văn bản; Polly chuyển văn bản thành lời nói; Comprehend phân tích ngôn ngữ tự nhiên như thực thể hoặc cảm xúc.", examTip: "Text translation → Translate; audio transcription → Transcribe; speech synthesis → Polly." },
+    service: "Amazon Translate"
+  },
+  {
+    id: "q146", domainId: 3, domainName: "Applications of Foundation Models",
+    questionEn: "A prediction must be returned synchronously to a user during an interactive session, with low latency. Which inference pattern is the best starting point?",
+    questionVi: "Một dự đoán phải được trả đồng bộ cho người dùng trong phiên tương tác với độ trễ thấp. Mẫu inference nào là điểm bắt đầu phù hợp nhất?",
+    options: [
+      { id: "A", en: "Real-time inference", vi: "Real-time inference" },
+      { id: "B", en: "Batch inference scheduled once per month", vi: "Batch inference chạy theo lịch mỗi tháng một lần" },
+      { id: "C", en: "Offline training with no deployed inference path", vi: "Huấn luyện offline mà không có luồng inference đã triển khai" },
+      { id: "D", en: "Manual review of every request before any prediction", vi: "Duyệt thủ công mọi yêu cầu trước khi tạo dự đoán" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Real-time inference phù hợp khi ứng dụng cần phản hồi đồng bộ và độ trễ thấp. Cần cân nhắc lưu lượng, độ sẵn sàng, quota và chi phí endpoint/model cụ thể.", incorrectReason: "Batch phù hợp xử lý theo lô khi không cần phản hồi tức thời; training không đồng nghĩa với phục vụ dự đoán; human review chỉ dùng khi quy trình yêu cầu.", examTip: "Tương tác đồng bộ/latency thấp → real-time; nhiều dữ liệu, không gấp → batch." },
+    service: "Inference patterns"
+  },
+  {
+    id: "q147", domainId: 4, domainName: "Guidelines for Responsible AI",
+    questionEn: "A high-stakes AI workflow is redesigned so reviewers can understand the recommendation, challenge it, and safely override it under time pressure. Which human-centered design principle is most directly supported?",
+    questionVi: "Một quy trình AI rủi ro cao được thiết kế lại để người duyệt hiểu khuyến nghị, có thể phản biện và override an toàn khi chịu áp lực thời gian. Nguyên tắc human-centered design nào được hỗ trợ trực tiếp nhất?",
+    options: [
+      { id: "A", en: "Keep people informed and in control, with clear feedback and usable override paths", vi: "Giữ con người được cung cấp thông tin và quyền kiểm soát, có phản hồi rõ và cách override sử dụng được" },
+      { id: "B", en: "Hide uncertainty so reviewers make decisions faster", vi: "Ẩn độ không chắc chắn để người duyệt quyết định nhanh hơn" },
+      { id: "C", en: "Make the AI decision final and remove human review", vi: "Biến quyết định AI thành cuối cùng và bỏ duyệt của con người" },
+      { id: "D", en: "Optimize only for the number of model parameters", vi: "Chỉ tối ưu số lượng tham số của model" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Human-centered AI cần hỗ trợ hiểu biết tình huống, quyền kiểm soát và khả năng can thiệp thích hợp, đặc biệt trong quy trình rủi ro cao.", incorrectReason: "Che giấu bất định hoặc loại bỏ quyền phản biện có thể khiến người dùng quá tin model. Số tham số không đo lường khả năng sử dụng hay trách nhiệm.", examTip: "AI hỗ trợ quyết định; con người cần hiểu, giám sát và can thiệp khi phù hợp với rủi ro." },
+    service: "Human-centered design and human oversight"
+  },
+  {
+    id: "q148", domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "A security team needs to discover and help protect sensitive data, such as personally identifiable information, stored in Amazon S3. Which AWS service is specifically designed for this purpose?",
+    questionVi: "Đội bảo mật cần khám phá và hỗ trợ bảo vệ dữ liệu nhạy cảm như thông tin định danh cá nhân trong Amazon S3. Dịch vụ AWS nào được thiết kế chuyên cho việc này?",
+    options: [
+      { id: "A", en: "Amazon Macie", vi: "Amazon Macie" },
+      { id: "B", en: "AWS Artifact", vi: "AWS Artifact" },
+      { id: "C", en: "AWS CloudTrail", vi: "AWS CloudTrail" },
+      { id: "D", en: "Amazon Polly", vi: "Amazon Polly" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Amazon Macie giúp khám phá và bảo vệ dữ liệu nhạy cảm trong Amazon S3 bằng machine learning và pattern matching; kết quả cần được xác minh và xử lý theo chính sách tổ chức.", incorrectReason: "Artifact cung cấp tài liệu compliance; CloudTrail ghi lại hoạt động API; Polly tổng hợp văn bản thành giọng nói.", examTip: "Sensitive data discovery in S3 → Macie; audit API calls → CloudTrail; compliance reports → Artifact." },
+    service: "Amazon Macie"
+  },
+  {
+    id: "q149", domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "An application running on an AWS compute service needs temporary credentials to call a specific Amazon Bedrock API. Which IAM approach is generally preferred over embedding long-term access keys in code?",
+    questionVi: "Ứng dụng chạy trên dịch vụ compute AWS cần credentials tạm thời để gọi một API Amazon Bedrock cụ thể. Cách IAM nào thường được ưu tiên hơn việc nhúng access key dài hạn vào code?",
+    options: [
+      { id: "A", en: "Attach a least-privilege IAM role to the workload and let it obtain temporary credentials", vi: "Gắn IAM role quyền tối thiểu cho workload để workload nhận credentials tạm thời" },
+      { id: "B", en: "Store an administrator access key directly in the source repository", vi: "Lưu access key administrator trực tiếp trong source repository" },
+      { id: "C", en: "Share one IAM user's long-term secret key across every application", vi: "Dùng chung secret key dài hạn của một IAM user cho mọi ứng dụng" },
+      { id: "D", en: "Disable authentication on the Bedrock API", vi: "Tắt xác thực trên Bedrock API" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "IAM role cung cấp credentials tạm thời cho workload và có thể giới hạn quyền theo nguyên tắc least privilege. Quyền cần được rà soát theo đúng thao tác/model/API mà ứng dụng cần.", incorrectReason: "Key dài hạn trong code hoặc chia sẻ rộng làm tăng rủi ro lộ lọt và khó thu hồi; Bedrock API yêu cầu xác thực và quyền phù hợp.", examTip: "AWS workload → IAM role + temporary credentials + least privilege; tránh hard-code long-term keys." },
+    service: "AWS IAM roles"
+  },
+  {
+    id: "q150", domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "An auditor needs a record of AWS API activity, including which identity called an API and when. Separately, the team needs to assess configuration changes to AWS resources over time. Which pairing is correct?",
+    questionVi: "Kiểm toán viên cần bản ghi hoạt động API AWS, gồm danh tính nào gọi API và thời điểm gọi. Riêng đội vận hành cần đánh giá thay đổi cấu hình tài nguyên AWS theo thời gian. Cặp dịch vụ nào đúng?",
+    options: [
+      { id: "A", en: "AWS CloudTrail for API activity; AWS Config for resource configuration history and compliance evaluation", vi: "AWS CloudTrail ghi hoạt động API; AWS Config lưu lịch sử cấu hình tài nguyên và đánh giá compliance" },
+      { id: "B", en: "AWS Config for speech transcription; Amazon Transcribe for resource configuration history", vi: "AWS Config phiên âm; Amazon Transcribe lưu lịch sử cấu hình tài nguyên" },
+      { id: "C", en: "AWS Artifact for live API events; Amazon Macie for IAM policy history", vi: "AWS Artifact ghi sự kiện API trực tiếp; Amazon Macie lưu lịch sử IAM policy" },
+      { id: "D", en: "Amazon CloudWatch for identity proof; AWS KMS for resource configuration history", vi: "Amazon CloudWatch xác minh danh tính; AWS KMS lưu lịch sử cấu hình tài nguyên" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "CloudTrail ghi lại hoạt động API để hỗ trợ kiểm toán; AWS Config theo dõi cấu hình tài nguyên và có thể đánh giá theo rule. Có thể tích hợp chúng trong quy trình governance.", incorrectReason: "Artifact là kho tài liệu compliance; Macie khám phá dữ liệu nhạy cảm; CloudWatch tập trung metrics/logs/alarms; KMS quản lý khóa mã hóa.", examTip: "Who called which API and when → CloudTrail; resource configuration history/compliance → AWS Config." },
+    service: "AWS CloudTrail and AWS Config"
+  },
+  {
+    id: "q151", supplemental: true, domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "Which cloud characteristic describes the ability to provision computing resources automatically when needed without requiring a provider employee to manually fulfill each request?",
+    questionVi: "Đặc tính cloud nào mô tả khả năng tự cấp tài nguyên điện toán khi cần mà không phải nhờ nhân viên nhà cung cấp xử lý thủ công từng yêu cầu?",
+    options: [
+      { id: "A", en: "On-demand self-service", vi: "Tự phục vụ theo nhu cầu (on-demand self-service)" },
+      { id: "B", en: "Measured service", vi: "Dịch vụ được đo lường mức sử dụng (measured service)" },
+      { id: "C", en: "Broad network access", vi: "Truy cập mạng rộng (broad network access)" },
+      { id: "D", en: "Resource pooling", vi: "Gom nhóm tài nguyên (resource pooling)" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "On-demand self-service cho phép người dùng cấp tài nguyên theo nhu cầu thông qua cơ chế tự phục vụ, thay vì yêu cầu nhà cung cấp can thiệp thủ công cho từng lần cấp.", incorrectReason: "Measured service theo dõi mức sử dụng; broad network access nói về khả năng truy cập qua mạng; resource pooling là chia sẻ/gom tài nguyên phục vụ nhiều khách hàng.", examTip: "Tự cấp tài nguyên khi cần → on-demand self-service. Đây là kiến thức cloud nền tảng bổ trợ, không phải khẳng định domain AIF riêng." },
+    service: "AWS Cloud characteristics (bổ trợ nền tảng)"
   }
 ];

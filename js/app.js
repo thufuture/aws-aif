@@ -622,11 +622,12 @@ function startDomainQuiz(domainNumber) {
 function startMockExam() {
   sound.playClick();
   // Use the scored-content domain proportions (rounded to 65 practice questions).
+  // Supplemental cloud-background questions remain available in domain practice, not this exam-style set.
   // This mock does not reproduce AWS's 50 scored + 15 unscored selection.
   const targetCounts = { 1: 13, 2: 16, 3: 18, 4: 9, 5: 9 };
   const shuffled = Object.entries(targetCounts).flatMap(([domainId, count]) =>
     QUESTIONS_DATA
-      .filter(q => q.domainId === Number(domainId))
+      .filter(q => q.domainId === Number(domainId) && !q.supplemental)
       .sort(() => Math.random() - 0.5)
       .slice(0, count)
   ).sort(() => Math.random() - 0.5);
@@ -868,7 +869,7 @@ function renderCurrentQuestion() {
         <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
           <span class="service-tag-pill">${q.service}</span>
           <span class="service-tag-pill">Domain ${q.domainId}: ${q.domainName}</span>
-          <span class="service-tag-pill">AIF-C01</span>
+          <span class="service-tag-pill">${q.supplemental ? 'Kiến thức bổ trợ' : 'AIF-C01'}</span>
         </div>
         <button class="btn-secondary" style="font-size: 0.8rem; padding: 0.3rem 0.75rem; border-color: #bae6fd; background: #f0f9ff; color: #0284c7; display: inline-flex; align-items: center; gap: 0.35rem;" onclick="toggleTranslation('${q.id}')">
           <i data-lucide="languages" style="width: 14px; height: 14px;"></i>
