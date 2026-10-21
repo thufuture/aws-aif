@@ -580,8 +580,8 @@ const QUESTIONS_DATA = [
     id: "q29",
     domainId: 3,
     domainName: "Applications of Foundation Models",
-    questionEn: "A company wants to build a customer support chatbot that answers questions based on internal proprietary company policy documents. The documents are updated daily. The company wants the lowest cost and operational effort, without retraining the model. Which approach should they choose?",
-    questionVi: "Một công ty muốn xây dựng chatbot hỗ trợ trả lời câu hỏi dựa trên các tài liệu chính sách nội bộ độc quyền. Các tài liệu này được cập nhật hàng ngày. Công ty muốn chi phí thấp nhất và ít công sức vận hành nhất, không cần đào tạo lại mô hình. Họ nên chọn phương án nào?",
+    questionEn: "A company needs a support chatbot to answer questions using internal policy documents that change daily. It wants the answers to use current documents without retraining the foundation model. Which approach best fits this requirement?",
+    questionVi: "Một công ty cần chatbot hỗ trợ trả lời dựa trên tài liệu chính sách nội bộ được cập nhật hằng ngày. Công ty muốn câu trả lời dùng tài liệu hiện hành mà không huấn luyện lại foundation model. Cách tiếp cận nào phù hợp nhất với yêu cầu này?",
     options: [
       { id: "A", en: "Pre-train a new foundation model from scratch", vi: "Huấn luyện trước một mô hình nền tảng mới từ đầu" },
       { id: "B", en: "Fine-tune a model on Amazon Bedrock using daily snapshots", vi: "Fine-tune một mô hình trên Amazon Bedrock bằng các bản snapshot hàng ngày" },
@@ -590,9 +590,9 @@ const QUESTIONS_DATA = [
     ],
     correct: 2, // C
     explanation: {
-      correctReason: "Đáp án C chính xác. RAG kết nối mô hình nền tảng với kho tài liệu ngoài (S3, Vector DB). Khi người dùng hỏi, hệ thống trích xuất thông tin mới nhất và đưa vào ngữ cảnh prompt. Điều này không tốn chi phí huấn luyện lại và hoàn hảo cho dữ liệu thay đổi thường xuyên.",
+      correctReason: "Đáp án C. RAG truy xuất các đoạn liên quan từ nguồn bên ngoài rồi đưa chúng vào ngữ cảnh cho model; có thể cập nhật tri thức mà không fine-tune lại mỗi lần tài liệu đổi. Cần đồng bộ/ingest nguồn và đánh giá chất lượng retrieval, độ trễ, token, lưu trữ và chi phí vận hành.",
       incorrectReason: "• A cực kỳ đắt đỏ (hàng triệu USD).\n• B Fine-tuning rất tốn kém và không phù hợp khi dữ liệu thay đổi liên tục hàng ngày.",
-      examTip: "Từ khóa: 'Internal documents updated frequently / lowest cost / no retraining' &rarr; Chọn RAG / Bedrock Knowledge Bases."
+      examTip: "Từ khóa: 'current external documents / no model retraining' → cân nhắc RAG; chọn theo các ràng buộc chi phí, latency và chất lượng retrieval."
     },
     service: "Amazon Bedrock Knowledge Bases"
   },
@@ -1342,9 +1342,9 @@ const QUESTIONS_DATA = [
     ],
     correct: 1, // B
     explanation: {
-      correctReason: "Đáp án B chính xác. Amazon Nova Micro là mô hình văn bản thuần túy (text-only model) được tối ưu hóa cho độ trễ siêu thấp (ultra-low latency) và chi phí token rẻ nhất trong dòng Amazon Nova, lý tưởng cho các tác vụ phân loại, tóm tắt cơ bản.",
-      incorrectReason: "• A sai vì Nova Canvas chuyên sinh và chỉnh sửa hình ảnh (Image generation).\n• C sai vì Nova Pro là mô hình đa phương thức hàng đầu, mạnh nhất nhưng chi phí cao hơn và độ trễ lớn hơn Nova Micro.\n• D sai vì Nova Premier là tên không tồn tại trong dòng phát hành của AWS.",
-      examTip: "Từ khóa: 'Amazon Nova / text-only / ultra-low latency / lowest cost' &rarr; Chọn Amazon Nova Micro."
+      correctReason: "Đáp án B. Amazon Nova Micro là model text-only được tài liệu AWS mô tả là tối ưu cho tốc độ và chi phí thấp. Với yêu cầu chỉ xử lý văn bản và độ trễ thấp, đây là lựa chọn phù hợp trong các phương án. So sánh giá/hiệu năng cần theo model ID và phiên bản hiện hành.",
+      incorrectReason: "• A là model tạo/chỉnh sửa ảnh.\n• C là model đa phương thức; có thể phù hợp hơn với tác vụ phức tạp cần ảnh/video.\n• D, Nova Premier, là model có thật và hướng tới tác vụ đa phương thức phức tạp; tuy nhiên không khớp yêu cầu text-only, độ trễ thấp của câu hỏi.",
+      examTip: "Ghép modality và yêu cầu latency/cost với model card hiện hành; không học thuộc bảng xếp hạng giá/hiệu năng cố định."
     },
     service: "Amazon Nova Models"
   },
@@ -1362,7 +1362,7 @@ const QUESTIONS_DATA = [
     ],
     correct: 1, // B
     explanation: {
-      correctReason: "Đáp án B chính xác. Amazon Nova Pro là mô hình đa phương thức (multimodal: text, image, video) cao cấp nhất của AWS với khả năng suy luận phức tạp (complex reasoning) hàng đầu.",
+      correctReason: "Đáp án B. Amazon Nova Pro nhận đầu vào văn bản, hình ảnh và video theo tài liệu model; phù hợp với yêu cầu xử lý văn bản cùng ảnh. Câu hỏi kiểm tra modality/use case, không khẳng định Pro là model mạnh nhất trong toàn bộ catalog.",
       incorrectReason: "• A sai vì Nova Micro chỉ hỗ trợ văn bản (text-only).\n• C sai vì Titan Embeddings dùng để tạo vector, không phải sinh câu trả lời đàm thoại.\n• D sai vì Polly dùng để chuyển văn bản thành giọng nói.",
       examTip: "Từ khóa: 'Amazon Nova / complex reasoning / text and images multimodal' &rarr; Chọn Amazon Nova Pro."
     },
@@ -1987,8 +1987,8 @@ const QUESTIONS_DATA = [
     id: "q98",
     domainId: 3,
     domainName: "Applications of Foundation Models",
-    questionEn: "A global advertising agency uses Amazon Bedrock to generate high-resolution marketing imagery. In accordance with new digital media transparency regulations, all AI-generated images must include an invisible, tamper-resistant digital watermark indicating they were created by AI. Which AWS Foundation Model natively includes this capability using SynthID?",
-    questionVi: "Một công ty quảng cáo sử dụng Amazon Bedrock để tạo hình ảnh tiếp thị. Theo quy định pháp lý về minh bạch truyền thông, mọi hình ảnh tạo bằng AI phải chứa chữ ký mờ kỹ thuật số vô hình (digital watermark) để chứng minh nguồn gốc AI. Mô hình AWS nào tích hợp sẵn tính năng này bằng công nghệ SynthID?",
+    questionEn: "A marketing team needs to generate images from text prompts and wants an AWS image model that adds an invisible watermark to generated images. Which model is designed for this use case?",
+    questionVi: "Một nhóm tiếp thị cần tạo ảnh từ prompt văn bản và muốn dùng mô hình tạo ảnh của AWS có thêm watermark vô hình vào ảnh được tạo. Mô hình nào phù hợp với use case này?",
     options: [
       { id: "A", en: "Amazon Nova Canvas", vi: "Amazon Nova Canvas" },
       { id: "B", en: "Amazon Nova Micro", vi: "Amazon Nova Micro" },
@@ -1997,7 +1997,7 @@ const QUESTIONS_DATA = [
     ],
     correct: 0,
     explanation: {
-      correctReason: "Đáp án A chính xác. Amazon Nova Canvas là mô hình thế hệ mới nhất của AWS chuyên tạo hình ảnh nghệ thuật chất lượng cao từ câu lệnh văn bản. Nó tích hợp công nghệ SynthID (hoặc cơ chế watermarking độc quyền) nhúng chữ ký mờ vô hình giúp xác minh nguồn gốc AI và chống mạo danh.",
+      correctReason: "Đáp án A. Amazon Nova Canvas tạo ảnh từ prompt và tài liệu AWS mô tả watermark vô hình trên ảnh được tạo. Đây là watermark của Amazon Nova Canvas; không gọi là SynthID. Khả năng và tên model có thể thay đổi theo phiên bản.",
       incorrectReason: "• Nova Micro là mô hình văn bản siêu nhẹ, siêu rẻ, không tạo ảnh.\n• Claude 3 Haiku là mô hình ngôn ngữ lớn, không tạo ảnh.\n• Transcribe phân tích cuộc gọi âm thanh.",
       examTip: "Từ khóa: 'Generate images with native invisible watermarking on Bedrock' &rarr; Chọn Amazon Nova Canvas."
     },
@@ -2446,5 +2446,120 @@ const QUESTIONS_DATA = [
     correct: [1, 0, 2, 3],
     explanation: { correctReason: "Trước hết phải xác định mục tiêu và thước đo; sau đó chạy đánh giá đại diện, phân tích các đánh đổi rồi mới quyết định có đáp ứng tiêu chí phát hành hay không.", incorrectReason: "Không thể kết luận hiệu quả nếu chưa xác định success metrics; quyết định phát hành phải dựa trên kết quả đo và trade-offs.", examTip: "Objectives → evaluate → analyze trade-offs → release decision." },
     service: "Foundation Model Evaluation"
+  },
+  {
+    id: "q122", domainId: 1, domainName: "Fundamentals of AI and ML",
+    questionEn: "A regulated business needs a narrowly defined numeric prediction, strong control over the model lifecycle, and an explanation of the factors behind each prediction. Which choice should it evaluate first?",
+    questionVi: "Một doanh nghiệp chịu quy định chặt cần dự đoán một giá trị số với phạm vi hẹp, kiểm soát vòng đời model và giải thích các yếu tố dẫn tới từng dự đoán. Nên ưu tiên đánh giá hướng nào trước?",
+    options: [
+      { id: "A", en: "A traditional ML model, evaluated against explainability and operational requirements", vi: "Model ML truyền thống, đánh giá theo yêu cầu giải thích và vận hành" },
+      { id: "B", en: "A general-purpose foundation model because it can generate text", vi: "Foundation model đa dụng chỉ vì nó có thể tạo văn bản" },
+      { id: "C", en: "A multi-agent system for every prediction", vi: "Hệ thống nhiều agent cho mọi dự đoán" },
+      { id: "D", en: "A larger model without first defining evaluation criteria", vi: "Model lớn hơn mà chưa xác định tiêu chí đánh giá" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Traditional ML có thể phù hợp hơn cho bài toán dự đoán có phạm vi hẹp khi khả năng giải thích, kiểm soát và ràng buộc vận hành là trọng yếu. Đây là lựa chọn cần đánh giá theo yêu cầu; không phải quy tắc rằng traditional ML luôn tốt hơn FM.", incorrectReason: "Khả năng tạo văn bản không tự làm FM phù hợp cho dự đoán số bị giới hạn quy định. Agentic architecture và model lớn không giải quyết yêu cầu nếu chưa xác định metric, rủi ro và tiêu chí vận hành.", examTip: "Use case hẹp + explainability/regulatory/operational constraints → so sánh traditional ML với FM theo yêu cầu cụ thể." },
+    service: "Traditional ML vs Foundation Models"
+  },
+  {
+    id: "q123", domainId: 2, domainName: "Fundamentals of GenAI",
+    questionEn: "A team is estimating inference costs for a generative AI application. Which statement best describes token-based pricing?",
+    questionVi: "Một nhóm đang ước lượng chi phí inference cho ứng dụng GenAI. Mô tả nào đúng nhất về giá tính theo token?",
+    options: [
+      { id: "A", en: "Input and generated output token usage can affect cost; exact rates depend on the model and pricing option", vi: "Lượng token đầu vào và đầu ra có thể ảnh hưởng chi phí; đơn giá cụ thể tùy model và lựa chọn pricing" },
+      { id: "B", en: "Only the number of API calls matters; prompt and response length never affect cost", vi: "Chỉ số lần gọi API mới ảnh hưởng; độ dài prompt và câu trả lời không bao giờ ảnh hưởng" },
+      { id: "C", en: "Token prices are identical across all foundation models and Regions", vi: "Giá token giống nhau với mọi FM và mọi Region" },
+      { id: "D", en: "Longer outputs always reduce both cost and latency", vi: "Đầu ra dài hơn luôn giảm cả chi phí lẫn độ trễ" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Usage-based inference pricing can depend on input and output token counts; model, pricing mode, region, caching, batch or provisioned throughput options can change the economics. Estimate using the current model pricing page and workload measurements.", incorrectReason: "Pricing is not identical for every model or deployment option. Request count alone may not capture token-based usage, and longer outputs generally require more generation work.", examTip: "Estimate input tokens + output tokens and compare the model's current pricing/inference options." },
+    service: "Token-based inference pricing"
+  },
+  {
+    id: "q124", domainId: 2, domainName: "Fundamentals of GenAI",
+    questionEn: "An application team wants an FM to answer with the correct policy, recent retrieved facts, conversation history, and only the tools needed for the task. Which practice best describes this work?",
+    questionVi: "Một nhóm ứng dụng muốn FM trả lời dựa trên policy, dữ kiện mới truy xuất, lịch sử hội thoại và chỉ những tool cần cho tác vụ. Thực hành nào mô tả đúng nhất công việc này?",
+    options: [
+      { id: "A", en: "Context engineering: selecting and organizing instructions, data, history, and tools for the task", vi: "Context engineering: chọn và tổ chức chỉ dẫn, dữ liệu, lịch sử và tool phù hợp tác vụ" },
+      { id: "B", en: "Increasing temperature until the model remembers every document", vi: "Tăng temperature để model ghi nhớ mọi tài liệu" },
+      { id: "C", en: "Model distillation, which only means shortening the prompt", vi: "Model distillation, nghĩa là rút ngắn prompt" },
+      { id: "D", en: "Data labeling, which automatically grants tools to the model", vi: "Gán nhãn dữ liệu, tự cấp tool cho model" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Context engineering thiết kế ngữ cảnh hữu ích cho lượt làm việc: instructions, retrieved data, conversation history, tool results và định dạng cần thiết. Cần chọn nội dung liên quan, kiểm soát quyền và giới hạn context.", incorrectReason: "Temperature thay đổi sampling chứ không nạp kiến thức. Distillation thay đổi model bằng quy trình teacher/student, còn labeling tạo nhãn dữ liệu; hai việc này không mô tả việc tổ chức ngữ cảnh runtime.", examTip: "Context engineering = chọn, tổ chức và cập nhật ngữ cảnh/tool cho mục tiêu hiện tại." },
+    service: "Context engineering"
+  },
+  {
+    id: "q125", type: "multiple-response", domainId: 2, domainName: "Fundamentals of GenAI",
+    questionEn: "A team connects an agent to external tools through Model Context Protocol (MCP). Which TWO statements are accurate?",
+    questionVi: "Một nhóm kết nối agent với tool bên ngoài qua Model Context Protocol (MCP). Hai nhận định nào chính xác?",
+    options: [
+      { id: "A", en: "MCP standardizes how an AI application can connect to external tools and context providers", vi: "MCP chuẩn hóa cách ứng dụng AI kết nối với tool và nguồn ngữ cảnh bên ngoài" },
+      { id: "B", en: "The team must still control authentication, authorization, and which tools the agent may use", vi: "Nhóm vẫn phải kiểm soát xác thực, phân quyền và danh sách tool agent được dùng" },
+      { id: "C", en: "Using MCP automatically grants least-privilege permissions", vi: "Dùng MCP tự động cấp quyền tối thiểu" },
+      { id: "D", en: "Every MCP-connected agent must store all user data indefinitely", vi: "Mọi agent dùng MCP phải lưu mọi dữ liệu người dùng vô thời hạn" },
+      { id: "E", en: "MCP is a foundation model training algorithm", vi: "MCP là thuật toán huấn luyện foundation model" }
+    ],
+    correct: [0, 1],
+    explanation: { correctReason: "MCP là giao thức kết nối ứng dụng AI với tools và nguồn context. Giao thức không thay thế cơ chế identity, authorization, least privilege, kiểm tra nguồn server hay kiểm soát hành động.", incorrectReason: "Kết nối chuẩn hóa không tự cấp quyền hoặc bảo đảm an toàn. Quy tắc lưu giữ dữ liệu phải theo yêu cầu và cấu hình riêng; MCP không phải thuật toán train model.", examTip: "MCP kết nối; IAM/identity/policy vẫn kiểm soát quyền." },
+    service: "Model Context Protocol"
+  },
+  {
+    id: "q126", domainId: 3, domainName: "Applications of Foundation Models",
+    questionEn: "A team wants to manage reusable prompts, compare tested prompt variants, and keep a controlled version for an application release. Which Amazon Bedrock capability is the best fit?",
+    questionVi: "Một nhóm muốn quản lý prompt dùng lại, so sánh các biến thể đã thử nghiệm và giữ phiên bản được kiểm soát cho bản phát hành ứng dụng. Tính năng Amazon Bedrock nào phù hợp nhất?",
+    options: [
+      { id: "A", en: "Amazon Bedrock Prompt Management", vi: "Amazon Bedrock Prompt Management" },
+      { id: "B", en: "Amazon Macie", vi: "Amazon Macie" },
+      { id: "C", en: "AWS Artifact", vi: "AWS Artifact" },
+      { id: "D", en: "Amazon S3 Glacier lifecycle policies", vi: "Lifecycle policy của Amazon S3 Glacier" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Prompt Management hỗ trợ tạo, lưu và quản lý prompt, variables/variants và thử nghiệm các lựa chọn trước khi tích hợp. Quy trình cần kiểm soát phiên bản prompt theo cách phù hợp với ứng dụng.", incorrectReason: "Macie khám phá dữ liệu nhạy cảm trong S3; Artifact cung cấp tài liệu compliance AWS; Glacier là lưu trữ archive.", examTip: "Reusable prompts + compare variants + managed prompt versions → Bedrock Prompt Management." },
+    service: "Amazon Bedrock Prompt Management"
+  },
+  {
+    id: "q127", type: "multiple-response", domainId: 3, domainName: "Applications of Foundation Models",
+    questionEn: "A team evaluates an FM assistant against a business support workflow. Which TWO practices produce useful, decision-aligned evaluation?",
+    questionVi: "Một nhóm đánh giá trợ lý FM cho quy trình hỗ trợ kinh doanh. Hai thực hành nào giúp kết quả đánh giá hữu ích và gắn với quyết định kinh doanh?",
+    options: [
+      { id: "A", en: "Use representative test cases and a rubric; validate automated LLM-as-a-judge scores with human review or benchmarks", vi: "Dùng test case đại diện và rubric; đối chiếu điểm LLM-as-a-judge với người hoặc benchmark" },
+      { id: "B", en: "Track task completion, user satisfaction, or cost per interaction when these match the business objective", vi: "Theo dõi task completion, hài lòng người dùng hoặc cost per interaction khi phù hợp mục tiêu" },
+      { id: "C", en: "Assume an LLM judge is unbiased and correct without validation", vi: "Mặc định LLM judge không thiên lệch và luôn đúng mà không cần kiểm chứng" },
+      { id: "D", en: "Use only model parameter count as proof of business value", vi: "Chỉ dùng số lượng tham số model làm bằng chứng giá trị kinh doanh" },
+      { id: "E", en: "Ignore failure cases because aggregate scores are sufficient", vi: "Bỏ qua trường hợp thất bại vì điểm tổng hợp đã đủ" }
+    ],
+    correct: [0, 1],
+    explanation: { correctReason: "Đánh giá cần dữ liệu đại diện và tiêu chí phù hợp use case. LLM-as-a-judge có thể hỗ trợ chấm theo rubric nhưng nên kiểm chứng; business metrics như task completion, satisfaction và cost per interaction cần được chọn theo mục tiêu.", incorrectReason: "Model size không chứng minh ROI hoặc chất lượng tác vụ; judge có thể sai/thiên lệch; điểm tổng hợp có thể che khuất failure modes.", examTip: "Định nghĩa success metric trước; dùng benchmark/human review để diễn giải automated judge." },
+    service: "FM evaluation and business metrics"
+  },
+  {
+    id: "q128", type: "multiple-response", domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "A RAG assistant sometimes returns unsupported claims even when it retrieves relevant documents. Which TWO controls can help improve grounding and catch unsafe output before use?",
+    questionVi: "Trợ lý RAG đôi khi đưa ra khẳng định không được nguồn hỗ trợ dù đã truy xuất đúng tài liệu liên quan. Hai kiểm soát nào có thể giúp grounding tốt hơn và phát hiện đầu ra không an toàn trước khi dùng?",
+    options: [
+      { id: "A", en: "Ground the response in retrieved source material and evaluate grounding/relevance", vi: "Ground câu trả lời bằng nguồn đã truy xuất và đánh giá grounding/relevance" },
+      { id: "B", en: "Validate output against business rules or required source evidence; route uncertain cases for review", vi: "Kiểm tra đầu ra theo business rules/bằng chứng; chuyển trường hợp không chắc chắn để review" },
+      { id: "C", en: "Set temperature to zero and treat every response as factually correct", vi: "Đặt temperature bằng 0 rồi coi mọi câu trả lời là sự thật" },
+      { id: "D", en: "Disable logs and remove source references", vi: "Tắt log và xóa tham chiếu nguồn" },
+      { id: "E", en: "Increase the context window without evaluating retrieved content", vi: "Tăng context window mà không đánh giá nội dung truy xuất" }
+    ],
+    correct: [0, 1],
+    explanation: { correctReason: "Grounding/retrieval evaluation, output validation and escalation of uncertain cases can improve detection of unsupported results. Confidence scores may help route work when calibrated, but none of these controls guarantees zero hallucinations.", incorrectReason: "Temperature 0 does not establish factual correctness. More context can still be irrelevant or contradictory; logging and source evidence support auditing and review.", examTip: "RAG grounding + validation/review reduce risk; they do not guarantee no hallucinations." },
+    service: "Grounding and output validation"
+  },
+  {
+    id: "q129", domainId: 5, domainName: "Security, Compliance, and Governance for AI Solutions",
+    questionEn: "An agent must authenticate to external services and restrict which actions it can take. Which approach best matches the Amazon Bedrock AgentCore capabilities named in the current exam guide?",
+    questionVi: "Một agent cần xác thực với dịch vụ bên ngoài và giới hạn các hành động được phép thực hiện. Cách nào khớp nhất với khả năng Amazon Bedrock AgentCore được nêu trong Exam Guide hiện hành?",
+    options: [
+      { id: "A", en: "Use AgentCore Identity for agent identity and AgentCore Policy to govern allowed actions, with least-privilege configuration", vi: "Dùng AgentCore Identity cho danh tính agent và AgentCore Policy để kiểm soát hành động, cấu hình quyền tối thiểu" },
+      { id: "B", en: "Use Amazon Quick to grant every agent administrator access", vi: "Dùng Amazon Quick cấp quyền quản trị cho mọi agent" },
+      { id: "C", en: "Rely on MCP alone because it is an authorization system", vi: "Chỉ dựa vào MCP vì đây là hệ thống phân quyền" },
+      { id: "D", en: "Disable identity checks so tools can be called without credentials", vi: "Tắt kiểm tra danh tính để tool gọi không cần credentials" }
+    ],
+    correct: 0,
+    explanation: { correctReason: "Exam Guide v1.1 nêu AgentCore Identity và Policy in AgentCore trong các ví dụ bảo mật agent. Kết hợp identity/policy với least privilege; kiểm tra chính xác component và tích hợp được yêu cầu.", incorrectReason: "Amazon Quick không cấp agent permissions; MCP là giao thức kết nối chứ không tự thay thế authorization; bỏ xác thực làm tăng rủi ro.", examTip: "Agent identity/authentication → AgentCore Identity; agent action authorization → AgentCore Policy." },
+    service: "Amazon Bedrock AgentCore"
   }
 ];

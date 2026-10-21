@@ -37,9 +37,9 @@ const CHEATSHEET_DATA = {
 
   customizationSpectrum: [
     { level: "1. Prompt Engineering", effort: "Tối thiểu", cost: "Thấp nhất", when: "Khi mô hình gốc đã có sẵn khả năng nhưng cần hướng dẫn định dạng/văn phong (Zero-shot, Few-shot, Chain-of-Thought)" },
-    { level: "2. RAG (Bedrock Knowledge Bases)", effort: "Trung bình", cost: "Tối ưu nhất cho doanh nghiệp", when: "Khi muốn mô hình trả lời dựa trên tài liệu nội bộ công ty luôn thay đổi liên tục, KHÔNG CẦN RETRAIN" },
-    { level: "3. Fine-Tuning (PEFT / LoRA)", effort: "Nhiều", cost: "Cao", when: "Khi cần mô hình làm chủ thuật ngữ chuyên sâu (y khoa, tài chính) và đã có tập dữ liệu gán nhãn lớn" },
-    { level: "4. Pre-training from Scratch", effort: "Cực kỳ lớn", cost: "Hàng triệu USD", when: "Cực kỳ hiếm dùng (chỉ các tập đoàn công nghệ lớn xây dựng LLM mới)" }
+    { level: "2. RAG (Bedrock Knowledge Bases)", effort: "Tùy nguồn dữ liệu và kiến trúc", cost: "Phụ thuộc ingestion, vector store, retrieval và inference", when: "Khi cần truy xuất thông tin bên ngoài/cập nhật mà không fine-tune model mỗi lần dữ liệu đổi; vẫn phải tính chi phí đồng bộ, lưu trữ, truy xuất và token" },
+    { level: "3. Fine-Tuning", effort: "Tùy model, dữ liệu và quy trình", cost: "Phụ thuộc dữ liệu huấn luyện, job và inference", when: "Khi cần điều chỉnh hành vi/hiệu năng cho tác vụ và có dữ liệu đại diện phù hợp; không mặc định là cách tốt nhất để cập nhật kiến thức thay đổi thường xuyên" },
+    { level: "4. Pre-training from Scratch", effort: "Rất lớn", cost: "Rất cao và phụ thuộc quy mô", when: "Khi có yêu cầu đặc biệt về dữ liệu, kiến trúc hoặc quyền kiểm soát và đủ nguồn lực; thường không phải lựa chọn cho use case thông thường" }
   ],
 
   goldenExamTips: [
