@@ -258,7 +258,7 @@ function renderDashboard() {
   const domainsContainer = document.getElementById("dashboard-domains-grid");
   if (!domainsContainer) return;
 
-  domainsContainer.innerHTML = THEORY_DATA.map(domain => {
+  domainsContainer.innerHTML = THEORY_DATA.filter(domain => !domain.isSupplemental).map(domain => {
     const questionsCount = QUESTIONS_DATA.filter(q => q.domainId === domain.domainNumber).length;
     const completedInDomain = state.completedModules.filter(mId => mId.startsWith(`d${domain.domainNumber}-`)).length;
     const totalModules = domain.modules.length;
@@ -309,10 +309,13 @@ function renderDashboard() {
 }
 
 function updateReadinessBadge() {
-  const totalModules = THEORY_DATA.reduce((acc, d) => acc + d.modules.length, 0);
+  const examTheory = THEORY_DATA.filter(d => !d.isSupplemental);
+  const totalModules = examTheory.reduce((acc, d) => acc + d.modules.length, 0);
   const totalQuestions = QUESTIONS_DATA.length;
   
-  const completedModCount = state.completedModules.length;
+  const completedModCount = state.completedModules.filter(moduleId =>
+    examTheory.some(domain => domain.modules.some(module => module.id === moduleId))
+  ).length;
   const answeredQCount = Object.keys(state.quizSession.userAnswers).length;
 
   const scoreRatio = Math.min(100, Math.round(((completedModCount / totalModules) * 50) + ((answeredQCount / totalQuestions) * 50)));
@@ -341,9 +344,9 @@ function renderStudySidebar() {
   navList.innerHTML = THEORY_DATA.map(domain => {
     const isActive = domain.domainNumber === activeDomNum;
     const isOpen = state.openStudyDomains.has(domain.domainNumber);
-    const domainLabel = domain.domainNumber === 6 ? '⭐ Thủ khoa' : `Domain ${domain.domainNumber}`;
-    const domainShort = domain.domainNumber === 6 ? '⭐' : `D${domain.domainNumber}`;
-    const domainFullName = domain.domainNumber === 6 ? 'Kinh nghiệm ôn tập & mẹo thi' : domain.titleVi;
+    const domainLabel = domain.isSupplemental ? 'Đọc thêm' : domain.domainNumber === 6 ? '⭐ Thủ khoa' : `Domain ${domain.domainNumber}`;
+    const domainShort = domain.isSupplemental ? 'AWS' : domain.domainNumber === 6 ? '⭐' : `D${domain.domainNumber}`;
+    const domainFullName = domain.titleVi;
 
     return `
       <div class="domain-nav-item ${isActive ? 'active' : ''} ${isOpen ? 'expanded' : ''}" 
@@ -363,7 +366,7 @@ function renderStudySidebar() {
               ${domainLabel}
             </span>
             <div class="domain-nav-top-right">
-              <span class="domain-nav-weight" style="color: ${domain.color}; font-weight: 700;">${domain.weight}</span>
+              <span class="domain-nav-weight" style="color: ${domain.color}; font-weight: 700;">${domain.isSupplemental ? 'Tùy chọn' : domain.weight}</span>
               <button class="domain-chevron-btn" 
                       title="${isOpen ? 'Thu gọn mục lục' : 'Mở rộng mục lục'}"
                       onclick="event.stopPropagation(); toggleDomainAccordion(${domain.domainNumber});">
@@ -515,12 +518,12 @@ function renderStudyContent(domainNumber) {
       <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
         <div>
           <span class="domain-pill" style="background: ${domain.color}18; color: ${domain.color}; font-weight: 700;">
-            ${domain.domainNumber === 6 ? 'Kinh Nghiệm Thực Chiến' : `Domain ${domain.domainNumber}`} &bull; ${domain.weight}
+            ${domain.isSupplemental ? 'ĐỌC THÊM • NGOÀI 5 DOMAIN THI' : `${domain.domainNumber === 6 ? 'Kinh Nghiệm Thực Chiến' : `Domain ${domain.domainNumber}`} • ${domain.weight}`}
           </span>
           <h2 style="margin-top: 0.5rem;">${domain.title}</h2>
           <p>${domain.titleVi}</p>
         </div>
-        ${domain.domainNumber === 6 ? `
+        ${domain.isSupplemental ? '' : domain.domainNumber === 6 ? `
           <button class="btn-primary" onclick="startMockExam()">
             <i data-lucide="play-circle"></i> Bắt đầu thi thử 65 câu
           </button>

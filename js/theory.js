@@ -1144,6 +1144,104 @@ const THEORY_DATA = [
         `
       }
     ]
+  },
+  {
+    id: "aws-cloud-basics",
+    domainNumber: 7,
+    title: "AWS nền tảng để hiểu đề AIF-C01",
+    titleVi: "Đọc thêm khi rảnh • Không phải domain thi riêng",
+    weight: "Tùy chọn",
+    isSupplemental: true,
+    icon: "cloud",
+    color: "#0F766E",
+    summary: "Giải thích AWS Region/AZ, EC2, S3, Lambda, IAM, shared responsibility và chi phí bằng ví dụ ngắn; học để hiểu ngữ cảnh câu hỏi AIF, không cần đi sâu cấu hình.",
+    modules: [
+      {
+        id: "awsb-1",
+        title: "Đọc thêm 1 • Region và Availability Zone (AZ)",
+        badge: "Hạ tầng AWS",
+        content: `
+          <div class="theory-card">
+            <h4><i data-lucide="map-pin"></i> Hai khái niệm để biết tài nguyên đang ở đâu</h4>
+            <p><strong>Region</strong> là một khu vực địa lý AWS vận hành. <strong>Availability Zone (AZ)</strong> là một vị trí cô lập nằm trong Region; mỗi AZ gồm một hoặc nhiều data center. Khi tạo tài nguyên, nhiều dịch vụ yêu cầu bạn chọn Region.</p>
+            <div class="grid-2-col">
+              <div class="concept-card"><div class="card-header blue"><i data-lucide="globe-2"></i><h5>Region</h5></div><div class="card-body"><p>Chọn Region theo yêu cầu về vị trí dữ liệu/quy định, độ trễ tới người dùng, dịch vụ có sẵn và giá. Tài nguyên ở một Region không mặc định được nhân bản sang Region khác.</p></div></div>
+              <div class="concept-card"><div class="card-header green"><i data-lucide="network"></i><h5>Availability Zone</h5></div><div class="card-body"><p>Các AZ trong một Region được cô lập để giảm ảnh hưởng khi một vị trí gặp sự cố. Dùng nhiều AZ có thể tăng khả năng sẵn sàng, nhưng ứng dụng phải được thiết kế và triển khai để tận dụng điều đó.</p></div></div>
+            </div>
+            <div class="alert-box tip"><div class="alert-title"><i data-lucide="lightbulb"></i> Liên hệ với AIF</div><p>Nếu đề nhắc chọn vị trí dữ liệu, tuân thủ hoặc độ trễ, nghĩ đến Region. Nếu đề nhắc giảm ảnh hưởng từ lỗi tại một vị trí trong Region, nghĩ đến AZ. <a href="https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions-availability-zones.html" target="_blank" rel="noopener">Tài liệu AWS: Regions và AZs</a>.</p></div>
+          </div>
+        `
+      },
+      {
+        id: "awsb-2",
+        title: "Đọc thêm 2 • EC2, S3 và Lambda dùng để làm gì?",
+        badge: "Ba dịch vụ cốt lõi",
+        content: `
+          <div class="theory-card">
+            <h4><i data-lucide="boxes"></i> Chọn đúng loại tài nguyên trước khi nghĩ đến tên dịch vụ</h4>
+            <div class="grid-3-col">
+              <div class="concept-card"><div class="card-header orange"><i data-lucide="server"></i><h5>Amazon EC2</h5></div><div class="card-body"><p><strong>Máy chủ ảo.</strong> Dùng khi cần chọn hệ điều hành/cấu hình và có nhiều quyền kiểm soát máy chủ. Khách hàng chịu trách nhiệm cấu hình hệ điều hành, ứng dụng và quyền truy cập phù hợp.</p><p><strong>Ví dụ:</strong> chạy một ứng dụng cần môi trường máy chủ tùy chỉnh.</p></div></div>
+              <div class="concept-card"><div class="card-header blue"><i data-lucide="database"></i><h5>Amazon S3</h5></div><div class="card-body"><p><strong>Lưu trữ object.</strong> Dùng để lưu file, ảnh, tài liệu, log hoặc tập dữ liệu dưới dạng object trong bucket.</p><p><strong>Ví dụ AI:</strong> lưu tài liệu nguồn cho một luồng chuẩn bị dữ liệu hoặc RAG; cần cấu hình quyền truy cập và bảo vệ dữ liệu.</p></div></div>
+              <div class="concept-card"><div class="card-header green"><i data-lucide="zap"></i><h5>AWS Lambda</h5></div><div class="card-body"><p><strong>Chạy code theo sự kiện/API mà không tự quản lý máy chủ.</strong> AWS quản lý hạ tầng thực thi; bạn vẫn chịu trách nhiệm về code, quyền IAM và dữ liệu mà function sử dụng.</p><p><strong>Ví dụ:</strong> xử lý metadata khi file được tải lên S3 hoặc chạy logic tích hợp cho ứng dụng.</p></div></div>
+            </div>
+            <div class="alert-box tip"><div class="alert-title"><i data-lucide="lightbulb"></i> Mẹo nhận diện</div><p>Cần máy chủ có quyền kiểm soát cao → EC2. Cần lưu file/tập dữ liệu → S3. Cần chạy tác vụ ngắn theo sự kiện mà không quản lý máy chủ → Lambda. Đây là kiến thức nhận diện dịch vụ; đề AIF không yêu cầu bạn tự triển khai các dịch vụ này.</p></div>
+            <p class="reference-links">Tài liệu AWS: <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html" target="_blank" rel="noopener">EC2</a> · <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html" target="_blank" rel="noopener">S3</a> · <a href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html" target="_blank" rel="noopener">Lambda</a>.</p>
+          </div>
+        `
+      },
+      {
+        id: "awsb-3",
+        title: "Đọc thêm 3 • IAM role và policy: ai được làm gì?",
+        badge: "Quyền truy cập",
+        content: `
+          <div class="theory-card">
+            <h4><i data-lucide="key-round"></i> IAM kiểm soát danh tính và quyền gọi dịch vụ</h4>
+            <ul class="feature-bullets">
+              <li><strong>IAM identity:</strong> danh tính người hoặc workload thực hiện yêu cầu.</li>
+              <li><strong>IAM policy:</strong> quy tắc quyền, thường nêu action nào được phép/không được phép trên resource nào và trong điều kiện nào.</li>
+              <li><strong>IAM role:</strong> danh tính có thể được người dùng, dịch vụ hoặc workload đảm nhận để nhận quyền phù hợp; role thường cung cấp credentials tạm thời.</li>
+            </ul>
+            <div class="example-box"><strong>Ví dụ dễ nhớ:</strong> một ứng dụng cần gọi Amazon Bedrock. Gắn role cho ứng dụng và cấp đúng quyền cần thiết; tránh nhúng access key dài hạn vào code hoặc cấp quyền administrator nếu không cần.</div>
+            <div class="alert-box tip"><div class="alert-title"><i data-lucide="lightbulb"></i> Liên hệ với câu hỏi AIF</div><p>“Chỉ được gọi một model cụ thể” → policy giới hạn action/resource. “Workload AWS cần credentials” → role. “Cấp quyền vừa đủ” → least privilege. <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html" target="_blank" rel="noopener">Tài liệu AWS: IAM access management</a>.</p></div>
+          </div>
+        `
+      },
+      {
+        id: "awsb-4",
+        title: "Đọc thêm 4 • Shared responsibility: AWS lo phần nào?",
+        badge: "Bảo mật cơ bản",
+        content: `
+          <div class="theory-card">
+            <h4><i data-lucide="shield-check"></i> AWS bảo vệ “cloud”; khách hàng bảo vệ workload “trong cloud”</h4>
+            <p>Trách nhiệm thay đổi theo dịch vụ. AWS bảo vệ hạ tầng cloud bên dưới; khách hàng vẫn phải bảo vệ dữ liệu, danh tính, quyền truy cập và cách cấu hình workload.</p>
+            <div class="comparison-table-wrapper"><table class="styled-table"><thead><tr><th>Ví dụ dịch vụ</th><th>AWS thường quản lý</th><th>Khách hàng vẫn cần quản lý</th></tr></thead><tbody>
+              <tr><td><strong>EC2</strong></td><td>Hạ tầng vật lý, host và lớp cloud bên dưới</td><td>Guest OS/patches, ứng dụng, dữ liệu, security group và quyền IAM</td></tr>
+              <tr><td><strong>S3 / dịch vụ managed</strong></td><td>Hạ tầng và phần nền tảng dịch vụ</td><td>Dữ liệu, phân loại, quyền truy cập, cấu hình và tùy chọn mã hóa</td></tr>
+              <tr><td><strong>AI managed service</strong></td><td>Vận hành hạ tầng dịch vụ theo mô hình AWS</td><td>Prompt/đầu vào, quyền gọi model, cách dùng đầu ra, kiểm soát rủi ro và tuân thủ</td></tr>
+            </tbody></table></div>
+            <p>Không nên học thuộc một ranh giới cho mọi dịch vụ: mức khách hàng phải cấu hình thường khác nhau giữa EC2, S3, Bedrock và các dịch vụ khác. <a href="https://aws.amazon.com/compliance/shared-responsibility-model/" target="_blank" rel="noopener">Tài liệu AWS: Shared Responsibility Model</a>.</p>
+          </div>
+        `
+      },
+      {
+        id: "awsb-5",
+        title: "Đọc thêm 5 • Giá AWS: vì sao cần để ý compute, storage và data transfer?",
+        badge: "Chi phí cloud",
+        content: `
+          <div class="theory-card">
+            <h4><i data-lucide="circle-dollar-sign"></i> Ước tính chi phí theo cách workload thật sự sử dụng dịch vụ</h4>
+            <p>Một cách ghi nhớ nền tảng là ba yếu tố chi phí thường gặp: <strong>compute</strong> (tài nguyên xử lý), <strong>storage</strong> (dữ liệu lưu trữ) và <strong>outbound data transfer</strong> (dữ liệu truyền ra). Cách tính cụ thể khác nhau theo dịch vụ và lựa chọn giá.</p>
+            <ul class="feature-bullets">
+              <li>EC2: chi phí phụ thuộc loại instance, thời gian chạy và lựa chọn giá; dừng tài nguyên có thể dừng một số khoản compute nhưng storage liên quan vẫn có thể tính phí.</li>
+              <li>S3: dung lượng lưu, yêu cầu/API, lớp lưu trữ và truyền dữ liệu có thể ảnh hưởng hóa đơn.</li>
+              <li>AI/GenAI: xem pricing của dịch vụ/model đang chọn; có thể phụ thuộc token input/output, throughput, lưu trữ, retrieval hoặc thời gian xử lý.</li>
+            </ul>
+            <div class="alert-box warning"><div class="alert-title"><i data-lucide="triangle-alert"></i> Tránh hiểu nhầm</div><p>Pay-as-you-go không có nghĩa là mọi thứ miễn phí hoặc luôn rẻ hơn. Cần kiểm tra bảng giá hiện hành, Region, quota và mức sử dụng; AWS pricing có ngoại lệ theo từng sản phẩm.</p></div>
+            <p><a href="https://docs.aws.amazon.com/whitepapers/latest/how-aws-pricing-works/key-principles.html" target="_blank" rel="noopener">Tài liệu AWS: nguyên tắc pricing</a>.</p>
+          </div>
+        `
+      }
+    ]
   }
 ];
 
