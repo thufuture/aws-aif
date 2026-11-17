@@ -16,8 +16,8 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   
   <!-- Master Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=20261117-header-3">
-  <link rel="stylesheet" href="css/mobile.css?v=20261117-header-3">
+  <link rel="stylesheet" href="css/style.css?v=20261118-compact-4">
+  <link rel="stylesheet" href="css/mobile.css?v=20261118-compact-4">
 </head>
 <body class="auth-locked">
   <main class="auth-gate" id="login-gate" aria-labelledby="login-title">
@@ -86,7 +86,7 @@
         </div>
 
         <!-- Center: 1-Row Navigation Tabs -->
-        <nav class="nav-tabs">
+        <nav class="nav-tabs" id="main-navigation" aria-label="Điều hướng chính">
           <button class="nav-tab-btn active" data-view="dashboard">
             <i data-lucide="layout-dashboard"></i>
             <span>Tổng quan</span>
@@ -115,6 +115,7 @@
 
         <!-- Right: Actions (Progress, Sound, Theme) -->
         <div class="header-actions">
+          <button type="button" class="icon-btn mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Mở menu" aria-controls="main-navigation" aria-expanded="false" onclick="toggleMobileNavigation()"><i data-lucide="menu"></i></button>
           <div class="readiness-pill" title="Mức độ sẵn sàng đi thi">
             <span id="readiness-score-text">0% Sẵn sàng</span>
             <div class="readiness-bar-mini">
@@ -229,6 +230,7 @@
            VIEW 2: STUDY CENTER (HỌC LÝ THUYẾT)
            ============================================================== -->
       <section id="view-study" class="view-panel">
+        <div class="mobile-study-picker"><label for="mobile-study-domain">Domain</label><select id="mobile-study-domain" onchange="handleDomainCardClick(Number(this.value))" aria-label="Chọn domain để học"></select></div>
         <div class="study-layout">
           <!-- Sidebar Navigation (Collapsible & Scrollable) -->
           <aside class="study-sidebar" id="study-sidebar">
@@ -437,7 +439,7 @@
   <script src="js/questions.js?v=20261021-aif-v11-3"></script>
   <script src="js/flashcards.js?v=20261020-card-readability-2"></script>
   <script src="js/cheatsheet.js?v=20261021-aif-v11-1"></script>
-  <script src="js/app.js?v=20261117-header-3"></script>
+  <script src="js/app.js?v=20261118-compact-4"></script>
   <script src="js/login.js?v=20261020-logout"></script>
 </body>
 </html>

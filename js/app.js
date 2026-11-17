@@ -173,6 +173,7 @@ function updateSoundIcon() {
 function switchView(viewName) {
   sound.playClick();
   state.currentView = viewName;
+  toggleMobileNavigation(false);
 
   // Update tabs
   document.querySelectorAll(".nav-tab-btn").forEach(btn => {
@@ -337,6 +338,16 @@ function renderStudySidebar() {
   if (!navList) return;
 
   const activeDomNum = state.activeStudyDomain || 1;
+  const mobileSelect = document.getElementById("mobile-study-domain");
+  if (mobileSelect) {
+    mobileSelect.replaceChildren(...THEORY_DATA.map(domain => {
+      const option = document.createElement("option");
+      option.value = domain.domainNumber;
+      option.textContent = `${domain.domainNumber <= 5 ? `D${domain.domainNumber}` : domain.isSupplemental ? 'AWS' : 'Ôn tập'} · ${domain.titleVi}`;
+      option.selected = domain.domainNumber === activeDomNum;
+      return option;
+    }));
+  }
   if (!state.openStudyDomains) {
     state.openStudyDomains = new Set([activeDomNum]);
   }
@@ -513,6 +524,9 @@ function renderStudyContent(domainNumber) {
   const contentPanel = document.getElementById("study-content-panel");
   if (!contentPanel) return;
 
+  contentPanel.dataset.domain = String(domainNumber);
+  const mobileSelect = document.getElementById("mobile-study-domain");
+  if (mobileSelect) mobileSelect.value = String(domainNumber);
   contentPanel.innerHTML = `
     <div class="study-header">
       <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
@@ -559,7 +573,23 @@ function renderStudyContent(domainNumber) {
     </div>
   `;
 
+  if (domainNumber === 2) formatDomainTwo(contentPanel);
   refreshIcons();
+}
+
+// Group existing lesson nodes by their existing heading; preserve text and order.
+function formatDomainTwo(panel) {
+  panel.querySelectorAll(".module-body > .theory-card").forEach(card => {
+    let section = null;
+    Array.from(card.childNodes).forEach(node => {
+      if (node.nodeType === 1 && node.tagName === "H4") {
+        section = document.createElement("section");
+        section.className = "lesson-section";
+        card.insertBefore(section, node);
+      }
+      if (section) section.appendChild(node);
+    });
+  });
 }
 
 function toggleModuleAccordion(modId) {
@@ -1613,4 +1643,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector(".app-top-header");
   if (header && window.ResizeObserver) new ResizeObserver(syncHeaderOffset).observe(header);
   window.addEventListener("resize", syncHeaderOffset);
+});
+
+function toggleMobileNavigation(forceOpen) {
+  const header = document.querySelector(".app-top-header");
+  const button = document.getElementById("mobile-nav-toggle");
+  if (!header || !button) return;
+  const open = typeof forceOpen === "boolean" ? forceOpen : !header.classList.contains("navigation-open");
+  header.classList.toggle("navigation-open", open);
+  button.setAttribute("aria-expanded", String(open));
+  button.setAttribute("aria-label", open ? "Đóng menu" : "Mở menu");
+}
+
+document.addEventListener("click", event => {
+  if (!event.target.closest(".app-top-header")) toggleMobileNavigation(false);
+});
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") toggleMobileNavigation(false);
 });
