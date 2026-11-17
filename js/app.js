@@ -493,7 +493,7 @@ function scrollToStudyModule(modId, domainNumber) {
       body.style.display = "block";
       if (arrow) arrow.style.transform = "rotate(0deg)";
     }
-    const offset = (document.querySelector(".app-top-header")?.offsetHeight || 54) + 16;
+    const offset = getHeaderOffset() + 16;
     const elementPosition = modEl.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - offset;
     window.scrollTo({
@@ -1519,7 +1519,7 @@ function renderBookmarksView() {
   const bookmarkedQuestions = QUESTIONS_DATA.filter(q => state.bookmarks.includes(q.id));
 
   container.innerHTML = `
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <div class="bookmarks-toolbar">
       <h3>Danh sách ${bookmarkedQuestions.length} câu hỏi cần lưu ý</h3>
       <button class="btn-primary" onclick="practiceBookmarkedQuestions()">
         <i data-lucide="play"></i> Luyện riêng các câu này
@@ -1528,8 +1528,8 @@ function renderBookmarksView() {
 
     <div style="display: flex; flex-direction: column; gap: 1rem;">
       ${bookmarkedQuestions.map((q, idx) => `
-        <div class="cheat-card">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+        <div class="cheat-card bookmark-card">
+          <div class="bookmark-card-header">
             <span class="domain-pill" style="background: rgba(255, 153, 0, 0.2); color: var(--aws-orange);">
               Domain ${q.domainId} &bull; ${q.service}
             </span>
@@ -1556,6 +1556,9 @@ function practiceBookmarkedQuestions() {
   const bookmarkedQuestions = QUESTIONS_DATA.filter(q => state.bookmarks.includes(q.id));
   if (!bookmarkedQuestions.length) return;
 
+  clearInterval(state.quizSession.timerInterval);
+  closeResultModal();
+  toggleMobilePalette(false);
   state.quizSession = {
     mode: "domain",
     domainId: null,
@@ -1590,8 +1593,24 @@ function toggleMobilePalette(forceOpen) {
 function focusMobileQuestion() {
   if (!window.matchMedia("(max-width: 1024px)").matches) return;
   const card = document.getElementById("quiz-main-card");
-  const header = document.querySelector(".app-top-header");
   if (!card) return;
-  const top = card.getBoundingClientRect().top + window.scrollY - (header?.offsetHeight || 100) - 12;
+  const top = card.getBoundingClientRect().top + window.scrollY - getHeaderOffset() - 12;
   window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
 }
+
+function getHeaderOffset() {
+  const header = document.querySelector(".app-top-header");
+  if (!header) return 0;
+  const position = window.getComputedStyle(header).position;
+  return position === "sticky" || position === "fixed" ? header.offsetHeight : 0;
+}
+
+function syncHeaderOffset() {
+  document.documentElement.style.setProperty("--app-header-offset", `${getHeaderOffset()}px`);
+}
+document.addEventListener("DOMContentLoaded", () => {
+  syncHeaderOffset();
+  const header = document.querySelector(".app-top-header");
+  if (header && window.ResizeObserver) new ResizeObserver(syncHeaderOffset).observe(header);
+  window.addEventListener("resize", syncHeaderOffset);
+});

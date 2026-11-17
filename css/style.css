@@ -608,7 +608,7 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
 /* Stats Grid */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
   gap: 1.25rem;
   margin-bottom: 2rem;
 }
@@ -661,7 +661,7 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
 /* Domains Grid */
 .domains-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
   gap: 1.5rem;
   margin-bottom: 2.5rem;
 }
@@ -1440,7 +1440,7 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
 /* Comparison Grid & Tables */
 .grid-3-col {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   grid-auto-rows: 1fr;
   align-items: stretch;
   gap: 1rem;
@@ -1449,7 +1449,7 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
 
 .grid-2-col {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   grid-auto-rows: 1fr;
   align-items: stretch;
   gap: 1.25rem;
@@ -1618,7 +1618,7 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
 /* Purpose-built Services Grid */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 1.25rem;
   margin-top: 1.25rem;
 }
@@ -1764,7 +1764,7 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
 
 .model-providers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 1rem;
   margin: 1.25rem 0 1.75rem 0;
 }
@@ -1972,7 +1972,7 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
    =================================================================== */
 .hyperparameter-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 1.25rem;
   margin: 1.25rem 0;
 }
@@ -2042,7 +2042,7 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
    =================================================================== */
 .risks-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 1.25rem;
   margin: 1.25rem 0;
 }
@@ -2087,7 +2087,7 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
    =================================================================== */
 .responsible-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 1.25rem;
   margin: 1.25rem 0;
 }
@@ -2233,7 +2233,7 @@ body.dark-theme .study-tips-list { color: #cbd5e1; }
 
 .stat-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
   gap: 1rem;
   margin-bottom: 0.85rem;
 }
