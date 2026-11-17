@@ -493,7 +493,7 @@ function scrollToStudyModule(modId, domainNumber) {
       body.style.display = "block";
       if (arrow) arrow.style.transform = "rotate(0deg)";
     }
-    const offset = 70;
+    const offset = (document.querySelector(".app-top-header")?.offsetHeight || 54) + 16;
     const elementPosition = modEl.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - offset;
     window.scrollTo({
@@ -601,6 +601,9 @@ function startDomainQuiz(domainNumber) {
   sound.playClick();
   const domainQuestions = QUESTIONS_DATA.filter(q => q.domainId === domainNumber);
   if (!domainQuestions.length) return;
+  clearInterval(state.quizSession.timerInterval);
+  closeResultModal();
+  toggleMobilePalette(false);
 
   state.quizSession = {
     mode: "domain",
@@ -624,6 +627,9 @@ function startDomainQuiz(domainNumber) {
 
 function startMockExam() {
   sound.playClick();
+  clearInterval(state.quizSession.timerInterval);
+  closeResultModal();
+  toggleMobilePalette(false);
   // Use the scored-content domain proportions (rounded to 65 practice questions).
   // Supplemental cloud-background questions remain available in domain practice, not this exam-style set.
   // This mock does not reproduce AWS's 50 scored + 15 unscored selection.
@@ -775,9 +781,10 @@ function renderCurrentQuestion() {
   const { questions, currentIndex, userAnswers, flagged, submitted, mode } = state.quizSession;
   const q = questions[currentIndex];
 
+  document.querySelector(".quiz-sidebar")?.classList.toggle("is-empty", !q);
   if (!q) {
     mainCard.innerHTML = `
-      <div style="text-align: center; padding: 2rem 1rem;">
+      <div class="quiz-chooser" style="text-align: center; padding: 2rem 1rem;">
         <div class="stat-icon orange" style="margin: 0 auto 1.5rem auto; width: 64px; height: 64px;">
           <i data-lucide="check-square" style="width: 36px; height: 36px;"></i>
         </div>
@@ -786,7 +793,7 @@ function renderCurrentQuestion() {
           Chọn chế độ thi thử toàn diện 65 câu tính giờ như thi thật hoặc ôn tập theo từng Domain độc lập với giải thích chi tiết ngay lập tức.
         </p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; text-align: left; max-width: 850px; margin: 0 auto;">
+        <div class="quiz-chooser-grid">
           <div class="domain-card" style="border-color: var(--aws-orange); background: var(--aws-orange-light);">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
               <span class="domain-pill" style="background: var(--aws-orange); color: white;">Gợi ý</span>
@@ -897,7 +904,7 @@ function renderCurrentQuestion() {
 
       <!-- Check Answer Button (Bấm vào đây để kiểm tra và hiện giải thích chi tiết) -->
       ${!isChecked ? `
-        <div style="margin: 1.25rem 0;">
+        <div class="check-answer-row" style="margin: 1.25rem 0;">
           <button class="btn-primary" style="background: #0284c7; border-color: #0284c7; font-size: 0.95rem; padding: 0.7rem 1.5rem;" onclick="checkCurrentAnswer()">
             <i data-lucide="check-circle-2"></i> Kiểm tra đáp án (Check Answer)
           </button>
@@ -1048,6 +1055,7 @@ function prevQuestion() {
     sound.playClick();
     state.quizSession.currentIndex--;
     renderCurrentQuestion();
+    focusMobileQuestion();
   }
 }
 
@@ -1056,6 +1064,7 @@ function nextQuestion() {
     sound.playClick();
     state.quizSession.currentIndex++;
     renderCurrentQuestion();
+    focusMobileQuestion();
   }
 }
 
@@ -1063,6 +1072,8 @@ function jumpToQuestion(index) {
   sound.playClick();
   state.quizSession.currentIndex = index;
   renderCurrentQuestion();
+  toggleMobilePalette(false);
+  focusMobileQuestion();
 }
 
 function toggleFlagQuestion(qId) {
@@ -1133,6 +1144,8 @@ function renderQuestionPalette() {
     return;
   }
 
+  const mobileCount = document.getElementById("mobile-palette-count");
+  if (mobileCount) mobileCount.textContent = `${currentIndex + 1} / ${questions.length}`;
   // Update question counter e.g. "4 / 65"
   const answeredCount = Object.keys(userAnswers).length;
   const counterEl = document.getElementById("sidebar-q-counter");
@@ -1561,4 +1574,24 @@ function practiceBookmarkedQuestions() {
   startTimer();
   renderCurrentQuestion();
   renderQuestionPalette();
+}
+
+// Mobile question navigation keeps the question below the current header.
+function toggleMobilePalette(forceOpen) {
+  const sidebar = document.querySelector(".quiz-sidebar");
+  const button = document.getElementById("mobile-palette-toggle");
+  if (!sidebar || !button) return;
+  const open = typeof forceOpen === "boolean" ? forceOpen : !sidebar.classList.contains("palette-open");
+  sidebar.classList.toggle("palette-open", open);
+  button.setAttribute("aria-expanded", String(open));
+  if (!open) closePaletteFilterMenu();
+}
+
+function focusMobileQuestion() {
+  if (!window.matchMedia("(max-width: 1024px)").matches) return;
+  const card = document.getElementById("quiz-main-card");
+  const header = document.querySelector(".app-top-header");
+  if (!card) return;
+  const top = card.getBoundingClientRect().top + window.scrollY - (header?.offsetHeight || 100) - 12;
+  window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
 }

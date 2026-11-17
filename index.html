@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>AWS Certified AI Practitioner (AIF-C01) - VIP Exam Prep & Study Center</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=20261020-1">
   <link rel="apple-touch-icon" href="favicon.svg?v=20261020-1">
@@ -17,6 +17,7 @@
   
   <!-- Master Stylesheet -->
   <link rel="stylesheet" href="css/style.css?v=20261020-flashcards-white-1">
+  <link rel="stylesheet" href="css/mobile.css?v=20261117-mobile-1">
 </head>
 <body class="auth-locked">
   <main class="auth-gate" id="login-gate" aria-labelledby="login-title">
@@ -266,7 +267,9 @@
       <section id="view-quiz" class="view-panel">
         <div class="quiz-container">
           <!-- Left: Devcloudly Question Palette Sidebar -->
-          <aside class="quiz-sidebar">
+          <aside class="quiz-sidebar is-empty">
+            <button type="button" class="mobile-palette-toggle" id="mobile-palette-toggle" aria-expanded="false" aria-controls="quiz-palette-details" onclick="toggleMobilePalette()"><span>Danh sách câu hỏi</span><span id="mobile-palette-count"></span><i data-lucide="chevron-down"></i></button>
+            <div class="quiz-palette-details" id="quiz-palette-details">
             <div class="palette-top-bar">
               <h4>Danh sách câu hỏi</h4>
               <span class="palette-count-badge" id="sidebar-q-counter">65 / 65</span>
@@ -305,6 +308,7 @@
               <!-- Rendered dynamically by app.js -->
             </div>
 
+            </div>
             <!-- Timer Card -->
             <div class="timer-box">
               <span class="timer-label"><i data-lucide="clock" style="width: 14px; height: 14px;"></i> Thời gian làm bài</span>
@@ -433,7 +437,7 @@
   <script src="js/questions.js?v=20261021-aif-v11-3"></script>
   <script src="js/flashcards.js?v=20261020-card-readability-2"></script>
   <script src="js/cheatsheet.js?v=20261021-aif-v11-1"></script>
-  <script src="js/app.js?v=20261021-aif-coverage-2"></script>
+  <script src="js/app.js?v=20261117-mobile-1"></script>
   <script src="js/login.js?v=20261020-logout"></script>
 </body>
 </html>
