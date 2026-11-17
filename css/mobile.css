@@ -1,6 +1,9 @@
 /* Responsive workspace: content first on phones, comfortable touch controls. */
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--app-header-offset, 110px) + 12px); }
 img { max-width: 100%; }
+.app-container { width: 100%; min-width: 0; }
+.app-top-header { width: 100%; max-width: 100%; align-self: stretch; flex-shrink: 0; }
+.header-single-row { min-width: 0; }
 .quiz-container { grid-template-columns: 320px minmax(0, 1fr); }
 .quiz-main-card, .study-content-panel, .option-left-content, .option-text-wrap { min-width: 0; }
 .mobile-palette-toggle { display: none; }
@@ -31,9 +34,12 @@ button, [role="radio"], [role="checkbox"] { touch-action: manipulation; }
   .fc-term-wrap { padding: 1rem 0; }
   .fc-definition-text { overflow: visible; max-height: none; margin: 1rem 0; }
   .modal-box { max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); overflow-y: auto; overscroll-behavior: contain; }
-  .app-top-header { height: auto; }
-  .header-single-row { flex-wrap: wrap; padding: .5rem .75rem; gap: .35rem; }
-  .nav-tabs { order: 3; flex: 1 0 100%; width: 100%; justify-content: flex-start; min-width: 0; }
+  .app-top-header { height: auto; background: var(--bg-card); }
+  .header-single-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; height: auto; padding: .5rem .75rem; gap: .35rem; }
+  .nav-tabs { grid-column: 1 / -1; grid-row: 2; order: 3; width: 100%; justify-content: flex-start; min-width: 0; }
+  .brand-section { min-width: 0; }
+  .brand-title-wrap, .brand-title { min-width: 0; }
+  .brand-title > span:first-child { overflow: hidden; text-overflow: ellipsis; }
   .header-actions { margin-left: auto; }
   .quiz-container { grid-template-columns: minmax(0, 1fr); gap: .8rem; }
   .quiz-sidebar { position: static; min-width: 0; padding: .75rem; }
@@ -49,6 +55,8 @@ button, [role="radio"], [role="checkbox"] { touch-action: manipulation; }
   .quiz-sidebar .timer-display { font-size: 1.3rem; }
   .quiz-sidebar .timer-box > button { display: none; }
   .study-sidebar, .study-sidebar.collapsed { position: static; width: 100%; min-width: 0; max-width: 100%; }
+  .study-layout { align-items: stretch; }
+  .study-content-panel { width: 100%; max-width: 100%; padding: 1.25rem; }
   .domain-nav-list { max-height: 260px; }
 }
 
@@ -80,6 +88,7 @@ button, [role="radio"], [role="checkbox"] { touch-action: manipulation; }
   .domain-header, .domain-badge-wrap { flex-wrap: wrap; gap: .5rem; }
   .domain-card:hover { transform: none; }
   .study-layout { gap: .85rem; }
+  .study-content-panel { padding: .85rem; }
   .study-sidebar, .study-sidebar.collapsed { padding: .8rem; }
   .study-sidebar.collapsed .domain-nav-list { max-height: none; }
   .study-sidebar-footer { margin-top: .65rem; }
